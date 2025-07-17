@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVOX.AI - AI Automatizacije za Vaš Biznis</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="logo.png">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="INVOX.AI Logo" class="logo-img">
+                <span class="logo-text">INVOX.AI</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#services" class="nav-link">Usluge</a>
+                <a href="#case-study" class="nav-link">Case Study</a>
+                <a href="#about" class="nav-link">O nama</a>
+                <a href="#contact" class="nav-link">Kontakt</a>
+            </div>
+            <button class="nav-cta" onclick="scrollToSection('contact')">
+                Kontaktiraj nas
+            </button>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">AI Automatizacije</div>
+                <h1 class="hero-title">
+                    Transformišemo vaš biznis sa 
+                    <span class="gradient-text">AI automatizacijama</span>
+                </h1>
+                <p class="hero-description">
+                    Pomažemo lokalnim biznisima da najbolje iskoriste svoj potencijal kroz napredne AI tehnologije i automatizacije
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToSection('contact')">
+                        Zakažite konsultaciju
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                    <button class="btn-secondary" onclick="scrollToSection('case-study')">
+                        Pogledajte rezultate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stats-card animate-float">
+                    <div class="stats-number">150%</div>
+                    <p class="stats-label">Povećanje angažmana</p>
+                </div>
+                <div class="stats-card animate-float" style="animation-delay: 1s;">
+                    <div class="stats-number">24/7</div>
+                    <p class="stats-label">Dostupnost za klijente</p>
+                </div>
+                <div class="stats-card animate-float" style="animation-delay: 2s;">
+                    <div class="stats-number">250%</div>
+                    <p class="stats-label">ROI povrat investicije</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge">Naše Usluge</div>
+                <h2 class="section-title">
+                    AI rešenja koja <span class="gradient-text-alt">transformišu</span> vaš biznis
+                </h2>
+                <p class="section-description">
+                    Specijalizovani smo za kreiranje AI automatizacija koje donose konkretne rezultate i povećavaju profitabilnost
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <!-- AI Chatbotovi - Full width -->
+                <div class="service-card service-card-purple full-width">
+                    <div class="service-header">
+                        <i data-lucide="bot" class="service-icon"></i>
+                        <h3 class="service-title">AI Chatbotovi</h3>
+                        <p class="service-subtitle">Inteligentni chatbotovi koji prodaju umesto vas 24/7</p>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-text">
+                            <div class="service-problems">
+                                <h4>Problemi koje rešavamo:</h4>
+                                <ul>
+                                    <li>• Gubljenje klijenata van radnog vremena</li>
+                                    <li>• Ponavljanje istih odgovora</li>
+                                    <li>• Nemogućnost kvalifikovanja lidova</li>
+                                    <li>• Propuštene prodajne prilike</li>
+                                </ul>
+                            </div>
+                            <div class="service-benefits">
+                                <h4>Finansijske dobiti:</h4>
+                                <ul>
+                                    <li><i data-lucide="check-circle" class="check-icon"></i>24/7 dostupnost</li>
+                                    <li><i data-lucide="check-circle" class="check-icon"></i>Automatska kvalifikacija lidova</li>
+                                    <li><i data-lucide="check-circle" class="check-icon"></i>25-35% povećanje konverzije</li>
+                                    <li><i data-lucide="check-circle" class="check-icon"></i>50-100+ novih lidova mesečno</li>
+                                    <li><i data-lucide="check-circle" class="check-icon"></i>Personalizovane preporuke</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="service-video">
+                            <h4>Primer: Klima Servis</h4>
+                            <div class="video-container">
+                                <video controls>
+                                    <source src="chatbot-case-study.mp4" type="video/mp4">
+                                    Vaš browser ne podržava video tag.
+                                </video>
+                            </div>
+                            <p class="video-caption">
+                                AI chatbot pita pitanja, preporučuje klimu i kvalifikuje lidove automatski
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instagram and WhatsApp side by side -->
+                <div class="service-card service-card-blue">
+                    <div class="service-header">
+                        <i data-lucide="instagram" class="service-icon"></i>
+                        <h3 class="service-title">Instagram Automatizacije</h3>
+                        <p class="service-subtitle">Automatizujemo vaše Instagram aktivnosti 24/7</p>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-problems">
+                            <h4>Problemi koje rešavamo:</h4>
+                            <ul>
+                                <li>• Nedoslednost u objavljivanju</li>
+                                <li>• Sporo odgovaranje na poruke</li>
+                                <li>• Propuštene prilike za konverziju</li>
+                            </ul>
+                        </div>
+                        <div class="service-benefits">
+                            <h4>Finansijske dobiti:</h4>
+                            <ul>
+                                <li><i data-lucide="check-circle" class="check-icon"></i>150-250% povećanje angažmana</li>
+                                <li><i data-lucide="check-circle" class="check-icon"></i>10-20 novih lidova mesečno</li>
+                                <li><i data-lucide="check-circle" class="check-icon"></i>15+ sati uštede nedeljno</li>
+                                <li><i data-lucide="check-circle" class="check-icon"></i>25-40% povećanje konverzije</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card service-card-mixed">
+                    <div class="service-header">
+                        <i data-lucide="message-circle" class="service-icon"></i>
+                        <h3 class="service-title">WhatsApp Automatizacije</h3>
+                        <p class="service-subtitle">Follow-up sekvence i retargeting</p>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-problems">
+                            <h4>Problemi koje rešavamo:</h4>
+                            <ul>
+                                <li>• Zaboravljanje follow-up komunikacije</li>
+                                <li>• Manualno slanje podsetnika</li>
+                                <li>• Neorganizovana komunikacija</li>
+                            </ul>
+                        </div>
+                        <div class="service-benefits">
+                            <h4>Finansijske dobiti:</h4>
+                            <ul>
+                                <li><i data-lucide="check-circle" class="check-icon"></i>30% povećanje retention rate</li>
+                                <li><i data-lucide="check-circle" class="check-icon"></i>200+ automatizovanih kontakata</li>
+                                <li><i data-lucide="check-circle" class="check-icon"></i>20-30% povećanje repeat sales</li>
+                                <li><i data-lucide="check-circle" class="check-icon"></i>10+ sati uštede nedeljno</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chatbot Benefits Section -->
+            <div class="chatbot-benefits">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        Zašto AI chatbotovi <span class="gradient-text">revolucionišu</span> prodaju?
+                    </h3>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <i data-lucide="message-square" class="benefit-icon"></i>
+                        <h4>Instant odgovori</h4>
+                        <p>Klijenti dobijaju odgovore odmah, bez čekanja do sutra</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <i data-lucide="user-check" class="benefit-icon"></i>
+                        <h4>Kvalifikacija lidova</h4>
+                        <p>Samo zainteresovani klijenti dolaze do vas</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <i data-lucide="calendar" class="benefit-icon"></i>
+                        <h4>Automatsko zakazivanje</h4>
+                        <p>Chatbot zakazuje termine i konsultacije</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <i data-lucide="lightbulb" class="benefit-icon"></i>
+                        <h4>Personalizovane preporuke</h4>
+                        <p>Svaki klijent dobija prilagođen odgovor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Section -->
+    <section id="case-study" class="case-study-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge">Case Study</div>
+                <h2 class="section-title">
+                    <span class="gradient-text">20 lidova</span> za 7 dana
+                </h2>
+                <p class="section-description">
+                    Pogledajte kako smo fitness treneru pomogli da automatizuje proces i postigne neverovatne rezultate
+                </p>
+            </div>
+
+            <div class="case-study-card">
+                <div class="case-study-content">
+                    <div class="case-study-text">
+                        <h3>Fitness Trener @misel_bezek</h3>
+                        <div class="case-study-stats">
+                            <div class="stat-item">
+                                <i data-lucide="target" class="stat-icon"></i>
+                                <span>20 kvalifikovanih lidova u prvoj nedelji</span>
+                            </div>
+                            <div class="stat-item">
+                                <i data-lucide="trending-up" class="stat-icon"></i>
+                                <span>85% povećanje Instagram reach-a</span>
+                            </div>
+                            <div class="stat-item">
+                                <i data-lucide="bar-chart-3" class="stat-icon"></i>
+                                <span>60% povećanje konverzije iz DM-ova</span>
+                            </div>
+                            <div class="stat-item">
+                                <i data-lucide="zap" class="stat-icon"></i>
+                                <span>Potpuna automatizacija početne komunikacije</span>
+                            </div>
+                        </div>
+                        <div class="case-study-badge">
+                            <div class="badge-number">20</div>
+                            <div class="badge-text">
+                                <div>Lidova</div>
+                                <div>za 7 dana</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-study-video">
+                        <div class="video-container">
+                            <video controls>
+                                <source src="case-study-video.mp4" type="video/mp4">
+                                Vaš browser ne podržava video tag.
+                            </video>
+                        </div>
+                        <p class="video-caption">
+                            Pogledajte detaljnu analizu rezultata u našem case study videu
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="badge">O nama</div>
+                    <h2 class="section-title">
+                        Stručnost u <span class="gradient-text-alt">AI tehnologijama</span>
+                    </h2>
+                    <p class="about-description">
+                        INVOX.AI agencija se fokusira na kreiranje prilagođenih AI rešenja koja donose konkretne rezultate 
+                        i povećavaju profitabilnost vaših poslovnih procesa. Naš tim, predvođen stručnjakom Matijom Ivkovićem, 
+                        specijalizovan je za primenu AI tehnologije u lokalnim biznisima.
+                    </p>
+                    <p class="about-description">
+                        Naša misija je da svaki biznis, bez obzira na veličinu, može da iskoristi moć 
+                        veštačke inteligencije za automatizaciju procesa, poboljšanje komunikacije sa 
+                        klijentima i povećanje prodaje.
+                    </p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <i data-lucide="check-circle" class="feature-icon"></i>
+                            <span>Specijalizacija za lokalne biznise</span>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="check-circle" class="feature-icon"></i>
+                            <span>Prilagođena AI rešenja</span>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="check-circle" class="feature-icon"></i>
+                            <span>Konkretni rezultati i ROI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="matija.webp" alt="Matija Ivković" class="matija-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why AI Section -->
+    <section class="why-ai-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge">Zašto AI Automatizacije</div>
+                <h2 class="section-title">
+                    Transformišite svoj biznis <span class="gradient-text">danas</span>
+                </h2>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card problems-card">
+                    <h3>Problemi bez AI automatizacija</h3>
+                    <ul class="comparison-list">
+                        <li>
+                            <i data-lucide="clock" class="list-icon"></i>
+                            <span>Vremenska ograničenja - previše vremena na repetitivne zadatke</span>
+                        </li>
+                        <li>
+                            <i data-lucide="users" class="list-icon"></i>
+                            <span>Nekonzistentnost - ljudska greška dovodi do propuštenih prilika</span>
+                        </li>
+                        <li>
+                            <i data-lucide="clock" class="list-icon"></i>
+                            <span>Ograničena dostupnost - biznis "spava" kada vi spavate</span>
+                        </li>
+                        <li>
+                            <i data-lucide="trending-up" class="list-icon"></i>
+                            <span>Skalabilnost - teško održati kvalitet sa rastom broja klijenata</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="comparison-card benefits-card">
+                    <h3>Finansijske dobiti sa AI rešenjima</h3>
+                    <ul class="comparison-list">
+                        <li>
+                            <i data-lucide="check-circle" class="list-icon success"></i>
+                            <span><strong>ROI 200-300%</strong> - svaki uloženi dinar donosi 2-3 dinara povrata</span>
+                        </li>
+                        <li>
+                            <i data-lucide="check-circle" class="list-icon success"></i>
+                            <span><strong>Ušteda vremena</strong> - 15-25 sati nedeljno oslobođeno za strategiju</span>
+                        </li>
+                        <li>
+                            <i data-lucide="check-circle" class="list-icon success"></i>
+                            <span><strong>Povećanje prodaje</strong> - 25-50% rast prihoda kroz bolje nurturing</span>
+                        </li>
+                        <li>
+                            <i data-lucide="check-circle" class="list-icon success"></i>
+                            <span><strong>Skalabilnost</strong> - 5x više klijenata bez dodatnog osoblja</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <div class="badge">Kontakt</div>
+                <h2 class="section-title">
+                    Spremni ste da transformišete svoj biznis?
+                </h2>
+                <p class="contact-description">
+                    Zakažite besplatnu konsultaciju i saznajte kako AI može da unapredi vaš biznis već sutra!
+                </p>
+                
+                <div class="contact-links">
+                    <a href="https://instagram.com/matija.ai" target="_blank" class="contact-link">
+                        <i data-lucide="instagram" class="contact-icon"></i>
+                        <div class="contact-info">
+                            <div class="contact-title">Instagram</div>
+                            <div class="contact-subtitle">@matija.ai</div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://wa.me/381656652264" target="_blank" class="contact-link">
+                        <i data-lucide="phone" class="contact-icon"></i>
+                        <div class="contact-info">
+                            <div class="contact-title">WhatsApp</div>
+                            <div class="contact-subtitle">+381 65 665 2264</div>
+                        </div>
+                    </a>
+                </div>
+
+                <button class="btn-contact" onclick="window.open('https://wa.me/381656652264', '_blank')">
+                    Zakažite besplatnu konsultaciju
+                    <i data-lucide="arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="INVOX.AI Logo" class="footer-logo-img">
+                    <span class="footer-logo-text">INVOX.AI</span>
+                </div>
+                <p class="footer-text">
+                    © 2024 INVOX.AI Technology. Sva prava zadržana.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+
