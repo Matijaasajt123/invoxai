@@ -524,7 +524,7 @@ function App() {
             <Button 
               size="lg" 
               className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6 logo-accent"
-              onClick={() => window.open('https://wa.me/381656652264', '_blank')}
+              onClick={( ) => window.open('https://wa.me/381656652264', '_blank' )}
             >
               Zakažite besplatnu konsultaciju
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -550,4 +550,6 @@ function App() {
 }
 
 export default App;
+
+
 
