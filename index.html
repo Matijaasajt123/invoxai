@@ -444,17 +444,29 @@
     <script src="script.js"></script>
 <script type="text/javascript">
   (function(d, t) {
-      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      v.onload = function() {
-        window.voiceflow.chat.load({
-          verify: { projectID: '688d2760f1a4d2cc762ac9fd' },
-          url: 'https://general-runtime.voiceflow.com',
-          versionID: 'production',
-        });
-      }
-      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    v.onload = function() {
+      window.voiceflow.chat.load({
+        verify: { projectID: '688f29bde7620bd8c62a2712' },
+        url: 'https://general-runtime.voiceflow.com',
+        versionID: 'production',
+        voice: {
+          url: "https://runtime-api.voiceflow.com"
+        }
+      });
+
+      // Dodaj proaktivnu poruku ovde:
+      window.voiceflow.chat.proactive.push({
+        type: 'text',
+        payload: { message: 'Hej, da li ti je potrebna pomoć?' }
+      });
+    };
+    v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs";
+    v.type = "text/javascript";
+    s.parentNode.insertBefore(v, s);
   })(document, 'script');
 </script>
+
 </body>
 </html>
 
