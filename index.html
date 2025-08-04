@@ -447,12 +447,15 @@
     var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
     v.onload = function() {
       window.voiceflow.chat.load({
-        verify: { projectID: '688d2760f1a4d2cc762ac9fd' },
+        verify: { projectID: '688f29bde7620bd8c62a2712' },
         url: 'https://general-runtime.voiceflow.com',
-        versionID: 'production'
+        versionID: 'production',
+        voice: {
+          url: "https://runtime-api.voiceflow.com"
+        }
       });
 
-      // Proaktivna poruka sa kašnjenjem od 3 sekunde
+      // Proaktivna poruka nakon 3 sekunde
       setTimeout(() => {
         window.voiceflow.chat.proactive.push({
           type: 'text',
@@ -466,6 +469,7 @@
     s.parentNode.insertBefore(v, s);
   })(document, 'script');
 </script>
+
 
 </body>
 </html>
