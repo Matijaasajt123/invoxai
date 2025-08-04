@@ -444,17 +444,14 @@
     <script src="script.js"></script>
 <script type="text/javascript">
   (function(d, t) {
-    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-    v.onload = function() {
-      window.voiceflow.chat.load({
-        verify: { projectID: '688f29bde7620bd8c62a2712' },
-        url: 'https://general-runtime.voiceflow.com',
-        versionID: 'production',
-        voice: {
-          url: "https://runtime-api.voiceflow.com"
-        }
-      });
-
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '688f29bde7620bd8c62a2712' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production',
+        });
+      
       // Proaktivna poruka nakon 3 sekunde
       setTimeout(() => {
         window.voiceflow.chat.proactive.push({
