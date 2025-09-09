@@ -441,34 +441,41 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-<script type="text/javascript">
+   <script type="text/javascript">
   (function(d, t) {
-    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-    v.onload = function() {
-      window.voiceflow.chat.load({
-        verify: { projectID: '6890edd610eb0c0b9465ca26' },
-        url: 'https://general-runtime.voiceflow.com',
-        versionID: 'production',
-        voice: {
-          url: "https://runtime-api.voiceflow.com"
-        }
-      });
-
-      // Proaktivna poruka nakon 3 sekunde
-      setTimeout(() => {
-        window.voiceflow.chat.proactive.push({
-          type: 'text',
-          payload: { message: 'Hej, da li ti je potrebna pomoć?' }
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '68bfd1a96a81b741c01c395e' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production',
+          voice: {
+            url: "https://runtime-api.voiceflow.com"
+          }
         });
-      }, 3000);
-    };
 
-    v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs";
-    v.type = "text/javascript";
-    s.parentNode.insertBefore(v, s);
+        // 👇 Prva poruka (nakon 2s)
+        setTimeout(function() {
+          window.voiceflow.chat.proactive.push({
+            type: 'text',
+            payload: { message: '👋 Zdravo!' }
+          });
+        }, 2000);
+
+        // 👇 Druga poruka (nakon 4s)
+        setTimeout(function() {
+          window.voiceflow.chat.proactive.push({
+            type: 'text',
+            payload: { message: 'Treba li vam pomoć?' }
+          });
+        }, 4000);
+      }
+      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
+      v.type = "text/javascript"; 
+      s.parentNode.insertBefore(v, s);
   })(document, 'script');
 </script>
+
 
 
 </body>
