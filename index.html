@@ -4,34 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INVOX.AI - AI Rešenja za Vaš Biznis</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <header class="header">
         <nav class="nav-container">
-            <div class="logo">INVOX.AI</div>
-
-            <!-- FIXED: added id="hamburger" -->
-            <button id="hamburger" class="mobile-menu-toggle" aria-label="Toggle menu">
+            <div class="logo"><img src="logo.png" alt="INVOX.AI Logo" style="height: 30px;"></div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-
-            <!-- FIXED: added id and nav-link classes -->
-            <ul id="nav-menu" class="nav-menu">
-                <li><a class="nav-link" href="#hero">Početna</a></li>
-                <li><a class="nav-link" href="#about">O Nama</a></li>
-                <li><a class="nav-link" href="#services">Usluge</a></li>
-                <li><a class="nav-link" href="#case-studies">Case Studies</a></li>
-                <li><a class="nav-link" href="#benefits">Benefiti</a></li>
-                <li><a class="nav-link" href="#contact">Kontakt</a></li>
+            <ul class="nav-menu">
+                <li><a href="#hero">Početna</a></li>
+                <li><a href="#about">O Nama</a></li>
+                <li><a href="#services">Usluge</a></li>
+                <li><a href="#case-studies">Case Studies</a></li>
+                <li><a href="#benefits">Benefiti</a></li>
+                <li><a href="#contact">Kontakt</a></li>
             </ul>
         </nav>
     </header>
@@ -51,11 +44,11 @@
             <h2 class="section-title">O Nama</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="/placeholder-team.jpg" alt="matija.webp" />
+                    <img src="matija.webp" alt="Matija Ivković" />
                 </div>
                 <div class="about-text">
                     <h3>Stručnost u AI tehnologijama</h3>
-                    <p>INVOX.AI agencija se fokusira na kreiranje prilagođenih AI rešenja koja donose konkretne rezultate i povećavaju profitabilnost vaših poslovnih procesa.</p>
+                    <p>INVOX.AI agencija se fokusira na kreiranje prilagođenih AI rešenja koja donose konkretne rezultate i povećavaju profitabilnost vaših poslovnih procesa. Na čelu tima je Matija Ivković, sa fokusom na jednostavnu i praktičnu primenu veštačke inteligencije u radu lokalnih biznisa.</p>
                     <p class="mission">Naša misija je da svaki biznis, bez obzira na veličinu, može da iskoristi moć veštačke inteligencije za automatizaciju procesa, poboljšanje komunikacije sa klijentima i povećanje prodaje.</p>
                 </div>
             </div>
@@ -66,43 +59,36 @@
         <div class="container">
             <h2 class="section-title">Naše Usluge</h2>
             <div class="services-grid">
-
                 <div class="service-card">
                     <div class="service-icon">📱</div>
                     <h3>AI agenti za društvene mreže</h3>
                     <p>Instagram i Facebook automatizacija</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon">🛍️</div>
                     <h3>AI agenti na sajtu</h3>
                     <p>Za e-commerce brendove i firme</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon">🎙️</div>
                     <h3>Glasovni agenti</h3>
                     <p>Trenutno u Hrvatskoj, uskoro i u Srbiji</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon">⚙️</div>
                     <h3>Automatizacija poslova</h3>
                     <p>Repetitivni procesi automatizovani</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon">📧</div>
                     <h3>Personalizovani outreach</h3>
                     <p>Sistemi za targetiranu komunikaciju</p>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon">🎯</div>
                     <h3>Custom rešenja</h3>
                     <p>Individualna AI rešenja po meri</p>
                 </div>
-
             </div>
         </div>
     </section>
@@ -111,32 +97,26 @@
         <div class="container">
             <h2 class="section-title">Koliko klijenata gubite zbog ovoga?</h2>
             <div class="pain-grid">
-
                 <div class="pain-card">
                     <div class="pain-icon">⚡</div>
                     <p>Poruke pristižu brže nego što stižete da odgovorite?</p>
                 </div>
-
                 <div class="pain-card">
                     <div class="pain-icon">💬</div>
                     <p>"Koliko košta?" i "Ima li slobodnih termina?" – pitanja koja vas koštaju klijenata</p>
                 </div>
-
                 <div class="pain-card">
                     <div class="pain-icon">🔍</div>
                     <p>Sajt dobija posetioce, ali vi ne znate ko su i šta traže</p>
                 </div>
-
                 <div class="pain-card">
                     <div class="pain-icon">📉</div>
                     <p>Niko ne prati sve upite sa sajta – dok kupac ne ode kod konkurencije</p>
                 </div>
-
                 <div class="pain-card">
                     <div class="pain-icon">💸</div>
                     <p>Ljudi dolaze na sajt i odlaze – leadovi se gube, novac ostaje na stolu</p>
                 </div>
-
             </div>
         </div>
     </section>
@@ -149,32 +129,74 @@
                 <div class="case-header">
                     <div class="case-client-info">
                         <div class="case-client-image">
-                            <img src="/placeholder-horius.jpg" alt="Horius Solar" />
+                            <img src="horiuskrug.png" alt="Horius Solar Logo" />
                         </div>
                         <h3>Case Study: Horius Solar</h3>
                     </div>
                 </div>
+
                 <div class="case-content">
                     <div class="case-section">
                         <h4>Problem</h4>
-                        <p>Horius Solar je gubio potencijalne klijente sa sajta...</p>
+                        <p>Horius Solar je gubio potencijalne klijente sa sajta – nije imao evidenciju o posetiocima na sajtu. Samo oni odlučni bi se odlučili za kontakt, dok bi većina koja samo razgleda nestajala.</p>
                     </div>
+
                     <div class="case-section">
                         <h4>Rešenje</h4>
+                        <p>Razvili smo AI agenta koji:</p>
                         <ul>
-                            <li>Inicira komunikaciju i prikuplja kontakt podatke</li>
-                            <li>Pruža tačne informacije</li>
-                            <li>Vodi prirodan razgovor</li>
+                            <li>Inicira komunikaciju i prikuplja kontakt podatke zainteresovanih</li>
+                            <li>Pruža tačne informacije o solarnim panelima, instalaciji, subvencijama i finansiranju</li>
+                            <li>Vodi prirodan razgovor umesto formalnih formulara</li>
                             <li>Odgovara u skladu sa politikom firme</li>
                         </ul>
                     </div>
+
                     <div class="case-section">
                         <h4>Rezultati</h4>
-                        <p>U prvih 2 meseca skupljeno 10+ leadova...</p>
+                        <p>U prvih 2 meseca rada agenta na sajtu, skupljeno je preko 10 visoko zainteresovanih, a započeto 30+ konverzacija. Samo od jednog AI asistenta na sajtu.</p>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <span class="result-icon">🎯</span>
+                                <p>Eliminisani izgubljeni leadovi</p>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-icon">📈</span>
+                                <p>Povećana prodaja bez aktivne potrage za klijentima</p>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-icon">⚡</span>
+                                <p>Samo kvalifikovani leadovi dolaze do tima</p>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-icon">💼</span>
+                                <p>Tim fokusiran na zatvaranje poslova</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <div class="case-study">
+                <div class="case-header">
+                    <div class="case-client-info">
+                        <div class="case-client-image">
+                            <img src="misel.png" alt="Mišel Fitness Coach" />
+                        </div>
+                        <h3>Case Study: Mišel – Fitness Coach</h3>
+                    </div>
+                </div>
+
+                <div class="case-content">
+                    <p>Mišelu, fitnes treneru iz Hrvatske, napravili smo AI agenta za Instagram chat. Agent je varijacija društvenog AI asistenta koji:</p>
+                    <ul>
+                        <li>Odgovara na često postavljena pitanja u DM-u</li>
+                        <li>Automatski šalje informacije o planovima i uslugama</li>
+                        <li>Kvalifikuje potencijalne klijente i vodi ih do kupovine</li>
+                    </ul>
+                    <p class="case-result"><strong>Rezultat:</strong> Više novih klijenata i prodaja online planova bez dodatnog ručnog odgovaranja na poruke.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -182,6 +204,69 @@
         <div class="container">
             <h2 class="section-title">Zašto AI Automatizacije</h2>
             <p class="section-subtitle">Transformišite svoj biznis danas</p>
+
+            <div class="comparison">
+                <div class="comparison-column problems">
+                    <h3>Problemi bez AI automatizacija</h3>
+                    <div class="comparison-list">
+                        <div class="comparison-item">
+                            <span class="icon">⏰</span>
+                            <div>
+                                <h4>Vremenska ograničenja</h4>
+                                <p>Previše vremena na repetitivne zadatke</p>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="icon">❌</span>
+                            <div>
+                                <h4>Nekonzistentnost</h4>
+                                <p>Ljudska greška dovodi do propuštenih prilika</p>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="icon">🌙</span>
+                            <div>
+                                <h4>Ograničena dostupnost</h4>
+                                <p>Biznis "spava" kada vi spavate</p>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="icon">📊</span>
+                            <div>
+                                <h4>Skalabilnost</h4>
+                                <p>Teško održati kvalitet sa rastom broja klijenata</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-column solutions">
+                    <h3>Finansijske dobiti sa AI rešenjima</h3>
+                    <div class="comparison-list">
+                        <div class="comparison-item">
+                            <span class="icon">💰</span>
+                            <div>
+                                <h4>ROI 200-300%</h4>
+                                <p>Svaki uloženi dinar donosi 2-3 dinara povrata</p>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="icon">⏱️</span>
+                            <div>
+                                <h4>Ušteda vremena</h4>
+                                <p>15-25 sati nedeljno oslobođeno za strategiju</p>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="icon">📈</span>
+                            <div>
+                                <h4>Povećanje prodaje</h4>
+                                <p>25-50% rast prihoda kroz bolje nurturing</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -189,6 +274,7 @@
         <div class="container">
             <h2 class="section-title">Kontakt</h2>
             <p class="section-subtitle">Spremni ste da transformišete svoj biznis?</p>
+            <p class="contact-intro">Zakažite besplatnu konsultaciju i saznajte kako AI može da unapredi vaš biznis već sutra!</p>
 
             <div class="contact-methods">
                 <a href="https://instagram.com/matija.ai" target="_blank" class="contact-card">
@@ -196,7 +282,6 @@
                     <h3>Instagram</h3>
                     <p>@matija.ai</p>
                 </a>
-
                 <a href="https://wa.me/381656652264" target="_blank" class="contact-card">
                     <div class="contact-icon">💬</div>
                     <h3>WhatsApp</h3>
@@ -215,20 +300,21 @@
                     <h3>INVOX.AI</h3>
                     <p>© 2024 INVOX.AI Tech</p>
                 </div>
-
                 <div class="footer-links">
-                    <a class="nav-link" href="#hero">Početna</a>
-                    <a class="nav-link" href="#about">O Nama</a>
-                    <a class="nav-link" href="#services">Usluge</a>
-                    <a class="nav-link" href="#contact">Kontakt</a>
+                    <a href="#hero">Početna</a>
+                    <a href="#about">O Nama</a>
+                    <a href="#services">Usluge</a>
+                    <a href="#contact">Kontakt</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- FIXED: only ONE clean script tag -->
-    <script src="script.js"></script>
-
+    <script type="module" src="main.js"></script>
 </body>
 </html>
 
+<script src="script.js"></script>
+
+</body>
+</html>
