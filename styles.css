@@ -330,6 +330,12 @@ body {
     box-shadow: 0 10px 40px var(--shadow);
 }
 
+.case-study.misel-study {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3e8ff 100%); /* Svetlija, kompaktnija pozadina */
+    border: 2px solid var(--accent-pink);
+    padding: 40px; /* Malo kompaktniji padding */
+}
+
 .case-header {
     margin-bottom: 40px;
 }
@@ -413,12 +419,35 @@ body {
     margin-top: 25px;
 }
 
+.misel-results {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Kompaktnije kartice */
+    gap: 15px;
+}
+
 .result-item {
     background: linear-gradient(135deg, var(--primary-purple), var(--light-purple));
     padding: 25px;
     border-radius: 15px;
     text-align: center;
     color: white;
+}
+
+.result-item.misel-item {
+    background: var(--bg-card); /* Bela pozadina */
+    border: 1px solid var(--soft-pink);
+    color: var(--primary-purple); /* Tamni tekst */
+    padding: 15px; /* Kompaktniji padding */
+    box-shadow: 0 5px 15px rgba(217, 70, 239, 0.1);
+}
+
+.result-item.misel-item p {
+    color: var(--primary-purple); /* Osigurava da je tekst tamne boje */
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.misel-item .result-icon {
+    color: var(--accent-pink); /* Ikone u akcent boji */
 }
 
 .result-icon {
@@ -439,6 +468,15 @@ body {
     border-radius: 15px;
     margin-top: 25px;
     border-left: 5px solid #22c55e;
+}
+
+.case-result.misel-summary {
+    background: linear-gradient(135deg, var(--soft-pink), #f0e4ff); /* Svetlija, roze pozadina */
+    border-left: 5px solid var(--accent-pink);
+}
+
+.case-result.misel-summary strong {
+    color: var(--primary-purple);
 }
 
 .case-result strong {
