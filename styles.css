@@ -57,10 +57,16 @@ body {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--text-light);
-    letter-spacing: 1px;
+    /* Održavanje visine i poravnanja za sliku logotipa */
+    display: flex;
+    align-items: center;
+    height: 30px; /* Visina logotipa je sada definisana u HTML-u, ali ovo osigurava poravnanje */
+}
+
+.logo img {
+    height: 100%; /* Osigurava da slika zauzme visinu .logo kontejnera */
+    width: auto;
+    display: block;
 }
 
 .nav-menu {
@@ -205,6 +211,8 @@ body {
     width: 100%;
     height: auto;
     display: block;
+    /* Dodatno pravilo za Matijinu sliku da se osigura da se ne deformiše */
+    object-fit: cover;
 }
 
 .about-text h3 {
@@ -345,6 +353,8 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Dodatno pravilo za slike u case study-ju da se osigura da su u krugu */
+    border-radius: 50%;
 }
 
 .case-study h3 {
