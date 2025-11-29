@@ -337,9 +337,39 @@
 
     <script type="module" src="main.js"></script>
 </body>
-</html>
+    <script type="text/javascript">
+  (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '68e01d1c17c0f1488fcc3246' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production',
+          voice: {
+            url: "https://runtime-api.voiceflow.com"
+          }
+        } );
 
-<script src="script.js"></script>
+        // 👇 Prva poruka (nakon 2s)
+        setTimeout(function() {
+          window.voiceflow.chat.proactive.push({
+            type: \'text\',
+            payload: { message: \'👋 Zdravo!\' }
+          });
+        }, 2000);
 
+        // 👇 Druga poruka (nakon 4s)
+        setTimeout(function() {
+          window.voiceflow.chat.proactive.push({
+            type: \'text\',
+            payload: { message: \'Da li imate neko pitanje?\' }
+          });
+        }, 4000);
+      }
+      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
+      v.type = "text/javascript"; 
+      s.parentNode.insertBefore(v, s );
+  })(document, \'script\');
+</script>
 </body>
 </html>
