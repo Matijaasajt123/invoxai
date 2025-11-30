@@ -31,7 +31,7 @@
 
     <section id="hero" class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Firme koje danas ulažu u AI ostvaruju veću zaradu</h1>
+            <h1 class="hero-title">AI je standard među uspešnim biznisima — ne ostajte korak iza</h1>
             <p class="hero-subtitle">Brže odgovaraju klijentima, povećavaju prodaju i smanjuju troškove.</p>
             <p class="hero-question">Pitanje nije "da li uvesti AI", već "koliko ćete izgubiti ako ne počnete sad?</p>
             <a href="#contact" class="cta-button">Započni implementaciju AI-a već sada!</a>
@@ -62,12 +62,12 @@
                 <div class="service-card">
                     <div class="service-icon">📱</div>
                     <h3>AI agenti za društvene mreže</h3>
-                    <p>Instagram i Facebook automatizacija</p>
+                    <p>Instagram i Facebook AI chatbotovi</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🛍️</div>
                     <h3>AI agenti na sajtu</h3>
-                    <p>Za e-commerce brendove i firme</p>
+                    <p>Rešenja prilagođena različitim industrijama</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🎙️</div>
@@ -93,33 +93,40 @@
         </div>
     </section>
 
-    <section id="pain-points" class="pain-points">
-        <div class="container">
-            <h2 class="section-title">Koliko klijenata gubite zbog ovoga?</h2>
-            <div class="pain-grid">
-                <div class="pain-card">
-                    <div class="pain-icon">⚡</div>
-                    <p>Poruke pristižu brže nego što stižete da odgovorite?</p>
-                </div>
-                <div class="pain-card">
-                    <div class="pain-icon">💬</div>
-                    <p>"Koliko košta?" i "Ima li slobodnih termina?" – pitanja koja vas koštaju klijenata</p>
-                </div>
-                <div class="pain-card">
-                    <div class="pain-icon">🔍</div>
-                    <p>Sajt dobija posetioce, ali vi ne znate ko su i šta traže</p>
-                </div>
-                <div class="pain-card">
-                    <div class="pain-icon">📉</div>
-                    <p>Niko ne prati sve upite sa sajta – dok kupac ne ode kod konkurencije</p>
-                </div>
-                <div class="pain-card">
-                    <div class="pain-icon">💸</div>
-                    <p>Ljudi dolaze na sajt i odlaze – leadovi se gube, novac ostaje na stolu</p>
-                </div>
+   <section id="pain-points" class="pain-points">
+    <div class="container">
+        <h2 class="section-title">Problemi koje Vam AI može rešiti?</h2>
+        <div class="pain-grid">
+
+            <div class="pain-card">
+                <div class="pain-icon">⚡</div>
+                <p>Ne stižete da odgovorite na Instagram i Facebook poruke – a kupci odlaze onome ko odgovori prvi.</p>
             </div>
+
+            <div class="pain-card">
+                <div class="pain-icon">💬</div>
+                <p>Najvažnija pitanja ostaju bez odgovora u pravo vreme – i svaka neodgovorena poruka košta vas prodaje.</p>
+            </div>
+
+            <div class="pain-card">
+                <div class="pain-icon">🔍</div>
+                <p>Ljudi posećuju sajt, ali nemate nikakvu evidenciju – ne znate ko ulazi, šta traži i zašto odlazi.</p>
+            </div>
+
+            <div class="pain-card">
+                <div class="pain-icon">📉</div>
+                <p>Plaćate osoblje za komunikaciju, ali bez jasnih podataka ne vidite gde curi novac i šta treba popraviti.</p>
+            </div>
+
+            <div class="pain-card">
+                <div class="pain-icon">💸</div>
+                <p>Ručno odrađujete procese koje AI može 10x brže – i zato vam klijenti, vreme i profit beže kroz prste.</p>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
+
 
     <section id="case-studies" class="case-studies">
         <div class="container">
@@ -227,25 +234,18 @@
 
     <section id="benefits" class="benefits">
         <div class="container">
-            <h2 class="section-title">Zašto AI Automatizacije</h2>
-            <p class="section-subtitle">Transformišite svoj biznis danas</p>
+            <h2 class="section-title">Zašto AI Automatizacije?</h2>
+            <p class="section-subtitle">Transformišite svoj biznis već danas</p>
 
             <div class="comparison">
                 <div class="comparison-column problems">
-                    <h3>Problemi bez AI automatizacija</h3>
+                    <h3>Šta vaš biznis gubi svakodnevno</h3>
                     <div class="comparison-list">
                         <div class="comparison-item">
                             <span class="icon">⏰</span>
                             <div>
                                 <h4>Vremenska ograničenja</h4>
                                 <p>Previše vremena na repetitivne zadatke</p>
-                            </div>
-                        </div>
-                        <div class="comparison-item">
-                            <span class="icon">❌</span>
-                            <div>
-                                <h4>Nekonzistentnost</h4>
-                                <p>Ljudska greška dovodi do propuštenih prilika</p>
                             </div>
                         </div>
                         <div class="comparison-item">
@@ -336,11 +336,12 @@
     </footer>
 
     <script type="module" src="main.js"></script>
-</body>
-    <script type="text/javascript">
+
+<script>
   (function(d, t) {
       var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
       v.onload = function() {
+
         window.voiceflow.chat.load({
           verify: { projectID: '68e01d1c17c0f1488fcc3246' },
           url: 'https://general-runtime.voiceflow.com',
@@ -348,28 +349,31 @@
           voice: {
             url: "https://runtime-api.voiceflow.com"
           }
-        } );
+        });
 
-        // 👇 Prva poruka (nakon 2s)
+        // Prva poruka
         setTimeout(function() {
           window.voiceflow.chat.proactive.push({
-            type: \'text\',
-            payload: { message: \'👋 Zdravo!\' }
+            type: 'text',
+            payload: { message: '👋 Zdravo!' }
           });
         }, 2000);
 
-        // 👇 Druga poruka (nakon 4s)
+        // Druga poruka
         setTimeout(function() {
           window.voiceflow.chat.proactive.push({
-            type: \'text\',
-            payload: { message: \'Da li imate neko pitanje?\' }
+            type: 'text',
+            payload: { message: 'Da li imate neko pitanje?' }
           });
         }, 4000);
-      }
-      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
+      };
+
+      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs";
       v.type = "text/javascript"; 
-      s.parentNode.insertBefore(v, s );
-  })(document, \'script\');
+      s.parentNode.insertBefore(v, s);
+  })(document, 'script');
 </script>
+
 </body>
 </html>
+
