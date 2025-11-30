@@ -784,3 +784,139 @@ body {
         font-size: 1.5rem;
     }
 }
+
+/* ==========================================================================
+   AI CHATBOTS SECTION STYLES
+   ========================================================================== */
+
+.ai-chatbots {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #f3e8ff 0%, #fafafa 100%); /* Svetla pozadina, slična services/case-studies */
+}
+
+.chatbot-intro {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    text-align: center;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #4b5563;
+}
+
+.chatbot-intro p {
+    margin-bottom: 20px;
+}
+
+.chatbot-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.feature-card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px var(--shadow);
+    transition: transform 0.3s ease;
+    border-top: 5px solid var(--accent-pink);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--primary-purple);
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    color: var(--primary-purple);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+/* Platform Comparison Styles */
+
+.platform-title {
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--light-purple);
+}
+
+.platform-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.platform-card {
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.platform-card h4 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.platform-card p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #4b5563;
+}
+
+.website-card {
+    background: linear-gradient(135deg, #e0f2fe, #bfdbfe); /* Svetlo plava/ljubičasta */
+    border-left: 5px solid var(--primary-purple);
+}
+
+.website-card h4 {
+    color: var(--primary-purple);
+}
+
+.social-card {
+    background: linear-gradient(135deg, #fce7f6, #fbcfe8); /* Svetlo roza/ljubičasta */
+    border-left: 5px solid var(--accent-pink);
+}
+
+.social-card h4 {
+    color: var(--accent-pink);
+}
+
+/* Media Queries for new section */
+@media (max-width: 1024px) {
+    .platform-content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .chatbot-intro {
+        font-size: 1rem;
+    }
+    .platform-card {
+        padding: 30px;
+    }
+    .platform-card h4 {
+        font-size: 1.4rem;
+    }
+    .platform-card p {
+        font-size: 1rem;
+    }
+}
