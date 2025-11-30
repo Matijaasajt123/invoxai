@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, { threshold: 0.15 });
 
-    const animatedItems = document.querySelectorAll('.service-card, .pain-card, .case-study');
+    const animatedItems = document.querySelectorAll('.service-card, .pain-card, .case-study, .feature-card, .platform-card');
     animatedItems.forEach(item => {
         item.style.opacity = '0';
         item.style.transform = 'translateY(30px)';
@@ -107,4 +107,5 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
 
