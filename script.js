@@ -1,37 +1,26 @@
-// Smooth scrolling function
-function scrollToSection(sectionId) {
-    const element = document.getElementById(sectionId);
-    if (element) {
-        element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-}
+document.addEventListener('DOMContentLoaded', function () {
+    // Mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
 
-document.addEventListener('DOMContentLoaded', function() {
+    mobileMenuToggle.addEventListener('click', function () {
+        navMenu.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active');
+    });
 
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function () {
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-    }
-
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
+    // Close menu on link click
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            }
         });
     });
 
-    // Navbar scroll background
+    // Header scroll effect
+    const header = document.querySelector('.header');
     window.addEventListener('scroll', function () {
-        const header = document.querySelector('.header');
         if (window.scrollY > 50) {
             header.style.background = 'rgba(59, 10, 69, 0.95)';
         } else {
@@ -49,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, { threshold: 0.15 });
 
-    const animatedItems = document.querySelectorAll('.service-card, .pain-card, .case-study, .feature-card, .platform-card');
+    const animatedItems = document.querySelectorAll('.service-card, .pain-card, .case-study, .feature-card, .platform-card, .timeline-item, .comparison-item, .about-content');
     animatedItems.forEach(item => {
         item.style.opacity = '0';
         item.style.transform = 'translateY(30px)';
@@ -73,39 +62,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-// Inject mobile menu CSS animation
-const style = document.createElement('style');
-style.textContent = `
-    @media (max-width: 768px) {
-        .nav-menu {
-            position: fixed;
-            top: 70px;
-            left: -100%;
-            width: 100%;
-            height: calc(100vh - 70px);
-            background: rgba(59, 10, 69, 0.95);
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            padding-top: 2rem;
-            transition: left 0.3s ease;
-            z-index: 999;
-        }
-
-        .nav-menu.active {
-            left: 0;
-        }
-    }
-
-    body.loaded {
-        opacity: 1;
-    }
-
-    body {
-        opacity: 0;
-        transition: opacity 0.4s ease;
-    }
-`;
-document.head.appendChild(style);
-
-
+// Page fade-in CSS is moved to styles.css for cleaner code
+// The mobile menu CSS was moved to styles.css for cleaner code and to fix the conflict.
