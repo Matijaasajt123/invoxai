@@ -1052,61 +1052,78 @@ body {
     }
 }
 .clients {
-    padding: 40px 0 10px;
-    background: transparent;
+    padding: 50px 0 30px;
     text-align: center;
 }
 
 .clients-label {
-    color: var(--text-gray);
-    font-size: 0.9rem;
-    letter-spacing: 2px;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    margin-bottom: 20px;
-    opacity: 0.8;
+    color: #9ca3af;
+    margin-bottom: 30px;
 }
 
+/* VIEWPORT – OVO JE KLJUČ */
 .clients-slider {
-    overflow: hidden;
     width: 100%;
+    max-width: 900px; /* 3 slike */
+    margin: 0 auto;
+    overflow: hidden;
 }
 
+/* TRACK */
 .clients-track {
     display: flex;
-    gap: 60px;
     align-items: center;
-    animation: scrollClients 25s linear infinite;
+    gap: 80px;
+    animation: scrollClients 28s linear infinite;
 }
 
+/* ITEM */
+.client-item {
+    flex: 0 0 auto;
+}
+
+/* IMAGE */
 .client-item img {
-    height: 45px;
-    opacity: 0.75;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    opacity: 0.9;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .client-item img:hover {
+    transform: scale(1.07);
     opacity: 1;
-    transform: scale(1.05);
 }
 
-/* Desktop */
+/* MOBILE */
+@media (max-width: 768px) {
+    .clients-slider {
+        max-width: 320px; /* 1–2 slike */
+    }
+
+    .client-item img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .clients-track {
+        gap: 50px;
+        animation-duration: 20s;
+    }
+}
+
+/* ANIMACIJA */
 @keyframes scrollClients {
     from {
         transform: translateX(0);
     }
     to {
         transform: translateX(-50%);
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .clients-track {
-        gap: 40px;
-        animation-duration: 18s;
-    }
-
-    .client-item img {
-        height: 38px;
     }
 }
