@@ -1057,42 +1057,37 @@ body {
     overflow: hidden;
 }
 
-/* NASLOV */
 .clients-label {
     font-size: 2.2rem;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #111827;
     margin-bottom: 60px;
 }
 
-/* VIEWPORT */
 .clients-slider {
     width: 100%;
     overflow: hidden;
 }
 
-/* TRACK */
 .clients-track {
     display: flex;
     gap: 80px;
+    width: max-content;
     animation: scrollClients 22s linear infinite;
 }
 
-/* ITEM – 3 U KADRU */
 .client-item {
-    flex: 0 0 calc((100vw - 160px) / 3);
+    flex: 0 0 auto;
     display: flex;
     justify-content: center;
 }
 
-/* IMAGE */
 .client-item img {
     width: 160px;
     height: 160px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
     transition: transform 0.3s ease;
 }
 
@@ -1100,20 +1095,11 @@ body {
     transform: scale(1.08);
 }
 
-/* MOBILE */
+/* MOBILE – brža animacija */
 @media (max-width: 768px) {
-    .clients-label {
-        font-size: 1.6rem;
-        margin-bottom: 40px;
-    }
-
     .clients-track {
         gap: 40px;
-        animation-duration: 16s;
-    }
-
-    .client-item {
-        flex: 0 0 80vw;
+        animation-duration: 12s;
     }
 
     .client-item img {
@@ -1122,7 +1108,6 @@ body {
     }
 }
 
-/* ANIMACIJA */
 @keyframes scrollClients {
     from {
         transform: translateX(0);
@@ -1131,3 +1116,4 @@ body {
         transform: translateX(-50%);
     }
 }
+
