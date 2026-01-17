@@ -452,22 +452,52 @@ Razlika između biznisa koji gubi upite – i onog koji ih pretvara u prodaju.
     </section>
 
     <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Spremni za AI Transformaciju?</h2>
-            <p class="section-subtitle">Kontaktirajte nas danas i zakažite besplatne konsultacije.</p>
+    <div class="container">
+        <div class="contact-form-wrapper">
 
-           <p class="contact-intro">
-    Ne gubite vreme, AI je budućnost koja je već stigla. Budite među prvima koji će je iskoristiti.
-</p>
-<a href="tel:+381641234567" class="contact-card">
-    <span class="contact-icon">📞</span>
-    <h3>Telefon</h3>
-    <p>+381 65 6652264</p>
-</a>
+            <h2 class="section-title">
+                Spremni da <span class="accent">unapredite</span> vaš biznis?
+            </h2>
 
-            </div>
+            <p class="section-subtitle">
+                Ostavite nam osnovne informacije i javljamo se sa konkretnim predlogom.
+            </p>
+
+            <form id="contactForm"
+                  class="contact-form"
+                  data-webhook="https:https://hook.eu2.make.com/fgkrns0h3ne327h19ak7bwkv7ili42uc">
+
+                <div class="form-row">
+                    <input type="text" name="fullName" placeholder="Ime i prezime" required>
+                    <input type="tel" name="phone" placeholder="Broj telefona" required>
+                </div>
+
+                <div class="form-row">
+                    <select name="industry" required>
+                        <option value="">Industrija</option>
+                        <option>Stomatološka ordinacija</option>
+                        <option>Privatna klinika</option>
+                        <option>E-commerce</option>
+                        <option>Uslužni biznis</option>
+                        <option>Drugo</option>
+                    </select>
+                </div>
+
+                <textarea name="message"
+                          rows="5"
+                          placeholder="Ukratko opišite šta želite da uradite..."
+                          required></textarea>
+
+                <button type="submit" class="btn-submit">
+                    Pošalji upit →
+                </button>
+
+                <p class="form-status" id="formStatus"></p>
+            </form>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <footer class="footer">
         <div class="container footer-content">
