@@ -1,21 +1,12 @@
-/* Stilovi specifični za stranicu AI Recepcioner */
+/* ==========================================================================
+   Stilovi za stranicu AI Recepcioner (Usklađeno sa brendom)
+   ========================================================================== */
 
-:root {
-    --medical-blue: #3a8ef6;
-    --medical-light-blue: #eaf2fe;
-    --medical-dark-blue: #1e3a8a;
-    --text-dark: #1f2937;
-    --text-medium: #4b5563;
-    --text-light: #f9fafb;
-    --white: #ffffff;
-    --light-gray: #f3f4f6;
-}
-
-/* Hero Sekcija */
+/* Hero Sekcija - Koristi postojeću ljubičastu paletu */
 .hero-recepcioner {
-    background: linear-gradient(135deg, var(--medical-dark-blue), var(--medical-blue));
-    color: var(--white);
-    padding: 160px 40px 120px;
+    background: linear-gradient(135deg, var(--dark-purple), var(--primary-purple));
+    color: var(--text-light);
+    padding: 140px 40px 100px;
     text-align: center;
 }
 
@@ -30,10 +21,10 @@
     font-size: 1.4rem;
     max-width: 800px;
     margin: 0 auto 40px;
-    opacity: 0.9;
+    color: var(--text-gray); /* Koristi svetlo sivu za podnaslov */
 }
 
-/* Opšti stilovi za sekcije */
+/* Opšti stilovi za sekcije na ovoj stranici */
 .section-recepcioner {
     padding: 80px 0;
 }
@@ -42,23 +33,23 @@
     font-size: 2.5rem;
     font-weight: 800;
     text-align: center;
-    color: var(--medical-dark-blue);
+    color: var(--dark-purple); /* Tamno ljubičasta za naslove */
     margin-bottom: 20px;
 }
 
 .section-subtitle-recepcioner {
     text-align: center;
     font-size: 1.2rem;
-    color: var(--text-medium);
+    color: #4b5563; /* Standardna boja za podnaslove */
     margin-bottom: 60px;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Problem Sekcija */
+/* Problem Sekcija - zadržava naglasak na problemu ali sa brend bojama */
 .problem-section {
-    background-color: var(--light-gray);
+    background-color: #f9fafb; /* Svetla pozadina */
 }
 
 .problem-grid {
@@ -71,7 +62,7 @@
     background: var(--white);
     padding: 30px;
     border-radius: 12px;
-    border-left: 5px solid var(--accent-pink); /* Koristimo postojeću boju za naglasak */
+    border-left: 5px solid var(--accent-pink); /* Akcentna roze za isticanje problema */
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
@@ -81,9 +72,9 @@
     margin-bottom: 15px;
 }
 
-/* Solution Sekcija */
+/* Solution Sekcija - koristi svetlo ljubičastu pozadinu */
 .solution-section {
-    background-color: var(--medical-light-blue);
+    background-color: #f3e8ff; /* Svetlo ljubičasta iz originalnog dizajna */
 }
 
 .solution-content {
@@ -102,13 +93,13 @@
 
 .solution-icon {
     font-size: 1.5rem;
-    color: var(--medical-blue);
+    color: var(--primary-purple); /* Glavna ljubičasta boja */
     font-weight: bold;
 }
 
 .solution-item h4 {
     font-size: 1.3rem;
-    color: var(--medical-dark-blue);
+    color: var(--dark-purple);
     margin-bottom: 5px;
 }
 
@@ -128,7 +119,7 @@
     content: '';
     position: absolute;
     width: 3px;
-    background-color: var(--medical-light-blue);
+    background-color: var(--light-purple); /* Svetlo ljubičasta linija */
     top: 0;
     bottom: 0;
     left: 24px;
@@ -147,7 +138,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: var(--medical-blue);
+    background-color: var(--primary-purple); /* Glavna ljubičasta */
     color: var(--white);
     display: flex;
     align-items: center;
@@ -159,13 +150,13 @@
 
 .step-content h3 {
     font-size: 1.5rem;
-    color: var(--medical-dark-blue);
+    color: var(--dark-purple);
     margin-bottom: 10px;
 }
 
 /* Features Sekcija (Integracije) */
 .features-section {
-    background-color: var(--light-gray);
+    background-color: #f9fafb;
 }
 
 .features-grid {
@@ -180,11 +171,12 @@
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--accent-pink); /* Roze detalj na vrhu */
 }
 
 .feature-item h4 {
     font-size: 1.3rem;
-    color: var(--medical-dark-blue);
+    color: var(--dark-purple);
     margin-bottom: 10px;
 }
 
@@ -200,7 +192,7 @@
 }
 
 .benefit-card {
-    background-color: var(--medical-light-blue);
+    background-color: #f3e8ff; /* Svetlo ljubičasta pozadina */
     padding: 25px;
     border-radius: 12px;
     text-align: center;
@@ -208,13 +200,13 @@
 
 .benefit-card h5 {
     font-size: 1.2rem;
-    color: var(--medical-dark-blue);
+    color: var(--dark-purple);
     margin-bottom: 10px;
 }
 
-/* Final CTA Sekcija */
+/* Finalni CTA - koristi glavne brend boje */
 .final-cta-section {
-    background-color: var(--medical-dark-blue);
+    background-color: var(--dark-purple);
     color: var(--white);
     text-align: center;
 }
@@ -232,6 +224,9 @@
 
 /* Responsive prilagođavanja */
 @media (max-width: 768px) {
+    .hero-recepcioner {
+        padding: 120px 20px 80px;
+    }
     .hero-title-recepcioner {
         font-size: 2.5rem;
     }
