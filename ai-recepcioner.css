@@ -1,292 +1,211 @@
 /* ==========================================================================
-   Stilovi za stranicu AI Recepcioner (Usklađeno sa brendom)
+   AI RECEPCIONER - ELEGANTAN DIZAJN (v2)
    ========================================================================== */
 
-/* Hero Sekcija - Koristi postojeću ljubičastu paletu */
+/* Prilagođavanje osnovnih stilova za ovu stranicu */
+body {
+    background-color: #FCFCFC; /* Veoma svetla siva pozadina */
+}
+
+/* Hero Sekcija */
 .hero-recepcioner {
-    background: linear-gradient(135deg, var(--dark-purple), var(--primary-purple));
-    color: var(--text-light);
-    padding: 140px 40px 100px;
+    background: linear-gradient(135deg, #6d28d9, #3b0764); /* Gradijent iz glavnog sajta */
+    color: #ffffff;
+    padding: 140px 40px 120px;
     text-align: center;
 }
 
 .hero-title-recepcioner {
-    font-size: 3.2rem;
-    font-weight: 800;
+    font-family: 'Playfair Display', serif; /* Serifni font za glavni naslov */
+    font-size: 3.8rem;
+    font-weight: 700;
     margin-bottom: 20px;
     line-height: 1.2;
 }
 
 .hero-subtitle-recepcioner {
-    font-size: 1.4rem;
-    max-width: 800px;
+    font-size: 1.3rem;
+    max-width: 700px;
     margin: 0 auto 40px;
-    color: var(--text-gray); /* Koristi svetlo sivu za podnaslov */
+    color: #d1d5db;
 }
 
-/* Opšti stilovi za sekcije na ovoj stranici */
+/* Opšti stilovi za sekcije */
 .section-recepcioner {
-    padding: 80px 0;
+    padding: 100px 0;
 }
 
 .section-title-recepcioner {
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-family: 'Playfair Display', serif; /* Serifni font za sve naslove sekcija */
+    font-size: 3rem;
+    font-weight: 700;
     text-align: center;
-    color: var(--dark-purple); /* Tamno ljubičasta za naslove */
-    margin-bottom: 20px;
+    color: #1f2937;
+    margin-bottom: 15px;
 }
 
 .section-subtitle-recepcioner {
     text-align: center;
-    font-size: 1.2rem;
-    color: #4b5563; /* Standardna boja za podnaslove */
-    margin-bottom: 60px;
-    max-width: 700px;
+    font-size: 1.15rem;
+    color: #6b7280;
+    margin-bottom: 70px;
+    max-width: 650px;
     margin-left: auto;
     margin-right: auto;
-}
-/* =========================
-   HEADER & LOGO
-   ========================= */
-
-.header {
-    background: #000;
-    padding: 12px 0;
+    line-height: 1.7;
 }
 
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* KONTROLA VELIČINE LOGOA */
-.logo img {
-    height: 40px;   /* ← smanji ili povećaj po želji */
-    width: auto;
-    display: block;
-}
-
-/* NAVIGACIJA */
-.nav-menu {
-    display: flex;
-    gap: 28px;
-    align-items: center;
-}
-
-.nav-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.nav-menu a:hover {
-    opacity: 0.7;
-}
-
-/* CTA dugme */
-.btn-demo {
-    background: linear-gradient(90deg, #7b2cff, #a855f7);
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: 600;
-}
-
-/* Problem Sekcija - zadržava naglasak na problemu ali sa brend bojama */
+/* Problem Sekcija - Novi Dizajn */
 .problem-section {
-    background-color: #f9fafb; /* Svetla pozadina */
+    background-color: #ffffff;
+    border-bottom: 1px solid #f3f4f6;
 }
 
-.problem-grid {
+.problem-grid-new {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+    text-align: center;
 }
 
-.problem-card {
-    background: var(--white);
-    padding: 30px;
+.problem-card-new {
+    background: #ffffff;
+    padding: 40px 30px;
     border-radius: 12px;
-    border-left: 5px solid var(--accent-pink); /* Akcentna roze za isticanje problema */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 40px rgba(59, 10, 69, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.problem-card h3 {
-    font-size: 1.5rem;
-    color: var(--dark-purple);
+.problem-card-new:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(59, 10, 69, 0.1);
+}
+
+.problem-card-new h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--primary-purple);
     margin-bottom: 15px;
 }
 
-/* Solution Sekcija - koristi svetlo ljubičastu pozadinu */
-.solution-section {
-    background-color: #f3e8ff; /* Svetlo ljubičasta iz originalnog dizajna */
+/* Test Agent Sekcija */
+.test-agent-section {
+    background-color: #f3e8ff; /* Svetlo ljubičasta */
 }
 
-.solution-content {
-    max-width: 900px;
+.phone-number-box {
+    background: #ffffff;
+    max-width: 500px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
+    padding: 30px 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(59, 10, 69, 0.1);
+}
+
+.phone-number-box p {
+    color: #6b7280;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.phone-number-box a {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark-purple);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.phone-number-box a:hover {
+    color: var(--primary-purple);
+}
+
+/* Kako Radi Sekcija */
+.steps-section {
+    background-color: #ffffff;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 }
 
-.solution-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-.solution-icon {
-    font-size: 1.5rem;
-    color: var(--primary-purple); /* Glavna ljubičasta boja */
-    font-weight: bold;
-}
-
-.solution-item h4 {
-    font-size: 1.3rem;
-    color: var(--dark-purple);
-    margin-bottom: 5px;
-}
-
-/* Steps Sekcija (Kako Radi) */
-.steps-section {
-    background-color: var(--white);
-}
-
-.steps-timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px 0;
-}
-
-.steps-timeline::after {
-    content: '';
-    position: absolute;
-    width: 3px;
-    background-color: var(--light-purple); /* Svetlo ljubičasta linija */
-    top: 0;
-    bottom: 0;
-    left: 24px;
-}
-
-.step {
-    position: relative;
-    padding-left: 70px;
-    margin-bottom: 40px;
+.step-card {
+    text-align: center;
+    padding: 20px;
 }
 
 .step-number {
-    position: absolute;
-    left: 0;
-    top: 0;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: var(--primary-purple); /* Glavna ljubičasta */
-    color: var(--white);
-    display: flex;
+    background-color: var(--accent-pink);
+    color: white;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    font-weight: bold;
-    z-index: 1;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
-.step-content h3 {
-    font-size: 1.5rem;
-    color: var(--dark-purple);
+.step-card h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1f2937;
     margin-bottom: 10px;
 }
 
-/* Features Sekcija (Integracije) */
-.features-section {
+/* Kontakt Forma Sekcija */
+.contact-section-new {
     background-color: #f9fafb;
 }
 
-.features-grid {
+.contact-form-new {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form-new .form-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
-.feature-item {
-    background: var(--white);
-    padding: 30px;
-    border-radius: 12px;
+.contact-form-new input[type="text"],
+.contact-form-new input[type="tel"] {
+    width: 100%;
+    padding: 18px 20px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.contact-form-new input:focus {
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.2);
+    outline: none;
+}
+
+.form-status-new {
+    min-height: 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    border-top: 4px solid var(--accent-pink); /* Roze detalj na vrhu */
+    margin-top: 10px;
 }
 
-.feature-item h4 {
-    font-size: 1.3rem;
-    color: var(--dark-purple);
-    margin-bottom: 10px;
-}
-
-/* Benefits Sekcija */
-.benefits-section {
-    background-color: var(--white);
-}
-
-.benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.benefit-card {
-    background-color: #f3e8ff; /* Svetlo ljubičasta pozadina */
-    padding: 25px;
-    border-radius: 12px;
-    text-align: center;
-}
-
-.benefit-card h5 {
-    font-size: 1.2rem;
-    color: var(--dark-purple);
-    margin-bottom: 10px;
-}
-
-/* Finalni CTA - koristi glavne brend boje */
-.final-cta-section {
-    background-color: var(--dark-purple);
-    color: var(--white);
-    text-align: center;
-}
-
-.final-cta-section h2 {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
-}
-
-.final-cta-section p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    opacity: 0.9;
-}
-
-/* Responsive prilagođavanja */
+/* Responsive */
 @media (max-width: 768px) {
-    .hero-recepcioner {
-        padding: 120px 20px 80px;
-    }
-    .hero-title-recepcioner {
-        font-size: 2.5rem;
-    }
-    .section-title-recepcioner {
-        font-size: 2rem;
-    }
-    .steps-timeline::after {
-        left: 24px;
-    }
-    .step {
-        padding-left: 80px;
-    }
+    .hero-title-recepcioner { font-size: 2.8rem; }
+    .section-title-recepcioner { font-size: 2.2rem; }
+    .problem-grid-new, .steps-grid { grid-template-columns: 1fr; }
+    .contact-form-new .form-row { grid-template-columns: 1fr; }
 }
+
