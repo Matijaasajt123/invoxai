@@ -46,6 +46,56 @@
     margin-left: auto;
     margin-right: auto;
 }
+/* =========================
+   HEADER & LOGO
+   ========================= */
+
+.header {
+    background: #000;
+    padding: 12px 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* KONTROLA VELIČINE LOGOA */
+.logo img {
+    height: 40px;   /* ← smanji ili povećaj po želji */
+    width: auto;
+    display: block;
+}
+
+/* NAVIGACIJA */
+.nav-menu {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.nav-menu a:hover {
+    opacity: 0.7;
+}
+
+/* CTA dugme */
+.btn-demo {
+    background: linear-gradient(90deg, #7b2cff, #a855f7);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+}
 
 /* Problem Sekcija - zadržava naglasak na problemu ali sa brend bojama */
 .problem-section {
