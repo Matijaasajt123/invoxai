@@ -5,30 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InvoxAI | AI Recepcioner za Ordinacije</title>
     <meta name="description" content="Nikada više ne propustite poziv pacijenta. Naš AI recepcioner radi 24/7, zakazuje preglede i povećava prihode vaše ordinacije.">
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts: Inter za tekst i Playfair Display za naslove -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Povezivanje CSS fajlova -->
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="ai-recepcioner.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Header ostaje isti kao na glavnom sajtu -->
     <header class="header">
-        <div class="nav-container">
-            <a href="/" class="logo">
-                <img src="logo.png" alt="InvoxAI Logo">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="InvoxAI Logo" style="height: 30px;">
             </a>
             <nav class="nav-menu">
-                <a href="#problem">Problem</a>
-                <a href="#resenje">Rešenje</a>
-                <a href="#kako-radi">Kako Radi</a>
-                <a href="#prednosti">Prednosti</a>
-                <a href="#cta-final" class="cta-button nav-cta">Zakažite Demo</a>
+                <li><a href="index.html">Početna</a></li>
+                <li><a href="index.html#about">O Nama</a></li>
+                <li><a href="index.html#services">Usluge</a></li>
+                <li><a href="ai-recepcioner-ordinacija.html"><b>AI Recepcioner</b></a></li> 
+                <li><a href="index.html#case-studies">Case Studies</a></li>
+                <li><a href="#contact">Kontakt</a></li>
             </nav>
             <button class="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
-        </div>
+        </nav>
     </header>
 
     <main>
@@ -36,9 +42,9 @@
         <section class="hero-recepcioner">
             <div class="container">
                 <div class="hero-content">
-                    <h1 class="hero-title-recepcioner">AI Recepcioner Koji Radi za Vašu Ordinaciju 24/7</h1>
-                    <p class="hero-subtitle-recepcioner">Prestanite da gubite pacijente zbog propuštenih poziva. Naš pametni asistent se javlja na svaki poziv, zakazuje termine i oslobađa vaše osoblje.</p>
-                    <a href="#cta-final" class="cta-button large">Zakažite Besplatan Demo</a>
+                    <h1 class="hero-title-recepcioner">Vaš Novi Recepcioner Radi 24/7</h1>
+                    <p class="hero-subtitle-recepcioner">Pretvorite svaki poziv u zakazan termin. Naš AI asistent osigurava da više nikada ne izgubite pacijenta zbog propuštenog poziva.</p>
+                    <a href="#contact" class="cta-button large">Zakažite Besplatan Demo</a>
                 </div>
             </div>
         </section>
@@ -48,16 +54,16 @@
             <div class="container">
                 <h2 class="section-title-recepcioner">Svaki Propušten Poziv je Izgubljen Pacijent</h2>
                 <p class="section-subtitle-recepcioner">Vaša ordinacija se trudi da pruži najbolju negu, ali da li ste svesni koliko prihoda gubite svakog dana?</p>
-                <div class="problem-grid">
-                    <div class="problem-card">
+                <div class="problem-grid-new">
+                    <div class="problem-card-new">
                         <h3>Neodgovoreni pozivi</h3>
                         <p>Tokom gužve ili pauze, vaše osoblje ne može da stigne do telefona. Pacijenti ne čekaju – zovu konkurenciju.</p>
                     </div>
-                    <div class="problem-card">
+                    <div class="problem-card-new">
                         <h3>Pozivi van radnog vremena</h3>
                         <p>Pacijenti zovu kada im je najzgodnije – uveče, vikendom. Bez odgovora, oni traže drugu ordinaciju.</p>
                     </div>
-                    <div class="problem-card">
+                    <div class="problem-card-new">
                         <h3>Gubitak prihoda</h3>
                         <p>Jedan propušten poziv može značiti gubitak novog pacijenta i hiljade evra prihoda na godišnjem nivou.</p>
                     </div>
@@ -65,125 +71,59 @@
             </div>
         </section>
 
-        <!-- REŠENJE SEKCIJA -->
-        <section id="resenje" class="section-recepcioner solution-section">
+        <!-- TESTIRAJ AGENTA SEKCIJA -->
+        <section id="test" class="section-recepcioner test-agent-section">
             <div class="container">
-                <h2 class="section-title-recepcioner">Naš AI Recepcioner Pretvara Pozive u Zakazane Termine</h2>
-                <div class="solution-content">
-                    <div class="solution-item">
-                        <div class="solution-icon">✓</div>
-                        <div>
-                            <h4>Dostupnost 24/7</h4>
-                            <p>Naš AI agent se javlja na svaki poziv, bilo da je dan ili noć, praznik ili vikend.</p>
-                        </div>
-                    </div>
-                    <div class="solution-item">
-                        <div class="solution-icon">✓</div>
-                        <div>
-                            <h4>Komunikacija na Srpskom</h4>
-                            <p>Agent komunicira tečno i prirodno na srpskom jeziku, pružajući prijatan prvi utisak.</p>
-                        </div>
-                    </div>
-                    <div class="solution-item">
-                        <div class="solution-icon">✓</div>
-                        <div>
-                            <h4>Povećanje Zakazivanja</h4>
-                            <p>Automatizovanim zakazivanjem popunjavate kalendar i direktno povećavate prihode ordinacije.</p>
-                        </div>
-                    </div>
+                <h2 class="section-title-recepcioner">Čujte Ga na Delu</h2>
+                <p class="section-subtitle-recepcioner">Pozovite naš demo broj i uverite se sami kako zvuči budućnost recepcije. Pitajte za termin, usluge ili radno vreme.</p>
+                <div class="phone-number-box">
+                    <p>Pozovite i testirajte:</p>
+                    <a href="tel:0114222048">011 4222 048</a>
                 </div>
             </div>
         </section>
 
-        <!-- KAKO AGENT RADI -->
+        <!-- KAKO RADI SEKCIJA -->
         <section id="kako-radi" class="section-recepcioner steps-section">
             <div class="container">
-                <h2 class="section-title-recepcioner">Jednostavan Proces u 4 Koraka</h2>
-                <div class="steps-timeline">
-                    <div class="step">
+                <h2 class="section-title-recepcioner">Inteligentno Zakazivanje u 3 Koraka</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
                         <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Pacijent Poziva</h3>
-                            <p>Pacijent poziva vaš broj ordinacije. Naš AI agent se javlja odmah sa lokalnog (+381 ) broja.</p>
-                        </div>
+                        <h4>Razumevanje Pacijenta</h4>
+                        <p>AI Agent se javlja, razume razlog poziva i odgovara na pitanja o uslugama, cenama i radnom vremenu.</p>
                     </div>
-                    <div class="step">
+                    <div class="step-card">
                         <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Agent Pruža Informacije</h3>
-                            <p>Agent zna sve o vašoj ordinaciji: radno vreme, lokaciju, usluge i cene, i odgovara na pitanja pacijenata.</p>
-                        </div>
+                        <h4>Provera Kalendara</h4>
+                        <p>Agent u realnom vremenu proverava vaš kalendar i nudi pacijentu prve slobodne termine koji mu odgovaraju.</p>
                     </div>
-                    <div class="step">
+                    <div class="step-card">
                         <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>Provera Kalendara i Zakazivanje</h3>
-                            <p>Agent proverava slobodne termine u vašem kalendaru i nudi pacijentu opcije. Zakazuje pregled u realnom vremenu.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h3>Prikupljanje Podataka</h3>
-                            <p>Agent prikuplja sve potrebne informacije (ime, prezime, broj telefona, razlog dolaska) i unosi ih u vaš sistem.</p>
-                        </div>
+                        <h4>Potvrda i Upisivanje</h4>
+                        <p>Nakon što pacijent odabere termin, agent prikuplja podatke (ime, telefon ) i automatski upisuje termin u kalendar.</p>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- INTEGRACIJE I MOGUĆNOSTI -->
-        <section id="integracije" class="section-recepcioner features-section">
+        
+        <!-- FINALNI CTA / KONTAKT FORMA -->
+        <section id="contact" class="section-recepcioner contact-section-new">
             <div class="container">
-                <h2 class="section-title-recepcioner">Moćne Funkcije i Potpuna Integracija</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <h4>Povezivanje sa Kalendarom</h4>
-                        <p>Integrišemo se sa vašim postojećim kalendarom (Google Calendar, itd.) za pregled i upisivanje termina.</p>
+                <h2 class="section-title-recepcioner">Prestanite da Gubite Pacijente</h2>
+                <p class="section-subtitle-recepcioner">Popunite formu i naš tim će vas kontaktirati da zakažete besplatan demo i analizu za vašu ordinaciju.</p>
+                
+                <form id="contact-form-recepcioner" class="contact-form-new">
+                    <div class="form-row">
+                        <input type="text" id="imePrezime" name="imePrezime" placeholder="Ime i prezime" required>
+                        <input type="text" id="nazivOrdinacije" name="nazivOrdinacije" placeholder="Naziv ordinacije" required>
                     </div>
-                    <div class="feature-item">
-                        <h4>Prosleđivanje Poziva</h4>
-                        <p>Za hitne slučajeve ili specifične zahteve, agent može inteligentno preusmeriti poziv na dežurnog lekara ili osoblje.</p>
+                    <div class="form-row">
+                        <input type="tel" id="brojTelefona" name="brojTelefona" placeholder="Broj telefona" required>
+                        <button type="submit" class="cta-button">Zakažite Demo</button>
                     </div>
-                    <div class="feature-item">
-                        <h4>Treniran za Vašu Ordinaciju</h4>
-                        <p>Svakog AI agenta posebno treniramo da poznaje specifičnosti vaše ordinacije, od usluga do tima lekara.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PREDNOSTI ZA ORDINACIJE -->
-        <section id="prednosti" class="section-recepcioner benefits-section">
-            <div class="container">
-                <h2 class="section-title-recepcioner">Benefiti za Vašu Ordinaciju</h2>
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <h5>Više Zakazanih Pregleda</h5>
-                        <p>Pretvorite svaki poziv u priliku i gledajte kako vam se kalendar puni bez napora.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <h5>Manje Opterećenje Osoblja</h5>
-                        <p>Oslobodite svoje medicinske sestre i administratore da se fokusiraju na pacijente u ordinaciji.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <h5>Profesionalan Prvi Utisak</h5>
-                        <p>Svaki pacijent dobija brz, profesionalan i koristan odgovor, gradeći poverenje od prvog kontakta.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <h5>Povećanje Prihoda</h5>
-                        <p>Više pacijenata znači veći prihod, bez potrebe za zapošljavanjem dodatnog osoblja.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FINALNI CTA -->
-        <section id="cta-final" class="section-recepcioner final-cta-section">
-            <div class="container">
-                <h2>Ne Dozvolite da Vam Pacijenti Odlaze kod Konkurencije</h2>
-                <p>Svaki dan bez AI recepcionera je dan sa izgubljenim prihodima. Vreme je da to promenite.</p>
-                <a href="#" class="cta-button large">Zakažite Besplatan i Neobavezan Demo</a>
+                    <p id="form-status" class="form-status-new"></p>
+                </form>
             </div>
         </section>
     </main>
@@ -194,6 +134,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script-recepcioner.js"></script>
 </body>
 </html>
