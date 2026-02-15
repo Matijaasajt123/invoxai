@@ -208,4 +208,40 @@ body {
     .problem-grid-new, .steps-grid { grid-template-columns: 1fr; }
     .contact-form-new .form-row { grid-template-columns: 1fr; }
 }
+/* Popravka za navigaciju */
+.header {
+    position: absolute; /* Postavlja meni preko Hero sekcije */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    background: transparent; /* Da bi se videla ljubičasta boja ispod */
+}
 
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-menu {
+    display: flex; /* Pravi horizontalni meni */
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-menu li a {
+    color: #ffffff !important; /* Forsira belu boju slova da se vidi na ljubičastoj pozadini */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Prilagođavanje Hero sekcije da ne ide ispod menija */
+.hero-recepcioner {
+    padding-top: 180px; /* Povećaj gornji padding da tekst ne udara u vrh */
+}
