@@ -7,33 +7,30 @@
     <title>InvoxAI | AI Recepcioner za Ordinacije</title>
     <meta name="description" content="Nikada više ne propustite poziv pacijenta. Naš AI recepcioner radi 24/7, zakazuje preglede i povećava prihode vaše ordinacije.">
     
-
    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Povezivanje CSS fajlova -->
     <link rel="stylesheet" href="ai-recepcioner.css">
 </head>
 <body>
 
-    <!-- Header ostaje isti kao na glavnom sajtu -->
-  <header class="header">
-    <nav class="nav-container">
-        <a href="index.html" class="logo">
-            <img src="logo.png" alt="InvoxAI Logo">
-        </a>
-        <ul class="nav-menu">
-            <li><a href="index.html">Početna</a></li>
-            <li><a href="#problem">O Problemu</a></li>
-            <li><a href="#test">Testiraj Agenta</a></li>
-            <li><a href="#kako-radi">Kako Radi</a></li>
-            <li><a href="#contact">Kontakt</a></li>
-        </ul>
-    </nav>
-</header>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="InvoxAI Logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Početna</a></li>
+                <li><a href="#problem">O Problemu</a></li>
+                <li><a href="#test">Testiraj Agenta</a></li>
+                <li><a href="#kako-radi">Kako Radi</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-        <!-- HERO SEKCIJA -->
         <section class="hero-recepcioner">
             <div class="container">
                 <div class="hero-content">
@@ -44,7 +41,6 @@
             </div>
         </section>
 
-        <!-- PROBLEM SEKCIJA -->
         <section id="problem" class="section-recepcioner problem-section">
             <div class="container">
                 <h2 class="section-title-recepcioner">Svaki Propušten Poziv je Izgubljen Pacijent</h2>
@@ -66,7 +62,6 @@
             </div>
         </section>
 
-        <!-- TESTIRAJ AGENTA SEKCIJA -->
         <section id="test" class="section-recepcioner test-agent-section">
             <div class="container">
                 <h2 class="section-title-recepcioner">Čujte Ga na Delu</h2>
@@ -78,7 +73,6 @@
             </div>
         </section>
 
-        <!-- KAKO RADI SEKCIJA -->
         <section id="kako-radi" class="section-recepcioner steps-section">
             <div class="container">
                 <h2 class="section-title-recepcioner">Inteligentno Zakazivanje u 3 Koraka</h2>
@@ -96,13 +90,12 @@
                     <div class="step-card">
                         <div class="step-number">3</div>
                         <h4>Potvrda i Upisivanje</h4>
-                        <p>Nakon što pacijent odabere termin, agent prikuplja podatke (ime, telefon ) i automatski upisuje termin u kalendar.</p>
+                        <p>Nakon što pacijent odabere termin, agent prikuplja podatke (ime, telefon) i automatski upisuje termin u kalendar.</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- FINALNI CTA / KONTAKT FORMA -->
         <section id="contact" class="section-recepcioner contact-section-new">
             <div class="container">
                 <h2 class="section-title-recepcioner">Prestanite da Gubite Pacijente</h2>
@@ -115,8 +108,8 @@
                     </div>
                     <div class="form-row">
                         <input type="tel" id="brojTelefona" name="brojTelefona" placeholder="Broj telefona" required>
-                        <button type="submit" class="cta-button">Zakažite Demo</button>
                     </div>
+                    <button type="submit" class="cta-button form-submit-btn">Zakažite Demo</button>
                     <p id="form-status" class="form-status-new"></p>
                 </form>
             </div>
