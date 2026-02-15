@@ -1,253 +1,23 @@
 /* ==========================================================================
- /* Postavljanje Inter fonta kao primarnog za celu stranicu */
-body, h1, h2, h3, h4, p, a {
-    font-family: 'Inter', sans-serif !important;
-}  AI RECEPCIONER - ELEGANTAN DIZAJN (v2)
+   AI RECEPCIONER - FINALNA VERZIJA (Inter Font + Fixed Nav)
    ========================================================================== */
 
-/* Prilagođavanje osnovnih stilova za ovu stranicu */
-body {
-    background-color: #FCFCFC; /* Veoma svetla siva pozadina */
-}/* Postavljanje Inter fonta kao primarnog za celu stranicu */
-body, h1, h2, h3, h4, p, a {
+/* 1. Globalni Font i Reset */
+body, h1, h2, h3, h4, p, a, button, input {
     font-family: 'Inter', sans-serif !important;
 }
-/* Hero Sekcija */
-.hero-recepcioner {
-    background: linear-gradient(135deg, #6d28d9, #3b0764); /* Gradijent iz glavnog sajta */
-    color: #ffffff;
-    padding: 200px 40px 120px;
-    text-align: center;
+
+body {
+    background-color: #FCFCFC;
+    margin: 0;
+    padding: 0;
 }
 
-.hero-title-recepcioner {/* Serifni font za glavni naslov */
-    font-size: 3.8rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    line-height: 1.2;
+html {
+    scroll-behavior: smooth;
 }
 
-.hero-subtitle-recepcioner {
-    font-size: 1.3rem;
-    max-width: 700px;
-    margin: 0 auto 40px;
-    color: #d1d5db;
-}
-
-/* Opšti stilovi za sekcije */
-.section-recepcioner {
-    padding: 100px 0;
-}
-
-.section-title-recepcioner {/* Serifni font za sve naslove sekcija */
-    font-size: 3rem;
-    font-weight: 700;
-    text-align: center;
-    color: #1f2937;
-    margin-bottom: 15px;
-}
-
-.section-subtitle-recepcioner {
-    text-align: center;
-    font-size: 1.15rem;
-    color: #6b7280;
-    margin-bottom: 70px;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.7;
-}
-
-/* Problem Sekcija - Novi Dizajn */
-.problem-section {
-    background-color: #ffffff;
-    border-bottom: 1px solid #f3f4f6;
-}
-
-.problem-grid-new {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    text-align: center;
-}
-
-.problem-card-new {
-    background: #ffffff;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(59, 10, 69, 0.07);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.problem-card-new:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 50px rgba(59, 10, 69, 0.1);
-}
-
-.problem-card-new h3 {
-    font-size: 1.6rem;
-    color: var(--primary-purple);
-    margin-bottom: 15px;
-}
-
-/* Test Agent Sekcija */
-.test-agent-section {
-    background-color: #f3e8ff; /* Svetlo ljubičasta */
-}
-
-.phone-number-box {
-    background: #ffffff;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 30px 40px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 10px 40px rgba(59, 10, 69, 0.1);
-}
-
-.phone-number-box p {
-    color: #6b7280;
-    font-size: 1rem;
-    margin-bottom: 10px;
-}
-
-.phone-number-box a {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--dark-purple);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.phone-number-box a:hover {
-    color: var(--primary-purple);
-}
-
-/* Kako Radi Sekcija */
-.steps-section {
-    background-color: #ffffff;
-}
-
-.steps-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-.step-card {
-    text-align: center;
-    padding: 20px;
-}
-
-.step-number {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--accent-pink);
-    color: white;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.step-card h4 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #1f2937;
-    margin-bottom: 10px;
-}
-
-/* Kontakt Forma Sekcija */
-.contact-section-new {
-    background-color: #f9fafb;
-}
-
-.contact-form-new {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.contact-form-new .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.contact-form-new input[type="text"],
-.contact-form-new input[type="tel"] {
-    width: 100%;
-    padding: 18px 20px;
-    border-radius: 8px;
-    border: 1px solid #d1d5db;
-    font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.contact-form-new input:focus {
-    border-color: var(--primary-purple);
-    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.2);
-    outline: none;
-}
-
-.form-status-new {
-    min-height: 20px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .hero-title-recepcioner { font-size: 2.8rem; }
-    .section-title-recepcioner { font-size: 2.2rem; }
-    .problem-grid-new, .steps-grid { grid-template-columns: 1fr; }
-    .contact-form-new .form-row { grid-template-columns: 1fr; }
-}
-/* Popravka za navigaciju */
-.header {
-    position: absolute; /* Postavlja meni preko Hero sekcije */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 20px 0;
-    background: transparent; /* Da bi se videla ljubičasta boja ispod */
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.nav-menu {
-    display: flex; /* Pravi horizontalni meni */
-    list-style: none;
-    gap: 30px;
-}
-
-.nav-menu li a {
-    color: #ffffff !important; /* Forsira belu boju slova da se vidi na ljubičastoj pozadini */
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-}
-
-/* Prilagođavanje Hero sekcije da ne ide ispod menija */
-.hero-recepcioner {
-    padding-top: 180px; /* Povećaj gornji padding da tekst ne udara u vrh */
-}
-/* Stilovi za navigaciju na ovoj stranici */
+/* 2. Navigacija (Fix za vidljivost) */
 .header {
     position: absolute;
     top: 0;
@@ -255,6 +25,7 @@ body, h1, h2, h3, h4, p, a {
     width: 100%;
     z-index: 1000;
     padding: 25px 0;
+    background: transparent;
 }
 
 .nav-container {
@@ -275,7 +46,7 @@ body, h1, h2, h3, h4, p, a {
 }
 
 .nav-menu li a {
-    color: #ffffff !important; /* Bela boja da se vidi na ljubičastom */
+    color: #ffffff !important;
     text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
@@ -286,13 +57,104 @@ body, h1, h2, h3, h4, p, a {
     opacity: 0.8;
 }
 
-/* Popravka za logo da bude beo na tamnoj pozadini */
 .logo img {
-    filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1); /* Pravi crni logo belim */
     height: 30px;
 }
 
-/* Glatko skrolovanje kada klikneš na link */
-html {
-    scroll-behavior: smooth;
+/* 3. Hero Sekcija */
+.hero-recepcioner {
+    background: linear-gradient(135deg, #6d28d9, #3b0764);
+    color: #ffffff;
+    padding: 180px 40px 120px; /* Povećan padding zbog navigacije */
+    text-align: center;
+}
+
+.hero-title-recepcioner {
+    font-size: 3.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-subtitle-recepcioner {
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: #d1d5db;
+}
+
+/* 4. Ostale Sekcije */
+.section-recepcioner {
+    padding: 100px 0;
+}
+
+.section-title-recepcioner {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    color: #1f2937;
+    margin-bottom: 15px;
+}
+
+.section-subtitle-recepcioner {
+    text-align: center;
+    font-size: 1.15rem;
+    color: #6b7280;
+    margin-bottom: 70px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+/* Problem Cards */
+.problem-grid-new {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.problem-card-new {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(59, 10, 69, 0.07);
+    text-align: center;
+}
+
+.problem-card-new h3 {
+    font-size: 1.6rem;
+    color: #6d28d9;
+    margin-bottom: 15px;
+}
+
+/* Test Agent Box */
+.test-agent-section {
+    background-color: #f3e8ff;
+}
+
+.phone-number-box {
+    background: #ffffff;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(59, 10, 69, 0.1);
+}
+
+.phone-number-box a {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #3b0764;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title-recepcioner { font-size: 2.8rem; }
+    .section-title-recepcioner { font-size: 2.2rem; }
+    .problem-grid-new { grid-template-columns: 1fr; }
+    .nav-menu { display: none; } /* Sakriva meni na mobilnom za sada */
 }
