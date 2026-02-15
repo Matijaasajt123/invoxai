@@ -85,7 +85,6 @@ body, h1, h2, h3, h4, p, a {
 }
 
 .problem-card-new h3 {
-    font-family: 'Playfair Display', serif;
     font-size: 1.6rem;
     color: var(--primary-purple);
     margin-bottom: 15px;
