@@ -11,7 +11,7 @@ body {
 .hero-recepcioner {
     background: linear-gradient(135deg, #6d28d9, #3b0764); /* Gradijent iz glavnog sajta */
     color: #ffffff;
-    padding: 140px 40px 120px;
+    padding: 200px 40px 120px;
     text-align: center;
 }
 
@@ -244,4 +244,53 @@ body {
 /* Prilagođavanje Hero sekcije da ne ide ispod menija */
 .hero-recepcioner {
     padding-top: 180px; /* Povećaj gornji padding da tekst ne udara u vrh */
+}
+/* Stilovi za navigaciju na ovoj stranici */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 25px 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li a {
+    color: #ffffff !important; /* Bela boja da se vidi na ljubičastom */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: opacity 0.3s;
+}
+
+.nav-menu li a:hover {
+    opacity: 0.8;
+}
+
+/* Popravka za logo da bude beo na tamnoj pozadini */
+.logo img {
+    filter: brightness(0) invert(1);
+    height: 30px;
+}
+
+/* Glatko skrolovanje kada klikneš na link */
+html {
+    scroll-behavior: smooth;
 }
