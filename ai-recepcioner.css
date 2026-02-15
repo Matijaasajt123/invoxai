@@ -19,13 +19,14 @@ html {
 
 /* 2. Navigacija (Fix za vidljivost) */
 .header {
-    position: absolute;
+    position: fixed; /* Fiksirano na vrhu dok skroluješ */
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 25px 0;
-    background: transparent;
+    background-color: #3b0764; /* Tamno ljubičasta boja sa slike */
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 .nav-container {
@@ -35,6 +36,13 @@ html {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Fiksiranje veličine logoa da ne bude ogroman */
+.logo img {
+    height: 35px !important;
+    width: auto !important;
+    display: block;
 }
 
 .nav-menu {
@@ -48,18 +56,18 @@ html {
 .nav-menu li a {
     color: #ffffff !important;
     text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: opacity 0.3s;
+    font-weight: 600; /* Podebljana slova kao na slici */
+    font-size: 0.95rem;
+    transition: color 0.3s;
 }
 
 .nav-menu li a:hover {
-    opacity: 0.8;
+    color: #d1d5db !important;
 }
 
-.logo img {
-    filter: brightness(0) invert(1); /* Pravi crni logo belim */
-    height: 30px;
+/* Prilagođavanje Hero sekcije zbog fiksiranog headera */
+.hero-recepcioner {
+    padding-top: 140px !important; /* Spušta sadržaj da ga header ne prekrije */
 }
 
 /* 3. Hero Sekcija */
