@@ -91,38 +91,65 @@
             </div>
         </section>
 
-        <section id="kalkulator" class="section-recepcioner calculator-section">
-            <div class="container">
-                <h2 class="section-title-recepcioner">Izračunajte Koliko Novca Gubite</h2>
-                <p class="section-subtitle-recepcioner">Unesite vaše podatke i vidite realan uticaj propuštenih poziva na vaš mesečni prihod.</p>
+       <section id="kalkulator" class="section-recepcioner calculator-section">
+    <div class="container">
+        <div class="calc-wrapper">
+            <div class="calc-content">
+                <span class="calc-badge">ROI Kalkulator</span>
+                <h2 class="calc-title">Saznajte koliko novca <br> <span class="text-gradient">ostavljate na stolu</span></h2>
+                <p class="calc-subtitle">Pomerite slajdere ispod da biste videli koliko vas koštaju propušteni pozivi na mesečnom i godišnjem nivou.</p>
                 
-                <div class="calc-container">
-                    <div class="calc-inputs">
-                        <div class="input-group">
-                            <label>Mesečni broj poziva: <span id="calls-val">300</span></label>
-                            <input type="range" id="input-calls" min="50" max="2000" step="10" value="300">
+                <div class="calc-controls">
+                    <div class="control-group">
+                        <div class="label-row">
+                            <label>Mesečni broj poziva</label>
+                            <span class="input-value" id="calls-display">300</span>
                         </div>
-                        
-                        <div class="input-group">
-                            <label>Prosečna vrednost pacijenta (€): <span id="value-val">100</span></label>
-                            <input type="range" id="input-value" min="20" max="1000" step="10" value="100">
+                        <div class="range-wrapper">
+                            <input type="range" id="input-calls" min="50" max="2000" step="10" value="300">
+                            <div class="range-progress" id="progress-calls"></div>
                         </div>
                     </div>
-                    
-                    <div class="calc-results">
-                        <div class="result-box">
-                            <span class="result-label">Propuštenih poziva mesečno</span>
-                            <span class="result-number" id="missed-calls">84</span>
+
+                    <div class="control-group">
+                        <div class="label-row">
+                            <label>Prosečna vrednost pacijenta (€)</label>
+                            <span class="input-value" id="value-display">100 €</span>
                         </div>
-                        <div class="result-box highlighted">
-                            <span class="result-label">Izgubljeni prihod mesečno</span>
-                            <span class="result-number" id="lost-revenue">5.040 €</span>
+                        <div class="range-wrapper">
+                            <input type="range" id="input-value" min="20" max="1000" step="10" value="100">
+                            <div class="range-progress" id="progress-value"></div>
                         </div>
-                        <p class="calc-note">*Procenjeno na osnovu proseka od 28% propuštenih poziva van radnog vremena i 60% stope zakazivanja.</p>
                     </div>
                 </div>
             </div>
-        </section>
+
+            <div class="calc-card">
+                <div class="card-header">
+                    <h3>Vaš Potencijalni Gubitak</h3>
+                </div>
+                <div class="card-body">
+                    <div class="result-row">
+                        <span class="res-label">Propuštenih poziva (mesečno)</span>
+                        <span class="res-val" id="missed-calls">84</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="result-row main-loss">
+                        <span class="res-label">Izgubljeni prihod (mesečno)</span>
+                        <span class="res-val red-text" id="lost-revenue">5.040 €</span>
+                    </div>
+                    <div class="result-row yearly-loss">
+                        <span class="res-label">Na godišnjem nivou:</span>
+                        <span class="res-val" id="lost-revenue-yearly">60.480 €</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <p>*Bazirano na industrijskom proseku od 28% propuštenih poziva i 60% konverzije u zakazivanje.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
         <section id="test" class="section-recepcioner test-agent-section">
             <div class="container">
