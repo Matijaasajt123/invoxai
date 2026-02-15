@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.png" type="image/png">
-    <title>InvoxAI | AI Recepcioner za Ordinacije</title>
-    <meta name="description" content="Nikada više ne propustite poziv pacijenta. Naš AI recepcioner radi 24/7, zakazuje preglede i povećava prihode vaše ordinacije.">
+    <title>InvoxAI | Kalkulator Gubitka za Ordinacije</title>
     
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,6 +29,7 @@
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html">Početna</a></li>
                 <li><a href="#problem">O Problemu</a></li>
+                <li><a href="#kalkulator">Kalkulator Gubitka</a></li>
                 <li><a href="#test">Testiraj Agenta</a></li>
                 <li><a href="#kako-radi">Kako Radi</a></li>
                 <li><a href="#contact">Kontakt</a></li>
@@ -42,40 +42,28 @@
             <div class="container">
                 <div class="hero-content">
                     <h1 class="hero-title-recepcioner">Vaš Novi Recepcioner Radi 24/7</h1>
-                    <p class="hero-subtitle-recepcioner">Pretvorite svaki poziv u zakazan termin. Naš AI asistent osigurava da više nikada ne izgubite pacijenta zbog propuštenog poziva.</p>
+                    <p class="hero-subtitle-recepcioner">Pretvorite svaki poziv u zakazan termin. Naš AI asistent osigurava da više nikada ne izgubite pacijenta.</p>
                     <a href="#contact" class="cta-button large">Zakažite Besplatan Demo</a>
                 </div>
             </div>
         </section>
 
-        <section id="problem" class="section-recepcioner problem-section">
+        <section id="problem" class="section-recepcioner">
             <div class="container">
                 <h2 class="section-title-recepcioner">Svaki Propušten Poziv je Izgubljen Pacijent</h2>
-                <p class="section-subtitle-recepcioner">Vaša ordinacija se trudi da pruži najbolju negu, ali da li ste svesni koliko prihoda gubite svakog dana?</p>
                 <div class="problem-grid-new">
                     <div class="problem-card-new">
                         <h3>Neodgovoreni pozivi</h3>
-                        <p>Tokom gužve ili pauze, vaše osoblje ne može da stigne do telefona. Pacijenti ne čekaju – zovu konkurenciju.</p>
+                        <p>Tokom gužve ili pauze, vaše osoblje ne može da stigne do telefona. Pacijenti ne čekaju – zovu dalje.</p>
                     </div>
                     <div class="problem-card-new">
                         <h3>Pozivi van radnog vremena</h3>
-                        <p>Pacijenti zovu kada im je najzgodnije – uveče, vikendom. Bez odgovora, oni traže drugu ordinaciju.</p>
+                        <p>Pacijenti zovu uveče i vikendom. Bez odgovora, oni traže drugu ordinaciju odmah.</p>
                     </div>
                     <div class="problem-card-new">
                         <h3>Gubitak prihoda</h3>
-                        <p>Jedan propušten poziv može značiti gubitak novog pacijenta i hiljade evra prihoda na godišnjem nivou.</p>
+                        <p>Jedan propušten poziv može značiti gubitak novog pacijenta i hiljade evra prihoda godišnje.</p>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="test" class="section-recepcioner test-agent-section">
-            <div class="container">
-                <h2 class="section-title-recepcioner">Čujte Ga na Delu</h2>
-                <p class="section-subtitle-recepcioner">Pozovite naš demo broj i uverite se sami kako zvuči budućnost recepcije. Pitajte za termin, usluge ili radno vreme.</p>
-                <div class="phone-number-box">
-                    <p>Pozovite i testirajte:</p>
-                    <a href="tel:0114222048">011 4222 048</a>
                 </div>
             </div>
         </section>
@@ -86,19 +74,62 @@
                 <div class="steps-grid">
                     <div class="step-card">
                         <div class="step-number">1</div>
-                        <h4>Razumevanje Pacijenta</h4>
-                        <p>AI Agent se javlja, razume razlog poziva i odgovara na pitanja o uslugama, cenama i radnom vremenu.</p>
+                        <h4>Razumevanje</h4>
+                        <p>AI Agent se javlja, razume razlog poziva i odgovara na pitanja o uslugama.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">2</div>
                         <h4>Provera Kalendara</h4>
-                        <p>Agent u realnom vremenu proverava vaš kalendar i nudi pacijentu prve slobodne termine koji mu odgovaraju.</p>
+                        <p>Agent u realnom vremenu proverava vaš kalendar i nudi slobodne termine.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">3</div>
-                        <h4>Potvrda i Upisivanje</h4>
-                        <p>Nakon što pacijent odabere termin, agent prikuplja podatke (ime, telefon) i automatski upisuje termin u kalendar.</p>
+                        <h4>Potvrda</h4>
+                        <p>Nakon odabira termina, agent automatski upisuje pacijenta u vaš sistem.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kalkulator" class="section-recepcioner calculator-section">
+            <div class="container">
+                <h2 class="section-title-recepcioner">Izračunajte Koliko Novca Gubite</h2>
+                <p class="section-subtitle-recepcioner">Unesite vaše podatke i vidite realan uticaj propuštenih poziva na vaš mesečni prihod.</p>
+                
+                <div class="calc-container">
+                    <div class="calc-inputs">
+                        <div class="input-group">
+                            <label>Mesečni broj poziva: <span id="calls-val">300</span></label>
+                            <input type="range" id="input-calls" min="50" max="2000" step="10" value="300">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Prosečna vrednost pacijenta (€): <span id="value-val">100</span></label>
+                            <input type="range" id="input-value" min="20" max="1000" step="10" value="100">
+                        </div>
+                    </div>
+                    
+                    <div class="calc-results">
+                        <div class="result-box">
+                            <span class="result-label">Propuštenih poziva mesečno</span>
+                            <span class="result-number" id="missed-calls">84</span>
+                        </div>
+                        <div class="result-box highlighted">
+                            <span class="result-label">Izgubljeni prihod mesečno</span>
+                            <span class="result-number" id="lost-revenue">5.040 €</span>
+                        </div>
+                        <p class="calc-note">*Procenjeno na osnovu proseka od 28% propuštenih poziva van radnog vremena i 60% stope zakazivanja.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="test" class="section-recepcioner test-agent-section">
+            <div class="container">
+                <h2 class="section-title-recepcioner">Čujte Ga na Delu</h2>
+                <div class="phone-number-box">
+                    <p>Pozovite i testirajte:</p>
+                    <a href="tel:0114222048">011 4222 048</a>
                 </div>
             </div>
         </section>
@@ -106,18 +137,15 @@
         <section id="contact" class="section-recepcioner contact-section-new">
             <div class="container">
                 <h2 class="section-title-recepcioner">Prestanite da Gubite Pacijente</h2>
-                <p class="section-subtitle-recepcioner">Popunite formu i naš tim će vas kontaktirati da zakažete besplatan demo i analizu za vašu ordinaciju.</p>
-                
                 <form id="contact-form-recepcioner" class="contact-form-new">
                     <div class="form-row">
-                        <input type="text" id="imePrezime" name="imePrezime" placeholder="Ime i prezime" required>
-                        <input type="text" id="nazivOrdinacije" name="nazivOrdinacije" placeholder="Naziv ordinacije" required>
+                        <input type="text" placeholder="Ime i prezime" required>
+                        <input type="text" placeholder="Naziv ordinacije" required>
                     </div>
                     <div class="form-row">
-                        <input type="tel" id="brojTelefona" name="brojTelefona" placeholder="Broj telefona" required>
+                        <input type="tel" placeholder="Broj telefona" required>
                     </div>
-                    <button type="submit" class="cta-button form-submit-btn">Zakažite Demo</button>
-                    <p id="form-status" class="form-status-new"></p>
+                    <button type="submit" class="cta-button form-submit-btn">Zakažite Besplatan Demo</button>
                 </form>
             </div>
         </section>
