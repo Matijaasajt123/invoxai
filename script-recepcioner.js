@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // URL Webhook-a (Zameni ovo svojim pravim linkom kada ga napraviš)
-        const WEBHOOK_URL = 'https://vas-webhook-url.com/endpoint'; 
+        const WEBHOOK_URL = 'https://hook.eu2.make.com/c19fo8n8f43gxuvas2anpx2rj5ubfhe5'; 
 
         form.addEventListener('submit', function(event) {
             event.preventDefault();
