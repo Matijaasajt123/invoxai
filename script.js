@@ -61,6 +61,24 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownBtn = document.getElementById('ai-dropdown-btn');
+    const dropdownContent = document.getElementById('ai-dropdown-content');
 
+    if (dropdownBtn && dropdownContent) {
+        dropdownBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // Sprečava skakanje stranice
+            e.stopPropagation(); // Sprečava da se klik odmah prosledi na window
+            dropdownContent.classList.toggle('show');
+        });
+
+        // Zatvori meni ako korisnik klikne bilo gde van njega
+        window.addEventListener('click', function(e) {
+            if (!dropdownBtn.contains(e.target)) {
+                dropdownContent.classList.remove('show');
+            }
+        });
+    }
+});
 // Page fade-in CSS is moved to styles.css for cleaner code
 // The mobile menu CSS was moved to styles.css for cleaner code and to fix the conflict.
