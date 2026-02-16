@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <title>InvoxAI | Kalkulator Gubitka za Frizerske Salone</title>
+    
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="ai-recepcioner-frizeri.css">
+</head>
+<body>
+
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="InvoxAI Logo">
+            </a>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Početna</a></li>
+                <li><a href="#problem">Šta rešava</a></li>
+                <li><a href="#kalkulator">Kalkulator Gubitka</a></li>
+                <li><a href="#test">Testiraj Agenta</a></li>
+                <li><a href="#kako-radi">Kako Radi</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-recepcioner">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title-recepcioner">Vlasnici frizerskih salona: Nikada više ne prekidajte šišanje zbog telefona</h1>
+                    <p class="hero-subtitle-recepcioner">Popunite svaku stolicu u salonu. Naš AI asistent se javlja, zakazuje termine i osigurava da više nikada ne izgubite klijenta jer su vam ruke bile zauzete.</p>
+                    <a href="#contact" class="cta-button large">Zakažite Besplatan Demo</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="problem" class="section-recepcioner">
+            <div class="container">
+                <h2 class="section-title-recepcioner">Svaki Propušten Poziv je Klijent Kod Konkurencije</h2>
+                <div class="problem-grid-new">
+                    <div class="problem-card-new">
+                        <h3>Ruke su vam zauzete</h3>
+                        <p>Radite feniranje, pranje kose ili precizno šišanje. Zvoni telefon, ali ne možete da se javite. Klijent ne čeka – zove drugi salon.</p>
+                    </div>
+                    <div class="problem-card-new">
+                        <h3>Pozivi van radnog vremena</h3>
+                        <p>Klijenti često žele da zakažu termin kasno uveče. Bez odgovora, njihov entuzijazam nestaje do jutra.</p>
+                    </div>
+                    <div class="problem-card-new">
+                        <h3>Prazne stolice koštaju</h3>
+                        <p>Samo nekoliko propuštenih poziva mesečno znači stotine evra izgubljenog prihoda i prazan hod u rasporedu.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kako-radi" class="section-recepcioner steps-section">
+            <div class="container">
+                <h2 class="section-title-recepcioner">Inteligentno Zakazivanje u 3 Koraka</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>Razumevanje Usluge</h4>
+                        <p>AI Agent se javlja i razume da li klijent želi obično muško šišanje, balajaž ili samo feniranje.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>Provera Rasporeda</h4>
+                        <p>Agent u realnom vremenu proverava vaš kalendar i pronalazi optimalan termin za traženu uslugu.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>Potvrda</h4>
+                        <p>Termin se automatski upisuje u vaš sistem, a vi samo dočekujete klijenta bez stresa oko telefona.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kalkulator" class="section-recepcioner invox-calc-section">
+            <div class="container">
+                <div class="invox-calc-wrapper">
+                    <div class="invox-calc-content">
+                        <span class="calc-badge">ROI Kalkulator</span>
+                        <h2 class="calc-main-title">Saznajte koliko novca <br> <span class="text-gradient">ostavljate na stolu</span></h2>
+                        <p class="calc-description">Pomerite slajdere ispod da biste videli koliko vas koštaju propušteni pozivi na mesečnom i godišnjem nivou.</p>
+                        
+                        <div class="calc-controls">
+                            <div class="control-group">
+                                <div class="label-row">
+                                    <label>Mesečni broj poziva u salonu</label>
+                                    <span class="input-value" id="calls-display">150</span>
+                                </div>
+                                <div class="range-wrapper">
+                                    <input type="range" id="input-calls" min="50" max="1000" step="10" value="150">
+                                    <div class="range-progress" id="progress-calls"></div>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <div class="label-row">
+                                    <label>Prosečna cena vaše usluge (€)</label>
+                                    <span class="input-value" id="value-display">30 €</span>
+                                </div>
+                                <div class="range-wrapper">
+                                    <input type="range" id="input-value" min="10" max="200" step="5" value="30">
+                                    <div class="range-progress" id="progress-value"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="invox-calc-card">
+                        <div class="card-header-dark">
+                            <h3>Vaš Potencijalni Gubitak</h3>
+                        </div>
+                        <div class="card-body-white">
+                            <div class="res-row">
+                                <span class="res-label">Propuštenih poziva (mesečno)</span>
+                                <span class="res-val" id="missed-calls">42</span>
+                            </div>
+                            <div class="calc-divider"></div>
+                            <div class="res-row main-loss">
+                                <span class="res-label">Izgubljeni prihod (mesečno)</span>
+                                <span class="res-val loss-red" id="lost-revenue">756 €</span>
+                            </div>
+                            <div class="yearly-loss-box">
+                                <span class="res-label">Na godišnjem nivou:</span>
+                                <span class="res-val" id="lost-revenue-yearly">9.072 €</span>
+                            </div>
+                        </div>
+                        <div class="card-footer-gray">
+                            <p>*Bazirano na industrijskom proseku od 28% propuštenih poziva i 60% konverzije zakazivanja.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="test" class="section-recepcioner test-agent-section">
+            <div class="container">
+                <h2 class="section-title-recepcioner">Testirajte ga odmah</h2>
+                <p>Pozovite i probajte da "zakažete šišanje" kod našeg AI asistenta.</p>
+                <div class="phone-number-box">
+                    <a href="tel:0114222048">011 4222 048</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="section-recepcioner contact-section-new">
+            <div class="container">
+                <h2 class="section-title-recepcioner">Fokusirajte se na frizure, ne na telefon</h2>
+                <form id="contact-form-recepcioner" class="contact-form-new">
+                    <div class="form-row">
+                        <input type="text" placeholder="Ime i prezime" required>
+                        <input type="text" placeholder="Naziv salona" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="tel" placeholder="Broj telefona" required>
+                    </div>
+                    <button type="submit" class="cta-button form-submit-btn">Zakažite Besplatan Demo</button>
+                </form>
+            </div>
+        </section>
+    </main>
+<footer class="footer">
+    <div class="container">
+        <p>
+            &copy; 2026 InvoxAI. Sva prava zadržana. |
+             <a href="tel:+381656652264">065 665 2264</a>
+        </p>
+    </div>
+</footer>
+
+<script src="script-recepcioner-frizeri.js"></script>
+</body>
+</html>
