@@ -1150,7 +1150,64 @@ body {
     .form-row {
         flex-direction: column;
     }
+/* ==========================================================================
+   STILOVI ZA PADAJUĆI MENI (DROPDOWN)
+   ========================================================================== */
 
+/* Kontejner za dropdown */
+.nav-menu .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Stil za skriveni podmeni */
+.nav-menu .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff; /* Bela pozadina */
+    min-width: 180px; /* Širina padajućeg menija */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15); /* Blaga senka */
+    z-index: 1000;
+    border-radius: 8px; /* Zaobljene ivice */
+    padding: 10px 0;
+    list-style: none;
+    top: 100%; /* Da se pojavi tačno ispod linka */
+    left: 0;
+    margin: 0;
+}
+
+/* Da stavke u podmeniju idu jedna ispod druge */
+.nav-menu .dropdown-content li {
+    display: block;
+    margin: 0;
+}
+
+/* Stilovi za linkove u padajućem meniju */
+.nav-menu .dropdown-content li a {
+    color: #1f2937 !important; /* Tamno siva slova */
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover efekat u padajućem meniju (kad pređeš mišem preko opcije) */
+.nav-menu .dropdown-content li a:hover {
+    background-color: #f3f4f6; /* Svetlo siva pozadina */
+    color: #6d28d9 !important; /* Ljubičasta boja (prilagodi tvom brendu) */
+}
+
+/* Prikaz menija kada se pređe mišem preko glavnog linka (Hover) */
+.nav-menu .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Mala strelica na dole pored teksta "AI Recepcioner" */
+.dropbtn {
+    cursor: pointer;
+}
     .contact-form-wrapper {
         padding: 35px 25px;
     }
