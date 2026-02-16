@@ -1,0 +1,448 @@
+/* ==========================================================================
+   AI RECEPCIONER ZA FRIZERE - BEAUTY TEMA
+   ========================================================================== */
+
+/* 1. Globalni Stilovi i Reset */
+body, h1, h2, h3, h4, p, a, button, input {
+    font-family: 'Inter', sans-serif !important;
+}
+
+body {
+    background-color: #FCFCFC;
+    margin: 0;
+    padding: 0;
+    color: #1f2937;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* 2. Navigacija */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #4c0519; /* Tamno bordo */
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo img {
+    height: 35px !important;
+    width: auto !important;
+    display: block;
+}
+
+.nav-menu {
+    display: flex;
+    flex: 1;
+    justify-content: space-evenly;
+    list-style: none;
+    margin: 0 0 0 40px;
+    padding: 0;
+}
+
+.nav-menu li a {
+    color: #ffffff !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.nav-menu li a:hover {
+    color: #fbcfe8 !important; /* Nežna roze na hover */
+}
+
+/* Hamburger Ikonica */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    height: 3px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* 3. Hero Sekcija */
+.hero-recepcioner {
+    background: linear-gradient(135deg, #be185d, #4c0519); /* Chic pink/bordo prelaz */
+    color: #ffffff;
+    padding: 180px 40px 120px;
+    text-align: center;
+}
+
+.hero-title-recepcioner {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-subtitle-recepcioner {
+    font-size: 1.25rem;
+    max-width: 750px;
+    margin: 0 auto 40px;
+    color: #fbcfe8;
+}
+
+.cta-button {
+    display: inline-block;
+    background: #ffffff;
+    color: #be185d;
+    padding: 16px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* 4. Zajedničko za Sekcije */
+.section-recepcioner {
+    padding: 100px 0;
+}
+
+.section-title-recepcioner {
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-align: center;
+    color: #1f2937;
+    margin-bottom: 20px;
+}
+
+/* 5. Problem Cards Grid */
+.problem-grid-new {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.problem-card-new {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    text-align: center;
+    border-top: 4px solid #be185d;
+}
+
+/* 6. ZAKAZIVANJE U 3 KORAKA */
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.step-card {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #be185d, #4c0519);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 auto 25px;
+}
+
+/* 7. PREMIUM KALKULATOR GUBITKA */
+.invox-calc-section {
+    background: #fff5f7; /* Vrlo nežna roze pozadina */
+    padding: 100px 0;
+}
+
+.invox-calc-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.calc-badge {
+    background: #fce7f3;
+    color: #be185d;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.calc-main-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 15px;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #be185d, #f43f5e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.calc-description {
+    color: #4b5563;
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+}
+
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.input-value {
+    color: #be185d;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+/* Slajderi */
+.range-wrapper {
+    position: relative;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    margin-bottom: 35px;
+}
+
+input[type=range] {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background: transparent;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 22px;
+    width: 22px;
+    background: #be185d;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    margin-top: -7px;
+}
+
+.range-progress {
+    position: absolute;
+    height: 100%;
+    background: #be185d;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+/* Kartica sa rezultatima */
+.invox-calc-card {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 1px solid #f3f4f6;
+}
+
+.card-header-dark {
+    background: #4c0519;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.card-body-white { padding: 30px; }
+
+.res-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.res-val { font-weight: 700; font-size: 1.3rem; }
+.loss-red { color: #dc2626; font-size: 2.2rem; font-weight: 800; }
+
+.calc-divider {
+    height: 1px;
+    background: #f3f4f6;
+    margin: 20px 0;
+}
+
+.yearly-loss-box {
+    background: #fef2f2;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #991b1b;
+}
+
+.card-footer-gray {
+    background: #f9fafb;
+    padding: 15px;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    text-align: center;
+}
+
+/* 8. SEKCIJA TEST AGENTA */
+.test-agent-section {
+    text-align: center;
+    background: #ffffff;
+}
+
+.test-agent-section p {
+    font-size: 1.1rem;
+    color: #4b5563;
+}
+
+.phone-number-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.phone-number-box a {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #be185d;
+    text-decoration: none;
+}
+
+/* 9. KONTAKT FORMA */
+.contact-form-new {
+    background: #ffffff;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row input {
+    flex: 1;
+    padding: 15px 20px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.form-submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #be185d, #4c0519);
+    color: #ffffff;
+    padding: 16px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* 10. Footer */
+.footer {
+    background-color: #111827;
+    color: #9ca3af;
+    text-align: center;
+    padding: 40px 0;
+}
+
+/* 11. RESPONZIVNOST */
+@media (max-width: 768px) {
+    .menu-toggle { display: flex; }
+    
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #4c0519;
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .nav-menu.active {
+        max-height: 500px;
+        padding: 20px 0;
+    }
+
+    .hero-title-recepcioner { font-size: 2.2rem; }
+    
+    .invox-calc-wrapper, .problem-grid-new, .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calc-main-title { font-size: 2.2rem; }
+    .form-row { flex-direction: column; }
+    
+    .phone-number-box a { font-size: 1.8rem; }
+}
