@@ -1200,8 +1200,14 @@ body {
 }
 
 /* Prikaz menija kada se pređe mišem preko glavnog linka (Hover) */
-.nav-menu .dropdown:hover .dropdown-content {
+.nav-menu .dropdown-content.show {
     display: block;
+}
+
+/* Dodaj i ovo da kursor postane "ruka" i da korisnik zna da može da klikne */
+.dropbtn {
+    cursor: pointer;
+    user-select: none;
 }
 
 /* Mala strelica na dole pored teksta "AI Recepcioner" */
