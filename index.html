@@ -532,56 +532,5 @@ Razlika između biznisa koji gubi upite – i onog koji ih pretvara u prodaju.
         </div>
     </div>
 </footer>
-
-    <script src="script.js"></script>
-            <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("contactForm");
-    const statusEl = document.getElementById("formStatus");
-
-    if (!form) return;
-
-    const webhookUrl = form.dataset.webhook;
-
-    form.addEventListener("submit", async function (e) {
-        e.preventDefault();
-
-        statusEl.textContent = "Slanje u toku...";
-        statusEl.style.color = "#a78bfa";
-
-        const formData = new FormData(form);
-
-        const payload = {
-            ime_i_prezime: formData.get("fullName"),
-            telefon: formData.get("phone"),
-            industrija: formData.get("industry"),
-            poruka: formData.get("message"),
-            source: "invox.ai website",
-            timestamp: new Date().toISOString()
-        };
-
-        try {
-            const response = await fetch(webhookUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(payload)
-            });
-
-            if (!response.ok) throw new Error("Webhook error");
-
-            statusEl.textContent = "Upit je uspešno poslat. Javljamo se uskoro.";
-            statusEl.style.color = "#34d399";
-            form.reset();
-
-        } catch (error) {
-            statusEl.textContent = "Greška pri slanju. Pokušajte ponovo.";
-            statusEl.style.color = "#f87171";
-            console.error(error);
-        }
-    });
-});
-</script>
 </body>
 </html>
