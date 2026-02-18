@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InvoxAI | Premium AI Recepcioner za Frizerske Salone</title>
     
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Povežite vaš CSS fajl ovde -->
     <link rel="stylesheet" href="ai-recepcioner-frizeri.css">
 </head>
 <body>
@@ -19,11 +20,13 @@
                 <span class="logo-text">Invox<strong>AI</strong></span>
             </a>
             
-            <div class="salon-menu-toggle" id="mobile-menu">
+            <!-- ISPRAVLJEN ID za JavaScript -->
+            <div class="salon-menu-toggle" id="menu-toggle">
                 <span></span><span></span><span></span>
             </div>
 
-            <ul class="salon-nav-list" id="nav-menu">
+            <!-- ISPRAVLJEN ID za JavaScript -->
+            <ul class="salon-nav-list" id="nav-list">
                 <li><a href="#izazovi">Zašto AI?</a></li>
                 <li><a href="#kako-radi">Proces</a></li>
                 <li><a href="#kalkulator">Kalkulator</a></li>
@@ -71,7 +74,6 @@
                         <p>Dobijate veliki broj poziva, i gubite i svoje vreme i energiju na odgovaranje na iste po ceo dan.</p>
                     </div>
                 </div>
-                </div>
             </div>
         </section>
 
@@ -80,7 +82,6 @@
                 <h2 class="section-heading">Kako izgleda inteligentno zakazivanje?</h2>
                 <div class="timeline">
                    <div class="timeline-item">
-    <div class="timeline-item">
                         <div class="timeline-dot">1</div>
                         <div class="timeline-content">
                             <h4>Prirodan razgovor i prepoznavanje usluge</h4>
@@ -109,7 +110,8 @@
             <div class="container-wide">
                 <div class="calc-grid">
                     <div class="calc-info">
-                        <h2 class="section-heading light-text">Koliko novca gubite <br>svakog meseca?</h2>
+                        <h2 class="section-heading light-text">Koliko novca gubite   
+svakog meseca?</h2>
                         <p class="light-desc">Procenjuje se da saloni gube oko 28% poziva. Podesite parametre ispod i pogledajte vašu specifičnu računicu.</p>
                         
                         <div class="slider-group">
@@ -122,7 +124,7 @@
 
                         <div class="slider-group">
                             <div class="slider-header">
-                                <label>Prosečna cena usluge (€)</label>
+                                <label>Prosečna cena usluge (€ )</label>
                                 <span class="val-display" id="value-display">30 €</span>
                             </div>
                             <input type="range" id="input-value" class="salon-range" min="10" max="200" step="5" value="30">
@@ -180,6 +182,65 @@
         <p>&copy; 2026 InvoxAI. Sva prava zadržana. | <a href="tel:+381656652264">065 665 2264</a></p>
     </footer>
 
-    <script src="script-recepcioner-frizeri.js"></script>
+    <!-- ================================================================== -->
+    <!-- JAVASCRIPT ZA MOBILNI MENI I KALKULATOR -->
+    <!-- ================================================================== -->
+    <script>
+        // Čeka da se ceo dokument učita pre pokretanja skripte
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- LOGIKA ZA MOBILNI MENI ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const navList = document.getElementById('nav-list');
+
+            if (menuToggle && navList) {
+                menuToggle.addEventListener('click', function() {
+                    // Dodaje/uklanja 'active' klasu za prikaz/sakrivanje menija
+                    navList.classList.toggle('active');
+                });
+            }
+
+            // --- LOGIKA ZA KALKULATOR ---
+            const inputCalls = document.getElementById('input-calls');
+            const callsDisplay = document.getElementById('calls-display');
+            const inputValue = document.getElementById('input-value');
+            const valueDisplay = document.getElementById('value-display');
+            const missedCalls = document.getElementById('missed-calls');
+            const lostRevenue = document.getElementById('lost-revenue');
+            const lostRevenueYearly = document.getElementById('lost-revenue-yearly');
+
+            function calculate() {
+                if (!inputCalls || !inputValue) return; // Provera da li elementi postoje
+
+                const calls = parseInt(inputCalls.value);
+                const value = parseInt(inputValue.value);
+                const missedCallsPercentage = 0.28; // 28% propuštenih poziva
+
+                const currentMissedCalls = Math.round(calls * missedCallsPercentage);
+                const currentLostRevenue = currentMissedCalls * value;
+                const yearlyLostRevenue = currentLostRevenue * 12;
+
+                // Ažuriranje prikaza na stranici
+                callsDisplay.textContent = calls;
+                valueDisplay.textContent = value + ' €';
+                missedCalls.textContent = currentMissedCalls;
+                lostRevenue.textContent = currentLostRevenue.toLocaleString('de-DE') + ' €';
+                lostRevenueYearly.textContent = yearlyLostRevenue.toLocaleString('de-DE') + ' €';
+            }
+
+            // Događaji za promenu na slajderima
+            if (inputCalls) {
+                inputCalls.addEventListener('input', calculate);
+            }
+            if (inputValue) {
+                inputValue.addEventListener('input', calculate);
+            }
+
+            // Inicijalni proračun pri učitavanju stranice
+            calculate();
+        });
+    </script>
+
 </body>
 </html>
+
