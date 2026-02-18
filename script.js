@@ -2,66 +2,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    // =================================================
-    //  1. KOD ZA MENI (MOBILNI + PADUJUĆI) - POPRAVLJENO
-    // =================================================
-    const menuToggle = document.getElementById('menu-toggle');
-    const navList = document.getElementById('nav-list');
-    const dropdowns = document.querySelectorAll('.dropdown');
-
-    // Otvaranje/zatvaranje mobilnog menija
-    if (menuToggle && navList) {
-        menuToggle.addEventListener('click', function() {
-            navList.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-    }
-
-    // Logika za svaki padajući meni
-    dropdowns.forEach(dropdown => {
-        const btn = dropdown.querySelector('.dropbtn');
-        if (btn) {
-            btn.addEventListener('click', function(event) {
-                event.preventDefault();
-                event.stopPropagation(); // Sprečava da se klik odmah prosledi na window
-
-                // Zatvori ostale otvorene menije
-                dropdowns.forEach(d => {
-                    if (d !== dropdown) d.classList.remove('active');
-                });
-
-                // Otvori/zatvori trenutni meni
-                dropdown.classList.toggle('active');
-            });
-        }
-    });
-
-    // Zatvori padajući meni ako se klikne bilo gde van njega
-    window.addEventListener('click', function(event) {
-        if (window.innerWidth > 900) { // Ova logika radi samo na desktopu
-            dropdowns.forEach(dropdown => {
-                if (!dropdown.contains(event.target)) {
-                    dropdown.classList.remove('active');
-                }
-            });
-        }
-    });
-
-    // Zatvori mobilni meni kada se klikne na link (vaša postojeća funkcionalnost)
-    document.querySelectorAll('#nav-list a').forEach(link => {
-        link.addEventListener('click', (event) => {
-            // Ne zatvaraj ako je klik na dugme za padajući meni
-            if (link.classList.contains('dropbtn')) {
-                return;
-            }
-            if (navList.classList.contains('active')) {
-                navList.classList.remove('active');
-                menuToggle.classList.remove('active');
-            }
-        });
-    });
-
-
+   
     // =================================================
     //  2. KOD ZA ANIMACIJE I EFEKTE (SAČUVANO)
     // =================================================
