@@ -70,10 +70,13 @@ body {
 
 .salon-nav-list {
     display: flex;
-    gap: 30px;
-    list-style: none;
+    justify-content: space-between; /* KLJUČNA PROMENA: Raspoređuje elemente */
     align-items: center;
-    margin: 0; padding: 0;
+    flex-grow: 1; /* Omogućava listi da popuni sav dostupan prostor */
+    list-style: none;
+    margin: 0 60px; /* Dodaje razmak od logoa i CTA dugmeta */
+    padding: 0;
+    /* Uklanjamo 'gap' jer 'justify-content' sada kontroliše razmak */
 }
 
 .salon-nav-list a {
