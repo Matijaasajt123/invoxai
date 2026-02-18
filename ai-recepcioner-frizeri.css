@@ -19,11 +19,11 @@
 }
 
 body, p, a, button, input {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif !important;
 }
 
 h1, h2, h3, h4, .eyebrow-text, .salon-logo {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Inter', sans-serif !important;
 }
 
 body {
