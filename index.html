@@ -13,71 +13,62 @@
 </head>
 <body>
     <header class="header">
-<!-- Zamenite ceo <nav> blok na index.html sa ovim -->
-<nav class="nav-container">
-    <div class="logo"><img src="logo.png" alt="INVOX.AI Logo" style="height: 30px;"></div>
-    
-    <!-- 1. DODAT ID -->
-    <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+        <nav class="nav-container">
+            <div class="logo"><img src="logo.png" alt="INVOX.AI Logo" style="height: 30px;"></div>
+            
+            <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-    <!-- 2. PROMENJENA KLASA I DODAT ID -->
-    <ul class="salon-nav-list" id="nav-list">
-        <li><a href="index.html">Početna</a></li>
-        <li><a href="index.html#about">O Nama</a></li>
-        <li><a href="index.html#services">Usluge</a></li>
-        
-        <li class="dropdown">
-            <!-- 3. UKLONJEN ID -->
-            <a href="#" class="dropbtn"><b>AI Recepcioner</b> ▾</a>
-            <!-- 4. UKLONJEN ID -->
-            <ul class="dropdown-content">
-                <li><a href="ai-recepcioner-ordinacija.html">Za Ordinacije</a></li>
-                <li><a href="ai-recepcioner-frizeri.html">Za Frizere</a></li>
+            <ul class="nav-menu" id="nav-list">
+                <li><a href="index.html">Početna</a></li>
+                <li><a href="index.html#about">O Nama</a></li>
+                <li><a href="index.html#services">Usluge</a></li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropbtn"><b>AI Recepcioner</b> ▾</a>
+                    <ul class="dropdown-content">
+                        <li><a href="ai-recepcioner-ordinacija.html">Za Ordinacije</a></li>
+                        <li><a href="ai-recepcioner-frizeri.html">Za Frizere</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="index.html#ai-chatbots">AI Chatbotovi</a></li>
+                <li><a href="index.html#case-studies">Case Studies</a></li>
+                <li><a href="index.html#benefits">Benefiti</a></li>
+                <li><a href="index.html#collaboration">Saradnja</a></li>
+                <li><a href="index.html#contact">Kontakt</a></li>
             </ul>
-        </li>
-        
-        <li><a href="index.html#ai-chatbots">AI Chatbotovi</a></li>
-        <li><a href="index.html#case-studies">Case Studies</a></li>
-        <li><a href="index.html#benefits">Benefiti</a></li>
-        <li><a href="index.html#collaboration">Saradnja</a></li>
-        <li><a href="index.html#contact">Kontakt</a></li>
-    </ul>
-</nav>
-
+        </nav>
     </header>
 
     <section id="hero" class="hero">
         <div class="hero-content">
             <h1 class="hero-title">Pomažemo vlasnicima biznisa da povećaju prodaju uz pomoć veštačke inteligencije</h1>
             <p class="hero-subtitle">Brže odgovarajte klijentima, povećajte prodaju i smanjite troškove.</p>
-            <p class="hero-question">Pitanje nije "da li uvesti AI", već "koliko ćete izgubiti ako ne počnete sad?</p>
+            <p class="hero-question">Pitanje nije "da li uvesti AI", već "koliko ćete izgubiti ako ne počnete sad?"</p>
             <a href="#contact" class="cta-button">Započni implementaciju AI-a već sada!</a>
         </div>
         <div class="hero-overlay"></div>
     </section>
-<section class="clients">
-    <h2 class="clients-label">Naši klijenti</h2>
 
-    <div class="clients-slider">
-        <div class="clients-track">
-            <!-- ORIGINAL -->
-            <div class="client-item"><img src="stefanovpecat.png" alt="Stefanov Pečat"></div>
-            <div class="client-item"><img src="horiuskrug.png" alt="Horius Solar"></div>
-            <div class="client-item"><img src="misel.jpg" alt="Misel Fitness"></div>
-            <div class="client-item"><img src="goranradmilovic.jpg" alt="Goran Radmilović"></div>
-
-            <!-- DUPLIKAT ZA BESKONAČNI LOOP -->
-            <div class="client-item"><img src="stefanovpecat.png"></div>
-            <div class="client-item"><img src="horiuskrug.png"></div>
-            <div class="client-item"><img src="misel.jpg"></div>
-            <div class="client-item"><img src="goranradmilovic.jpg"></div>
+    <section class="clients">
+        <h2 class="clients-label">Naši klijenti</h2>
+        <div class="clients-slider">
+            <div class="clients-track">
+                <div class="client-item"><img src="stefanovpecat.png" alt="Stefanov Pečat"></div>
+                <div class="client-item"><img src="horiuskrug.png" alt="Horius Solar"></div>
+                <div class="client-item"><img src="misel.jpg" alt="Misel Fitness"></div>
+                <div class="client-item"><img src="goranradmilovic.jpg" alt="Goran Radmilović"></div>
+                <div class="client-item"><img src="stefanovpecat.png"></div>
+                <div class="client-item"><img src="horiuskrug.png"></div>
+                <div class="client-item"><img src="misel.jpg"></div>
+                <div class="client-item"><img src="goranradmilovic.jpg"></div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section id="about" class="about">
         <div class="container">
@@ -88,12 +79,9 @@
                 </div>
                 <div class="about-text">
                     <h3>Stručnost u AI tehnologijama</h3>
-                    <p>
-INVOX.AI je agencija specijalizovana za kreiranje prilagođenih AI rešenja koja donose merljive rezultate i direktno povećavaju profit biznisa. Fokusirani smo na praktičnu i jednostavnu primenu veštačke inteligencije u svakodnevnom poslovanju.
-</p>
-<p class="mission">
-Na čelu tima je Matija Ivković. Naša misija je da svaki biznis — bez obzira na veličinu — iskoristi moć AI automatizacija za bolju komunikaciju sa klijentima, efikasnije procese i veću prodaju.
-</p></div>
+                    <p>INVOX.AI je agencija specijalizovana za kreiranje prilagođenih AI rešenja koja donose merljive rezultate i direktno povećavaju profit biznisa. Fokusirani smo na praktičnu i jednostavnu primenu veštačke inteligencije u svakodnevnom poslovanju.</p>
+                    <p class="mission">Na čelu tima je Matija Ivković. Naša misija je da svaki biznis — bez obzira na veličinu — iskoristi moć AI automatizacija za bolju komunikaciju sa klijentima, efikasnije procese i veću prodaju.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -136,333 +124,237 @@ Na čelu tima je Matija Ivković. Naša misija je da svaki biznis — bez obzira
         </div>
     </section>
 
-   <section id="pain-points" class="pain-points">
-    <div class="container">
-        <h2 class="section-title">Problemi koje Vam AI može rešiti?</h2>
-        <div class="pain-grid">
-
-            <div class="pain-card">
-                <div class="pain-icon">⚡</div>
-                <p>Ne stižete da odgovorite na Instagram i Facebook poruke – a kupci odlaze onome ko odgovori prvi.</p>
-            </div>
-
-            <div class="pain-card">
-                <div class="pain-icon">🔍</div>
-                <p>Ljudi posećuju sajt, ali nemate nikakvu evidenciju – ne znate ko ulazi, šta traži i zašto odlazi.</p>
-            </div>
-
-            <div class="pain-card">
-                <div class="pain-icon">📉</div>
-                <p>Plaćate osoblje za komunikaciju, ali bez jasnih podataka ne vidite gde curi novac i šta treba popraviti.</p>
-            </div>
-
-            <div class="pain-card">
-                <div class="pain-icon">💸</div>
-                <p>Ručno odrađujete procese koje AI može 10x brže – i zato vam klijenti, vreme i profit beže kroz prste.</p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- NOVA SEKCIJA: AI CHATBOTOVI -->
-<section id="ai-chatbots" class="ai-chatbots">
-    <div class="container">
-       <h2 class="section-title">AI Chatbot: Digitalni Asistent koji Radi 24/7</h2>
-<p class="section-subtitle">Unapredite komunikaciju sa klijentima i povećajte prodaju – bez dodatnog zapošljavanja.</p>
-<div class="chatbot-intro">
-    <p>
-    Naši AI chatbotovi nisu obični automatizovani odgovori. To su potpuno prilagođeni digitalni agenti, razvijeni od nule za svaki biznis. Svaki chatbot je obučen na osnovu vaših proizvoda, usluga i načina komunikacije, i ponaša se kao deo vašeg tima.
-    </p>
-    <p>
-    AI agent preuzima rutinske upite i komunikaciju sa klijentima, dostupni su 24/7 i odgovaraju momentalno. Na taj način, vaš tim oslobađa vreme za važnije zadatke — prodaju, strategiju i rast biznisa.
-    </p>
-    <p>
-    U većini slučajeva, AI agent samostalno rešava ogromnu većinu upita, dok se složeniji ili specifični zahtevi automatski prosleđuju vašem timu.
-    </p>
-</div>
-        <div class="chatbot-features-grid">
-    <div class="feature-card">
-        <div class="feature-icon">🧠</div>
-        <h3>Prilagođeno znanje</h3>
-        <p>Obučen isključivo na vašim podacima, chatbot pruža tačne, relevantne i brendirane odgovore.</p>
-    </div>
-    <div class="feature-card">
-        <div class="feature-icon">👤</div>
-        <h3>Sakupljanje podataka (Lead Generation)</h3>
-        <p>Automatski prikuplja ključne informacije (ime, telefon, email) i prosleđuje ih u vašu bazu ili CRM sistem.</p>
-    </div>
-    <div class="feature-card">
-        <div class="feature-icon">🤝</div>
-        <h3>Ljudski fallback</h3>
-        <p>Za kompleksne zahteve koji zahtevaju ljudsku intervenciju, razgovor se automatski prosleđuje vašem timu.</p>
-    </div>
-    <div class="feature-card">
-        <div class="feature-icon">🔍</div>
-        <h3>Unikatna personalizacija</h3>
-        <p>Izrada chatbota počinje detaljnom analizom vaše publike i njenih potreba. Na osnovu toga kreiramo jedinstvenu ličnost i ton komunikacije koji savršeno odgovaraju vašem brendu.</p>
-    </div>
-    <div class="feature-card">
-        <div class="feature-icon">📈</div>
-        <h3>24/7 dostupnost</h3>
-        <p>Vaš digitalni agent radi neprekidno, osiguravajući da nijedan potencijalni klijent ne ostane bez odgovora.</p>
-    </div>
-    <div class="feature-card">
-        <div class="feature-icon">🧑‍🤝‍🧑</div>
-        <h3>Adaptacija publici</h3>
-        <p>Chatbot prilagođava komunikaciju starosnoj grupi, interesovanjima i tipu korisnika, čineći razgovor prirodnim i relevantnim.</p>
-    </div>
-</div>
-        <div class="chatbot-platforms">
-            <h3 class="platform-title">AI Chatbot za Sajt vs. Društvene Mreže</h3>
-            <div class="platform-content-grid">
-                <div class="platform-card website-card">
-                    <h4>AI Agent za Sajt</h4>
-                    <p>Integrisan direktno na vašu web stranicu, služi kao proaktivni prodavac i podrška. Njegova primarna uloga je da angažuje posetioce, odgovori na pitanja o proizvodima i kvalifikuje potencijalne klijente pre nego što dođu do vašeg prodajnog tima.</p>
+    <section id="pain-points" class="pain-points">
+        <div class="container">
+            <h2 class="section-title">Problemi koje Vam AI može rešiti?</h2>
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <div class="pain-icon">⚡</div>
+                    <p>Ne stižete da odgovorite na Instagram i Facebook poruke – a kupci odlaze onome ko odgovori prvi.</p>
                 </div>
-                <div class="platform-card social-card">
-                    <h4>AI Agent za Društvene Mreže</h4>
-                    <p>Ovaj agent je isti moćni AI, ali prilagođen za rad na platformama kao što su Instagram, Facebook i WhatsApp. Uz minimalne korekcije specifične za svaku platformu, isti agent može da upravlja svim vašim DM-ovima, komentarima i porukama.</p>
+                <div class="pain-card">
+                    <div class="pain-icon">🔍</div>
+                    <p>Ljudi posećuju sajt, ali nemate nikakvu evidenciju – ne znate ko ulazi, šta traži i zašto odlazi.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">📉</div>
+                    <p>Plaćate osoblje za komunikaciju, ali bez jasnih podataka ne vidite gde curi novac i šta treba popraviti.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">💸</div>
+                    <p>Ručno odrađujete procese koje AI može 10x brže – i zato vam klijenti, vreme i profit beže kroz prste.</p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <section id="ai-chatbots" class="ai-chatbots">
+        <div class="container">
+            <h2 class="section-title">AI Chatbot: Digitalni Asistent koji Radi 24/7</h2>
+            <p class="section-subtitle">Unapredite komunikaciju sa klijentima i povećajte prodaju – bez dodatnog zapošljavanja.</p>
+            <div class="chatbot-intro">
+                <p>Naši AI chatbotovi nisu obični automatizovani odgovori. To su potpuno prilagođeni digitalni agenti, razvijeni od nule za svaki biznis. Svaki chatbot je obučen na osnovu vaših proizvoda, usluga i načina komunikacije, i ponaša se kao deo vašeg tima.</p>
+                <p>AI agent preuzima rutinske upite i komunikaciju sa klijentima, dostupni su 24/7 i odgovaraju momentalno. Na taj način, vaš tim oslobađa vreme za važnije zadatke — prodaju, strategiju i rast biznisa.</p>
+            </div>
+            <div class="chatbot-features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Prilagođeno znanje</h3>
+                    <p>Obučen isključivo na vašim podacima, chatbot pruža tačne, relevantne i brendirane odgovore.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👤</div>
+                    <h3>Sakupljanje podataka</h3>
+                    <p>Automatski prikuplja ključne informacije i prosleđuje ih u vaš CRM.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Ljudski fallback</h3>
+                    <p>Za kompleksne zahteve, razgovor se automatski prosleđuje vašem timu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ai-voice-agents" class="ai-chatbots" style="background: linear-gradient(180deg, #fafafa 0%, #ede9fe 100%);">
+        <div class="container">
+            <h2 class="section-title">AI Glasovni Agent: Vaš Virtuelni Recepcioner</h2>
+            <p class="section-subtitle">Ne propustite više nijedan poziv – AI koji zakazuje termine i razgovara ljudskim glasom.</p>
+            <div class="chatbot-intro">
+                <p>Zabrinuti ste zbog propuštenih poziva dok vaš tim radi sa klijentima? Naš <strong>AI Recepcioner</strong> preuzima sve pozive, razume nameru klijenta i samostalno zakazuje termine direktno u vaš softver ili kalendar.</p>
+                <p>Namenjen je klinikama, salonima i uslužnim biznisima koji žele profesionalnu uslugu zakazivanja dostupnu 24/7, bez angažovanja dodatnog osoblja.</p>
+            </div>
+            <div class="chatbot-features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎙️</div>
+                    <h3>Prirodan razgovor</h3>
+                    <p>Tečno govori srpski jezik, pauzira i razume kontekst, zvučeći potpuno kao čovek.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Automatsko zakazivanje</h3>
+                    <p>Sinhronizuje se sa vašim kalendarom i nudi klijentima samo slobodne termine.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📞</div>
+                    <h3>100% obrada poziva</h3>
+                    <p>Bilo da je vikend ili špic radnog vremena, AI recepcioner se javlja na svaki poziv.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="ai-recepcioner-ordinacija.html" class="cta-button">Rešenja za Ordinacije</a>
+                <a href="ai-recepcioner-frizeri.html" class="cta-button" style="background: var(--primary-purple); box-shadow: 0 10px 30px rgba(109, 40, 217, 0.3);">Rešenja za Frizere</a>
+            </div>
+        </div>
+    </section>
+
     <section id="case-studies" class="case-studies">
-    <div class="container">
-        <h2 class="section-title">Case Studies</h2>
-
-        <!-- Horius Solar Case Study -->
-        <div class="case-study">
-            <div class="case-header">
-                <div class="case-client-info">
-                    <div class="case-client-image">
-                        <img src="horiuskrug.png" alt="Horius Solar Logo" />
+        <div class="container">
+            <h2 class="section-title">Case Studies</h2>
+            <div class="case-study">
+                <div class="case-header">
+                    <div class="case-client-info">
+                        <div class="case-client-image">
+                            <img src="horiuskrug.png" alt="Horius Solar Logo" />
+                        </div>
+                        <h3>Case Study: Horius Solar</h3>
                     </div>
-                    <h3>Case Study: Horius Solar</h3>
                 </div>
-            </div>
-
-            <div class="case-content">
-                <div class="case-section">
-                    <h4>Problem</h4>
-                    <p>
-                        Horius Solar je gubio veliki broj potencijalnih klijenata sa sajta.
-                        Nije postojala aktivna komunikacija niti način da se identifikuju posetioci koji razgledaju ponudu.
-                        Samo najodlučniji korisnici bi se javili, dok bi većina napuštala sajt bez ikakvog kontakta.
-                    </p>
-                </div>
-
-                <div class="case-section">
-                    <h4>Rešenje</h4>
-                    <p>Implementirali smo prilagođenog AI agenta koji:</p>
-                    <ul>
-                        <li>Proaktivno započinje razgovor i prikuplja kontakt podatke zainteresovanih posetilaca</li>
-                        <li>Pruža precizne informacije o solarnim panelima, instalaciji, subvencijama i opcijama finansiranja</li>
-                        <li>Vodi prirodan, konverzacijski razgovor umesto statičnih formulara</li>
-                        <li>Kvalifikuje leadove i automatski ih prosleđuje prodajnom timu</li>
-                    </ul>
-                </div>
-
-                <div class="case-section">
-                    <h4>Rezultati</h4>
-                    <div class="results-grid">
-                        <div class="result-item">
-                            <span class="result-icon">📈</span>
-                            <p><strong>30%</strong> više kvalifikovanih leadova</p>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-icon">⏱️</span>
-                            <p><strong>95%</strong> brži odgovor na upite</p>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-icon">💰</span>
-                            <p><strong>20%</strong> niži troškovi korisničke podrške</p>
+                <div class="case-content">
+                    <div class="case-section">
+                        <h4>Problem</h4>
+                        <p>Horius Solar je gubio veliki broj potencijalnih klijenata sa sajta. Nije postojala aktivna komunikacija niti način da se identifikuju posetioci koji razgledaju ponudu.</p>
+                    </div>
+                    <div class="case-section">
+                        <h4>Rešenje</h4>
+                        <p>Implementirali smo prilagođenog AI agenta koji:</p>
+                        <ul>
+                            <li>Proaktivno započinje razgovor i prikuplja kontakt podatke zainteresovanih posetilaca</li>
+                            <li>Pruža precizne informacije o solarnim panelima, instalaciji, subvencijama i opcijama finansiranja</li>
+                            <li>Kvalifikuje leadove i automatski ih prosleđuje prodajnom timu</li>
+                        </ul>
+                    </div>
+                    <div class="case-section">
+                        <h4>Rezultati</h4>
+                        <div class="results-grid">
+                            <div class="result-item"><span class="result-icon">📈</span><p><strong>30%</strong> više kvalifikovanih leadova</p></div>
+                            <div class="result-item"><span class="result-icon">⏱️</span><p><strong>95%</strong> brži odgovor na upite</p></div>
+                            <div class="result-item"><span class="result-icon">💰</span><p><strong>20%</strong> niži troškovi korisničke podrške</p></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Mišel Case Study -->
-        <div class="case-study misel-study">
-            <div class="case-header">
-                <div class="case-client-info">
-                    <div class="case-client-image">
-                        <img src="misel.jpg" alt="Mišel Logo" />
+            <div class="case-study misel-study">
+                <div class="case-header">
+                    <div class="case-client-info">
+                        <div class="case-client-image">
+                            <img src="misel.jpg" alt="Mišel Logo" />
+                        </div>
+                        <h3>Case Study: Mišel</h3>
                     </div>
-                    <h3>Case Study: Mišel</h3>
                 </div>
-            </div>
-
-            <div class="case-content">
-                <div class="case-section">
-                    <h4>Problem</h4>
-                    <p>Mišel, online fitness trener, imao je veliki broj direktnih poruka (DM) na Instagramu i Facebooku. Klijent je bio preopterećen rutinskim pitanjima o cenama, programima i slobodnim terminima, što je usporavalo proces upisa novih klijenata i dovodilo do propuštenih prodaja.</p>
-                </div>
-
-                <div class="case-section">
-                    <h4>Rešenje</h4>
-                    <p>Implementirali smo AI agenta za društvene mreže koji:</p>
-                    <ul>
-                        <li>Odgovara na 95% rutinskih pitanja (cene programa, trajanje, način plaćanja).</li>
-                        <li>Automatski kvalifikuje potencijalne klijente kroz kratak upitnik pre nego što ih prosledi Mišelu.</li>
-                        <li>Šalje linkove za direktan upis u program i često postavljana pitanja.</li>
-                    </ul>
-                </div>
-
-                <div class="case-section">
-                    <h4>Rezultati</h4>
-                    <div class="results-grid misel-results">
-                        <div class="result-item misel-item">
-                            <span class="result-icon">💬</span>
-                            <p>95% pokrivenost upita</p>
-                        </div>
-                        <div class="result-item misel-item">
-                            <span class="result-icon">🚀</span>
-                            <p>Povećanje prodaje za 15%</p>
-                        </div>
-                        <div class="result-item misel-item">
-                            <span class="result-icon">😊</span>
-                            <p>Bolje korisničko iskustvo</p>
-                        </div>
-                        <div class="result-item misel-item">
-                            <span class="result-icon">😴</span>
-                            <p>Tim rasterećen</p>
-                        </div>
+                <div class="case-content">
+                    <div class="case-section">
+                        <h4>Problem</h4>
+                        <p>Mišel, online fitness trener, imao je veliki broj direktnih poruka na Instagramu i Facebooku. Klijent je bio preopterećen rutinskim pitanjima, što je dovodilo do propuštenih prodaja.</p>
                     </div>
-
-                    <div class="case-result misel-summary">
-                        <p><strong>Zaključak:</strong> AI agent je omogućio Mišelu da skalira komunikaciju bez dodatnog zapošljavanja, pretvarajući propuštene prilike u konkretan profit.</p>
+                    <div class="case-section">
+                        <h4>Rešenje</h4>
+                        <p>Implementirali smo AI agenta za društvene mreže koji odgovara na 95% rutinskih pitanja, kvalifikuje klijente i šalje linkove za direktan upis.</p>
+                    </div>
+                    <div class="case-section">
+                        <h4>Rezultati</h4>
+                        <div class="results-grid misel-results">
+                            <div class="result-item misel-item"><span class="result-icon">💬</span><p>95% pokrivenost upita</p></div>
+                            <div class="result-item misel-item"><span class="result-icon">🚀</span><p>Povećanje prodaje 15%</p></div>
+                            <div class="result-item misel-item"><span class="result-icon">😴</span><p>Tim rasterećen</p></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-    </div>
-</section>
-
+    </section>
 
     <section id="benefits" class="benefits">
         <div class="container">
-           <h2 class="section-title">AI Chatbot: Pre i Posle</h2>
-<p class="section-subtitle">
-Razlika između biznisa koji gubi upite – i onog koji ih pretvara u prodaju.
-</p>
-
-<div class="comparison">
-    <div class="comparison-column problems">
-        <h3>Pre AI Chatbota</h3>
-        <div class="comparison-list">
-
-            <div class="comparison-item">
-                <span class="icon">❌</span>
-                <div>
-                    <h4>Spori odgovori</h4>
-                    <p>Klijenti čekaju odgovor satima ili danima, što često završava odlaskom kod konkurencije.</p>
+            <h2 class="section-title">AI Automatizacija: Pre i Posle</h2>
+            <p class="section-subtitle">Razlika između biznisa koji gubi upite i pozive – i onog koji ih pretvara u prodaju.</p>
+            <div class="comparison">
+                <div class="comparison-column problems">
+                    <h3>Pre AI Sistema</h3>
+                    <div class="comparison-list">
+                        <div class="comparison-item">
+                            <span class="icon">❌</span>
+                            <div>
+                                <h4>Propušteni pozivi i poruke</h4>
+                                <p>Klijenti čekaju odgovor ili nailaze na zauzet telefon, što rezultira odlaskom kod konkurencije.</p>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="icon">💸</span>
+                            <div>
+                                <h4>Visoki operativni troškovi</h4>
+                                <p>Zaposleni troše sate na manuelno zakazivanje i ponavljajuća pitanja.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="comparison-item">
-                <span class="icon">💸</span>
-                <div>
-                    <h4>Visoki operativni troškovi</h4>
-                    <p>Zaposleni troše vreme na ponavljajuća pitanja umesto na aktivnosti koje donose prihod.</p>
-                </div>
-            </div>
-
-            <div class="comparison-item">
-                <span class="icon">📉</span>
-                <div>
-                    <h4>Gubitak potencijalnih klijenata</h4>
-                    <p>Upiti van radnog vremena ili u periodima gužve ostaju neobrađeni.</p>
-                </div>
-            </div>
-
-            <div class="comparison-item">
-                <span class="icon">🤯</span>
-                <div>
-                    <h4>Preopterećen tim</h4>
-                    <p>Prodaja i podrška gube fokus zbog konstantnih rutinskih upita.</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="comparison-column solutions">
-        <h3>Posle AI Chatbota</h3>
-        <div class="comparison-list">
-            <div class="comparison-item">
-                <span class="icon">⚡</span>
-                <div>
-                    <h4>Momentalan odgovor 24/7</h4>
-                    <p>AI agent odgovara u sekundi, bez pauze, povećavajući poverenje i zadovoljstvo klijenata.</p>
-                </div>
-            </div>
-            <div class="comparison-item">
-                <span class="icon">💰</span>
-                <div>
-                    <h4>Niži troškovi, veća efikasnost</h4>
-                    <p>Automatizacija smanjuje potrebu za širenjem tima za podršku.</p>
-                </div>
-            </div>
-            <div class="comparison-item">
-                <span class="icon">📈</span>
-                <div>
-                    <h4>Kvalifikovani leadovi</h4>
-                    <p>AI prikuplja podatke, filtrira upite i prosleđuje vam samo ozbiljne potencijalne klijente.</p>
-                </div>
-            </div>
-            <div class="comparison-item">
-                <span class="icon">🧠</span>
-                <div>
-                    <h4>Fokusiran i produktivan tim</h4>
-                    <p>Vaš tim se bavi prodajom i rastom biznisa, dok AI preuzima rutinu.</p>
+                <div class="comparison-column solutions">
+                    <h3>Posle AI Sistema</h3>
+                    <div class="comparison-list">
+                        <div class="comparison-item">
+                            <span class="icon">⚡</span>
+                            <div>
+                                <h4>Dostupnost 24/7</h4>
+                                <p>AI se javlja na svaki poziv i odgovara na poruke u sekundi, bez obzira na radno vreme.</p>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="icon">🧠</span>
+                            <div>
+                                <h4>Fokusiran tim</h4>
+                                <p>Tim se bavi klijentima u salonu/ordinaciji i ključnom prodajom, dok AI preuzima administraciju.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-    <!-- OVDE TREBA DA DODJE NOVA SEKCIJA ZA TIME-LAPSE -->
+    </section>
+
     <section id="collaboration" class="collaboration-process">
         <div class="container">
             <h2 class="section-title">Naš Proces Saradnje: Od Ideje do AI Agenta</h2>
             <p class="section-subtitle">Transparentan put do personalizovanog AI rešenja u 4 koraka.</p>
-
             <div class="timeline">
-                <!-- Step 1 -->
                 <div class="timeline-item left">
                     <div class="timeline-icon">1️⃣</div>
                     <div class="timeline-content">
-                        <h3>Besplatna Konsultacija i Procena</h3>
-                        <p>Uvodni poziv i detaljna analiza vašeg poslovanja. Procenjujemo gde veštačka inteligencija može doneti najveću vrednost, povećati profit i automatizovati procese.</p>
+                        <h3>Besplatna Konsultacija</h3>
+                        <p>Uvodni poziv i detaljna analiza vašeg poslovanja. Procenjujemo gde veštačka inteligencija može doneti najveću vrednost.</p>
                     </div>
                 </div>
-
-                <!-- Step 2 -->
                 <div class="timeline-item right">
                     <div class="timeline-icon">2️⃣</div>
                     <div class="timeline-content">
-                        <h3>Izlaganje Rešenja i Početak Izrade</h3>
-                        <p>Predstavljamo vam konkretno AI rešenje skrojeno po vašoj meri. Nakon dogovora, odmah započinjemo sa obukom i razvojem vašeg digitalnog agenta.</p>
+                        <h3>Izlaganje Rešenja</h3>
+                        <p>Predstavljamo vam konkretno AI rešenje skrojeno po vašoj meri i započinjemo sa razvojem.</p>
                     </div>
                 </div>
-
-                <!-- Step 3 -->
                 <div class="timeline-item left">
                     <div class="timeline-icon">3️⃣</div>
                     <div class="timeline-content">
-                        <h3>Testiranje i Usavršavanje (Do 2 Nedelje)</h3>
-                        <p>U roku od dve nedelje, isporučujemo funkcionalnog chatbota za testiranje. Vlasnik biznisa daje feedback, a mi ga usavršavamo dok ne bude savršen. Ne puštamo ga u rad dok niste 100% zadovoljni.</p>
+                        <h3>Testiranje (Do 2 Nedelje)</h3>
+                        <p>Isporučujemo funkcionalnog agenta za testiranje. Usavršavamo ga dok ne budete 100% zadovoljni.</p>
                     </div>
                 </div>
-
-                <!-- Step 4 -->
                 <div class="timeline-item right">
                     <div class="timeline-icon">4️⃣</div>
                     <div class="timeline-content">
-                        <h3>Postavka i Puštanje u Rad</h3>
-                        <p>Nakon rigoroznog testiranja na sva potencijalna pitanja, agent se postavlja na vaš sajt ili društvene mreže. Vaš novi digitalni agent je spreman da radi 24/7.</p>
+                        <h3>Puštanje u Rad</h3>
+                        <p>Agent se postavlja na vaš sistem, spreman da radi i donosi profit 24/7.</p>
                     </div>
                 </div>
             </div>
@@ -470,67 +362,48 @@ Razlika između biznisa koji gubi upite – i onog koji ih pretvara u prodaju.
     </section>
 
     <section id="contact" class="contact">
-    <div class="container">
-        <div class="contact-form-wrapper">
-
-            <h2 class="section-title">
-                Spremni da <span class="accent">unapredite</span> vaš biznis?
-            </h2>
-
-            <p class="section-subtitle">
-                Ostavite nam osnovne informacije i javljamo se sa konkretnim predlogom.
-            </p>
-
-            <form id="contactForm"
-                  class="contact-form"
-                  data-webhook="https://hook.eu2.make.com/fgkrns0h3ne327h19ak7bwkv7ili42uc">
-
-                <div class="form-row">
-                    <input type="text" name="fullName" placeholder="Ime i prezime" required>
-                    <input type="tel" name="phone" placeholder="Broj telefona" required>
-                </div>
-
-                <div class="form-row">
-                    <select name="industry" required>
-                        <option value="">Industrija</option>
-                        <option>Stomatološka ordinacija</option>
-                        <option>Privatna klinika</option>
-                        <option>E-commerce</option>
-                        <option>Uslužni biznis</option>
-                        <option>Drugo</option>
-                    </select>
-                </div>
-
-                <textarea name="message"
-                          rows="5"
-                          placeholder="Ukratko opišite šta želite da uradite..."
-                          required></textarea>
-
-                <button type="submit" class="btn-submit">
-                    Pošalji upit →
-                </button>
-
-                <p class="form-status" id="formStatus"></p>
-            </form>
-
+        <div class="container">
+            <div class="contact-form-wrapper">
+                <h2 class="section-title" style="color: white;">Spremni da <span style="color: var(--accent-pink);">unapredite</span> vaš biznis?</h2>
+                <p class="section-subtitle" style="color: #d1d5db;">Ostavite nam osnovne informacije i javljamo se sa konkretnim predlogom.</p>
+                <form id="contactForm" class="contact-form" data-webhook="https://hook.eu2.make.com/fgkrns0h3ne327h19ak7bwkv7ili42uc">
+                    <div class="form-row">
+                        <input type="text" name="fullName" placeholder="Ime i prezime" required>
+                        <input type="tel" name="phone" placeholder="Broj telefona" required>
+                    </div>
+                    <div class="form-row">
+                        <select name="industry" required>
+                            <option value="">Industrija</option>
+                            <option>Stomatološka ordinacija</option>
+                            <option>Privatna klinika</option>
+                            <option>E-commerce</option>
+                            <option>Uslužni biznis</option>
+                            <option>Drugo</option>
+                        </select>
+                    </div>
+                    <textarea name="message" rows="5" placeholder="Ukratko opišite šta želite da uradite..." required></textarea>
+                    <button type="submit" class="btn-submit">Pošalji upit →</button>
+                    <p class="form-status" id="formStatus"></p>
+                </form>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-  <footer class="footer">
-    <div class="container footer-content">
-        <div class="footer-logo">
-            <h3>INVOX.AI</h3>
-            <p>&copy; 2024 Sva prava zadržana.</p>
-            <p><a href="tel:+381656652264">065 665 2264</a></p>
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <h3>INVOX.AI</h3>
+                <p>&copy; 2024 Sva prava zadržana.</p>
+                <p><a href="tel:+381656652264" style="color: var(--text-gray); text-decoration: none;">065 665 2264</a></p>
+            </div>
+            <div class="footer-links">
+                <a href="#hero">Početna</a>
+                <a href="#services">Usluge</a>
+                <a href="#collaboration">Saradnja</a>
+                <a href="#contact">Kontakt</a>
+            </div>
         </div>
-        <div class="footer-links">
-            <a href="#hero">Početna</a>
-            <a href="#services">Usluge</a>
-            <a href="#collaboration">Saradnja</a>
-            <a href="#contact">Kontakt</a>
-        </div>
-    </div>
-</footer>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
