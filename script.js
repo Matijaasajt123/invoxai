@@ -1,8 +1,32 @@
-<!-- POTPUNO ZAMENITE SAV STARI JAVASCRIPT SA OVIM BLOKOM -->
-<script>
 document.addEventListener('DOMContentLoaded', function () {
 
-   
+    // =================================================
+    //  1. MOBILNI MENI I DROPDOWN (DODATO/POPRAVLJENO)
+    // =================================================
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-list');
+
+    // Otvaranje/Zatvaranje mobilnog menija
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', function () {
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // Dropdown na klik za mobilne uređaje
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                // Sprecava da link odvede negde ako se klikne na podmeni
+                if(e.target.classList.contains('dropbtn') || e.target.parentElement.classList.contains('dropbtn')) {
+                    e.preventDefault();
+                }
+                this.querySelector('.dropdown-content').classList.toggle('show');
+            }
+        });
+    });
+
     // =================================================
     //  2. KOD ZA ANIMACIJE I EFEKTE (SAČUVANO)
     // =================================================
@@ -12,9 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (header) {
         window.addEventListener('scroll', function () {
             if (window.scrollY > 50) {
-                header.style.background = 'rgba(42, 10, 74, 0.95)'; // Malo tamnija nijansa
-            } else {
                 header.style.background = 'rgba(42, 10, 74, 0.95)';
+            } else {
+                header.style.background = 'rgba(42, 10, 74, 1)'; // Vraćeno na solid kad je na vrhu
             }
         });
     }
@@ -90,4 +114,3 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
-</script>
