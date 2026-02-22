@@ -1218,4 +1218,26 @@ body {
         padding: 35px 25px;
     }
 }
+/* ==========================================================================
+   ISPRAVLJENI STILOVI ZA PADAJUĆI MENI (DROPDOWN)
+   ========================================================================== */
+
+/* Prikazivanje padajućeg menija na HOVER (za desktop) */
+@media (min-width: 769px) {
+    .nav-menu .dropdown:hover .dropdown-content {
+        display: block;
+        animation: fadeIn 0.3s ease;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Osiguravanje da strelica izgleda kao da može da se klikne na mobilnom */
+.dropbtn {
+    cursor: pointer;
+    user-select: none;
+}
 
