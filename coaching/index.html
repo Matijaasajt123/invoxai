@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Klon - Za Balkan coacheve i edukatore</title>
+    <title>InvoxAI - AI Klon za edukatore</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Invoxai inspired palette - Premium Dark SaaS */
-            --bg-dark: #070B14;
-            --bg-card: #111827;
-            --bg-card-hover: #1F2937;
-            --text-main: #F9FAFB;
-            --text-muted: #9CA3AF;
-            --primary: #3B82F6; /* Blue */
-            --secondary: #8B5CF6; /* Purple */
-            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-            --border: rgba(255, 255, 255, 0.08);
-            --radius: 16px;
-            --radius-sm: 8px;
+            /* Invoxai Brand Colors */
+            --brand-dark: #120b1f;
+            --brand-purple: #8b5cf6;
+            --brand-purple-dark: #6d28d9;
+            --hero-gradient: linear-gradient(135deg, #5b21b6 0%, #8b5cf6 50%, #60a5fa 100%);
+            
+            /* Light Theme Colors (for the rest of the site) */
+            --bg-light: #ffffff;
+            --bg-gray: #f8fafc;
+            --text-dark: #0f172a;
+            --text-gray: #475569;
+            --border-color: #e2e8f0;
+            
+            --radius: 12px;
             --transition: all 0.3s ease;
         }
 
@@ -32,21 +34,24 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.6;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1140px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
         section {
-            padding: 120px 0;
+            padding: 100px 0;
+        }
+
+        section.bg-gray {
+            background-color: var(--bg-gray);
         }
 
         a {
@@ -61,30 +66,21 @@
             letter-spacing: -0.02em;
         }
 
-        h1 { font-size: 4rem; margin-bottom: 24px; }
-        h2 { font-size: 3rem; margin-bottom: 24px; }
-        h3 { font-size: 1.5rem; margin-bottom: 12px; }
-        p { font-size: 1.125rem; color: var(--text-muted); }
-        
-        .text-gradient {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        h2 { font-size: 2.5rem; margin-bottom: 24px; color: var(--text-dark); }
+        h3 { font-size: 1.25rem; margin-bottom: 12px; color: var(--text-dark); }
+        p { color: var(--text-gray); font-size: 1.125rem; }
 
         .label {
             display: inline-block;
             padding: 6px 16px;
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--primary);
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--brand-purple-dark);
             border-radius: 100px;
             font-size: 0.875rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         /* Buttons */
@@ -95,42 +91,53 @@
             padding: 16px 32px;
             font-size: 1.125rem;
             font-weight: 600;
-            border-radius: var(--radius-sm);
+            border-radius: 8px;
             transition: var(--transition);
             cursor: pointer;
             border: none;
         }
 
         .btn-primary {
-            background: var(--gradient);
+            background: var(--brand-purple);
             color: white;
-            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 4px 14px rgba(139, 92, 246, 0.3);
         }
 
         .btn-primary:hover {
+            background: var(--brand-purple-dark);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
         }
 
-        .btn-secondary {
+        /* Custom white button for Hero */
+        .btn-white {
+            background: white;
+            color: var(--brand-purple-dark);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-transparent {
             background: transparent;
-            color: var(--text-main);
-            font-weight: 500;
-            padding: 16px 24px;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-transparent:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        .btn-secondary:hover {
-            color: var(--primary);
-        }
-
-        /* Navigation */
+        /* Navbar (Matching Invoxai image) */
         nav {
-            padding: 24px 0;
-            border-bottom: 1px solid var(--border);
+            background-color: var(--brand-dark);
+            color: white;
+            padding: 20px 0;
             position: sticky;
             top: 0;
-            background: rgba(7, 11, 20, 0.8);
-            backdrop-filter: blur(12px);
             z-index: 100;
         }
 
@@ -141,32 +148,60 @@
         }
 
         .logo {
-            font-size: 1.5rem;
             font-weight: 800;
+            font-size: 1.25rem;
             letter-spacing: -0.05em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 160px 0 100px;
-            text-align: center;
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--brand-purple);
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .nav-dropdown {
             position: relative;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(7, 11, 20, 0) 70%);
-            z-index: -1;
+        /* Hero Section (Matching image gradient) */
+        .hero {
+            background: var(--hero-gradient);
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            max-width: 900px;
+            margin: 0 auto 24px;
+            color: white;
         }
 
         .hero p.subheadline {
             font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
             max-width: 700px;
             margin: 0 auto 40px;
         }
@@ -175,55 +210,50 @@
             display: flex;
             gap: 16px;
             justify-content: center;
-            align-items: center;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
         .hero-stats {
             display: flex;
             justify-content: center;
             gap: 60px;
-            padding-top: 60px;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 40px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .stat-item {
-            text-align: left;
+            text-align: center;
         }
 
         .stat-value {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 4px;
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--text-muted);
+            color: white;
         }
 
         /* Layout Grids */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; } /* 2x2 for 4 items */
 
-        /* Cards */
+        /* Cards (Light Theme) */
         .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: white;
+            border: 1px solid var(--border-color);
             border-radius: var(--radius);
-            padding: 40px 32px;
+            padding: 32px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
         }
 
         .card:hover {
-            background: var(--bg-card-hover);
             transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: var(--brand-purple);
         }
 
-        /* Section Headings */
         .section-header {
             text-align: center;
             max-width: 800px;
@@ -232,109 +262,107 @@
 
         /* Solution Section */
         .solution-highlight {
-            background: rgba(59, 130, 246, 0.05);
-            border: 1px solid var(--primary);
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px dashed var(--brand-purple);
             padding: 24px;
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius);
             text-align: center;
             font-weight: 700;
             font-size: 1.25rem;
-            margin: 40px 0;
-            color: var(--text-main);
+            margin: 40px auto;
+            color: var(--brand-purple-dark);
+            max-width: 800px;
         }
 
         .chat-simulation {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: white;
+            border: 1px solid var(--border-color);
             border-radius: var(--radius);
-            padding: 40px;
-            max-width: 700px;
+            padding: 32px;
+            max-width: 600px;
             margin: 0 auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
         .chat-bubble {
-            padding: 16px 24px;
-            border-radius: var(--radius);
+            padding: 16px 20px;
+            border-radius: 12px;
             margin-bottom: 24px;
             max-width: 85%;
+            font-size: 1rem;
         }
 
         .chat-student {
-            background: #27272A;
+            background: var(--bg-gray);
+            border: 1px solid var(--border-color);
             border-bottom-left-radius: 4px;
+            color: var(--text-dark);
         }
 
         .chat-ai {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            background: var(--brand-purple);
+            color: white;
             border-bottom-right-radius: 4px;
             margin-left: auto;
         }
 
         .chat-meta {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            opacity: 0.8;
         }
 
         .chat-tagline {
             text-align: center;
             font-weight: 600;
-            margin-top: 32px;
+            margin-top: 24px;
             color: #10B981; /* Success Green */
         }
 
         .chat-tags {
             text-align: center;
             font-size: 0.875rem;
-            color: var(--text-muted);
-            margin-top: 16px;
+            color: var(--text-gray);
+            margin-top: 12px;
         }
 
         /* How It Works */
+        .process-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
         .process-step {
             display: flex;
             gap: 24px;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
+            background: white;
+            padding: 24px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
         }
 
         .step-number {
             font-size: 1.5rem;
             font-weight: 800;
-            color: var(--primary);
+            color: var(--brand-purple);
             flex-shrink: 0;
         }
 
-        /* Who Is This For */
-        .check-list {
-            list-style: none;
-            max-width: 600px;
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .check-list li {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            font-size: 1.25rem;
-            font-weight: 500;
-            padding: 24px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            margin-bottom: 16px;
-        }
-
-        .check-icon {
-            color: var(--primary);
-        }
-
-        /* FAQ */
         .faq-item {
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--border-color);
+            background: white;
+        }
+
+        .faq-item:first-child {
+            border-top: 1px solid var(--border-color);
         }
 
         .faq-question {
@@ -342,10 +370,10 @@
             text-align: left;
             background: none;
             border: none;
-            color: var(--text-main);
-            font-size: 1.25rem;
+            color: var(--text-dark);
+            font-size: 1.125rem;
             font-weight: 600;
-            padding: 32px 0;
+            padding: 24px 0;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -355,11 +383,11 @@
 
         .faq-icon {
             transition: var(--transition);
+            color: var(--brand-purple);
         }
 
         .faq-item.active .faq-icon {
             transform: rotate(45deg);
-            color: var(--primary);
         }
 
         .faq-answer {
@@ -369,55 +397,43 @@
         }
 
         .faq-answer p {
-            padding-bottom: 32px;
+            padding-bottom: 24px;
         }
 
         /* Final CTA */
         .final-cta {
+            background: rgba(139, 92, 246, 0.05); /* Very light purple */
             text-align: center;
-            background: var(--bg-card);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 120px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .final-cta h2 {
+            font-size: 3rem;
         }
 
         .trust-note {
             display: block;
-            margin-top: 24px;
+            margin-top: 16px;
             font-size: 0.875rem;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            color: var(--text-muted);
-            font-size: 0.875rem;
+            color: var(--text-gray);
             font-weight: 500;
-            letter-spacing: 0.05em;
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2.5rem; }
-            .hero-stats { flex-wrap: wrap; justify-content: center; gap: 40px; }
-            .grid-4 { grid-template-columns: repeat(2, 1fr); }
-            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { display: none; } /* Simplified nav for mobile */
+            .hero h1 { font-size: 3rem; }
+            h2 { font-size: 2rem; }
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
+            .hero h1 { font-size: 2.25rem; }
+            .hero { padding: 80px 0; }
             section { padding: 80px 0; }
-            .hero { padding: 100px 0 60px; }
-            .hero-actions { flex-direction: column; width: 100%; }
-            .btn { width: 100%; }
+            .hero-actions { flex-direction: column; }
+            .hero-stats { flex-direction: column; gap: 24px; border-top: none; }
             .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-            .hero-stats { gap: 24px; flex-direction: column; text-align: center; align-items: center; }
-            .stat-item { text-align: center; }
+            .process-step { flex-direction: column; gap: 12px; }
             .chat-bubble { max-width: 100%; }
         }
     </style>
@@ -426,266 +442,244 @@
 
     <nav>
         <div class="container nav-inner">
-            <div class="logo">KLON<span class="text-gradient">.AI</span></div>
-            <a href="#cta" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.875rem;">Zakaži konsultaciju &rarr;</a>
+            <div class="logo">
+                <span class="logo-icon"></span>
+                invoxai
+            </div>
+            <div class="nav-links">
+                <a href="#">Početna</a>
+                <a href="#">O Nama</a>
+                <a href="#">Usluge</a>
+                <a href="#" class="nav-dropdown">AI Rešenja ▾</a>
+                <a href="#">AI Chatbotovi</a>
+                <a href="#">Case Studies</a>
+                <a href="#">Benefiti</a>
+                <a href="#">Saradnja</a>
+                <a href="#">Kontakt</a>
+            </div>
         </div>
     </nav>
 
-    <section class="hero container">
-        <span class="label">Za Balkan coacheve i edukatore</span>
-        <h1>Pretvori rezultate klijenata u <span class="text-gradient">mašinu za prodaju</span> koja donosi kupce.</h1>
-        <p class="subheadline">AI klon treniran na tvojim materijalima. Odgovara u tvom stilu, 24/7 — dok ti skaliraš edukaciju.</p>
-        
-        <div class="hero-actions">
-            <a href="#cta" class="btn btn-primary">Zakaži besplatnu konsultaciju &rarr;</a>
-            <a href="#how-it-works" class="btn btn-secondary">Pogledaj kako radi &darr;</a>
-        </div>
+    <section class="hero">
+        <div class="container">
+            <h1>Pretvori rezultate svojih klijenata u mašinu za prodaju koja konstantno donosi nove testimonijale i kupce.</h1>
+            <p class="subheadline">AI klon treniran na tvojim materijalima. Odgovara u tvom stilu, 24/7 — dok ti skaliraš edukaciju.</p>
+            
+            <div class="hero-actions">
+                <a href="#cta" class="btn btn-white">Zakaži besplatnu konsultaciju &rarr;</a>
+                <a href="#kako-radi" class="btn btn-transparent">Pogledaj kako radi &darr;</a>
+            </div>
 
-        <div class="hero-stats">
-            <div class="stat-item">
-                <div class="stat-value">&lt; 30 sek</div>
-                <div class="stat-label">Vreme odgovora</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value">24/7</div>
-                <div class="stat-label">Dostupnost</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value">100%</div>
-                <div class="stat-label">Tvoj stil i znanje</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value">&infin;</div>
-                <div class="stat-label">Studenata paralelno</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container">
-        <div class="section-header">
-            <span class="label">Zašto te ovo košta</span>
-            <h2>Tvoje znanje je vrhunsko. Problem je što si samo jedan čovek.</h2>
-            <p>Svaki sat na odgovaranju istih pitanja je sat koji ne provedeš na rastu. A dok čekaš — studenti gube poverenje.</p>
-        </div>
-
-        <div class="grid-4">
-            <div class="card">
-                <h3>Sat čekanja = pad zadovoljstva</h3>
-                <p>Student čeka, vrednost edukacije pada u njegovim očima. Gubiš testimonijale koje si zaslužio.</p>
-            </div>
-            <div class="card">
-                <h3>Ista pitanja, svaki dan</h3>
-                <p>Kako da..., šta ako..., kad kreće... — po peti put ove nedelje. To nije coaching.</p>
-            </div>
-            <div class="card">
-                <h3>Ograničen broj polaznika</h3>
-                <p>Ne možeš primiti više studenata jer nemaš vremena za pun support. Ostavljaš novac na stolu.</p>
-            </div>
-            <div class="card">
-                <h3>Znanje zarobljeno u tebi</h3>
-                <p>Kada nisi dostupan, vrednost nestaje. Studenti stagniraju, rezultati kasne.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="container">
-        <div class="section-header">
-            <span class="label">Rešenje</span>
-            <h2>Tvoj AI klon. Tvoje znanje. Uvek dostupno.</h2>
-            <p>Treniramo AI na tvojim kursevima, podcastima i video materijalima. Klon odgovara svakom studentu odmah — u tvom tonu, iz tvoje baze znanja. Ti se fokusiraš na mentorstvo i rast.</p>
-        </div>
-
-        <div class="solution-highlight">
-            Više zadovoljnih studenata &rarr; bolji testimonijali &rarr; više upisa &rarr; veća zarada
-        </div>
-
-        <div class="chat-simulation">
-            <div class="chat-bubble chat-student">
-                <div class="chat-meta">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-                    Student
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-value">&lt; 30 sek</div>
+                    <div style="font-size: 0.875rem; opacity: 0.9;">Vreme odgovora</div>
                 </div>
-                <p>Kako da primenim strategiju iz lekcije 4 na moj e-commerce?</p>
-            </div>
-
-            <div class="chat-bubble chat-ai">
-                <div class="chat-meta">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12 2.1 7.1"/><path d="M12 12l9.9 4.9"/></svg>
-                    Tvoj AI Klon
+                <div class="stat-item">
+                    <div class="stat-value">24/7</div>
+                    <div style="font-size: 0.875rem; opacity: 0.9;">Dostupnost</div>
                 </div>
-                <p>Kao što sam pričao u lekciji o segmentaciji, tvoj slučaj spada u B kategoriju. Evo konkretnih koraka koje treba da preduzmeš odmah...</p>
             </div>
-
-            <div class="chat-tagline">&#9889; Odgovoreno za 12 sekundi</div>
-            <div class="chat-tags">Tvoj kurs &middot; Tvoj podcast &middot; Tvoj stil pisanja</div>
         </div>
     </section>
 
-    <section id="how-it-works" class="container">
-        <div class="grid-2" style="align-items: center;">
-            <div>
+    <section class="bg-gray">
+        <div class="container">
+            <div class="section-header">
+                <span class="label">Zašto te ovo košta</span>
+                <h2>Tvoje znanje je vrhunsko. Problem je što si samo jedan čovek.</h2>
+                <p>Svaki sat na odgovaranju istih pitanja je sat koji ne provedeš na rastu. A dok čekaš — studenti gube poverenje.</p>
+            </div>
+
+            <div class="grid-4">
+                <div class="card">
+                    <h3>Sat čekanja = pad zadovoljstva</h3>
+                    <p>Student čeka, vrednost edukacije pada u njegovim očima. Gubiš testimonijale koje si zaslužio.</p>
+                </div>
+                <div class="card">
+                    <h3>Ista pitanja, svaki dan</h3>
+                    <p>"Kako da...", "Šta ako...", "Kad kreće..." — po peti put ove nedelje. To nije coaching.</p>
+                </div>
+                <div class="card">
+                    <h3>Ograničen broj polaznika</h3>
+                    <p>Ne možeš primiti više studenata jer nemaš vremena za pun support. Ostavljaš novac na stolu.</p>
+                </div>
+                <div class="card">
+                    <h3>Znanje zarobljeno u tebi</h3>
+                    <p>Kada nisi dostupan, vrednost isčezava. Studenti stagniraju, rezultati kasne.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <span class="label">Rešenje</span>
+                <h2>Tvoj AI klon. Tvoje znanje. Uvek dostupno.</h2>
+                <p>Treniramo AI na tvojim kursevima, podcastima i video materijalima. Klon odgovara svakom studentu odmah — u tvom tonu, iz tvoje baze znanja. Ti se fokusiraš na mentorstvo i rast.</p>
+            </div>
+
+            <div class="solution-highlight">
+                Više zadovoljnih studenata &rarr; bolji testimonijali &rarr; više upisa &rarr; veća zarada.
+            </div>
+
+            <div class="chat-simulation">
+                <div class="chat-bubble chat-student">
+                    <div class="chat-meta">Student</div>
+                    Kako da primenjem strategiju iz lekcije 4 na moj e-commerce?
+                </div>
+
+                <div class="chat-bubble chat-ai">
+                    <div class="chat-meta">AI Klon</div>
+                    Kao što sam pričao u lekciji o segmentaciji, tvoj slučaj spada u B kategoriju. Evo konkretnih koraka...
+                </div>
+
+                <div class="chat-tagline">&#9889; Odgovoreno za 12 sekundi</div>
+                <div class="chat-tags">Tvoj kurs &middot; Tvoj podcast &middot; Tvoj stil pisanja</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kako-radi" class="bg-gray">
+        <div class="container">
+            <div class="section-header">
                 <span class="label">Proces</span>
-                <h2 style="margin-bottom: 40px;">Pet koraka do klona koji radi umesto tebe.</h2>
+                <h2>Pet koraka do klona koji radi umesto tebe.</h2>
             </div>
             
-            <div>
+            <div class="process-list">
                 <div class="process-step">
                     <div class="step-number">01</div>
                     <div>
                         <h3>Predaješ materijale</h3>
-                        <p>Kursevi, videi, podcasti, PDF-ovi. Ništa ne prepravljaš.</p>
+                        <p>Kursevi, videi, podcastii, PDF-ovi. Ništa ne prepravljaš.</p>
                     </div>
                 </div>
                 <div class="process-step">
                     <div class="step-number">02</div>
                     <div>
                         <h3>Treniramo klon</h3>
-                        <p>Konfigurišemo model na tvom znanju, tonu i stilu.</p>
+                        <p>Konfigurišemo model na tvom znanju, tonu i stilu pisanja.</p>
                     </div>
                 </div>
                 <div class="process-step">
                     <div class="step-number">03</div>
                     <div>
                         <h3>Testiramo zajedno</h3>
-                        <p>Prolazimo simulacije. Ti odobriš sve.</p>
+                        <p>Prolazimo simulacije. Ti odobriš sve pre lansiranja.</p>
                     </div>
                 </div>
                 <div class="process-step">
                     <div class="step-number">04</div>
                     <div>
-                        <h3>Integracija</h3>
-                        <p>Klon radi 24/7 unutar tvoje edukacije platforme.</p>
+                        <h3>Integriš u edukaciju</h3>
+                        <p>Klon je dostupan studentima 24/7. Ti dobijaš izveštaje.</p>
                     </div>
                 </div>
                 <div class="process-step">
                     <div class="step-number">05</div>
                     <div>
-                        <h3>Skaliraš</h3>
-                        <p>50, 100, 200 polaznika — isporučuješ isti nivo podrške.</p>
+                        <h3>Skaliraš bez straha</h3>
+                        <p>50, 100, 200 polaznika. Svaki dobija isti nivo podrške.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="container">
-        <div class="section-header">
-            <span class="label">Za koga</span>
-            <h2>Prepoznaješ li sebe ovde?</h2>
-        </div>
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <span class="label">Šta dobijaš</span>
+                <h2>Konkretni rezultati.</h2>
+            </div>
 
-        <ul class="check-list">
-            <li>
-                <svg class="check-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Online coach na Balkanu
-            </li>
-            <li>
-                <svg class="check-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Kreator kurseva sa aktivnim studentima
-            </li>
-            <li>
-                <svg class="check-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Ekspert koji želi da skalira
-            </li>
-            <li>
-                <svg class="check-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Mentor bez vremena za support
-            </li>
-            <li>
-                <svg class="check-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Edukator fokusiran na rezultate
-            </li>
-        </ul>
-    </section>
-
-    <section class="container">
-        <div class="section-header">
-            <span class="label">Šta dobijaš</span>
-            <h2>Konkretni rezultati. Bez teorije.</h2>
-        </div>
-
-        <div class="grid-3">
-            <div class="card">
-                <h3>Odgovori za manje od minut</h3>
-                <p>Tvoji studenti nikada više ne čekaju na rešenje bloka.</p>
-            </div>
-            <div class="card">
-                <h3>Više polaznika, ista energija</h3>
-                <p>Skaliraj broj prodaja bez žrtvovanja kvaliteta podrške.</p>
-            </div>
-            <div class="card">
-                <h3>Bolji testimonijali</h3>
-                <p>Oduševljeni studenti postaju tvoj najjači marketing.</p>
-            </div>
-            <div class="card">
-                <h3>Radiš samo ono što ima vrednost</h3>
-                <p>Eliminiši manuelni rad i fokusiraj se na high-ticket zadatke.</p>
-            </div>
-            <div class="card">
-                <h3>Tvoje znanje dostupno uvek</h3>
-                <p>Klon ne spava, ne ide na odmor i ne gubi fokus.</p>
-            </div>
-            <div class="card">
-                <h3>Direktan uticaj na prihod</h3>
-                <p>Više vremena + bolji rezultati studenata = veći profit.</p>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Odgovori za manje od minut</h3>
+                    <p>Tačno, u tvom stilu, non-stop.</p>
+                </div>
+                <div class="card">
+                    <h3>Više polaznika, ista energija</h3>
+                    <p>Skaliraš prihode bez skaliranja posla.</p>
+                </div>
+                <div class="card">
+                    <h3>Bolji testimonijali</h3>
+                    <p>Brža podrška = brži rezultati = snažnije recenzije.</p>
+                </div>
+                <div class="card">
+                    <h3>Radiš samo ono što ima vrednost</h3>
+                    <p>Predaješ i kreiraš. Klon radi ostalo.</p>
+                </div>
+                <div class="card">
+                    <h3>Tvoje znanje živi večno</h3>
+                    <p>Dostupno svakom studentu, odmah, uvek.</p>
+                </div>
+                <div class="card">
+                    <h3>Direktan uticaj na prihod</h3>
+                    <p>Klon plaća sam sebe višestruko.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="container">
-        <div class="section-header">
-            <span class="label">Česta pitanja</span>
-            <h2>Imaš pitanja. Evo odgovora.</h2>
-        </div>
-
-        <div style="max-width: 800px; margin: 0 auto;">
-            <div class="faq-item">
-                <button class="faq-question">
-                    Koliko traje trening klona?
-                    <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Postavka i treniranje traju najviše 7 do 10 dana. Tvoje je samo da nam dostaviš pristup materijalima, sve ostalo radimo mi.</p>
-                </div>
+    <section class="bg-gray">
+        <div class="container">
+            <div class="section-header">
+                <span class="label">Česta pitanja</span>
+                <h2>Imaš pitanja. Evo odgovora.</h2>
             </div>
 
-            <div class="faq-item">
-                <button class="faq-question">
-                    Da li moram da menjam svoju platformu?
-                    <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Ne. Klon se besprekorno integriše u tvoj postojeći sistem — bilo da koristiš Discord, Telegram, WhatsApp, Kajabi ili custom sajt.</p>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Šta ako klon da pogrešan odgovor?
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Odgovara isključivo iz tvojih materijala. Ako nema odgovor — kaže to i preusmerava na tebe. Ti odobriš sve pre lansiranja.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="faq-item">
-                <button class="faq-question">
-                    Šta ako klon ne zna odgovor?
-                    <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Klon nikada ne izmišlja odgovore. Ako naiđe na specifično pitanje van svog znanja, ljubazno obaveštava studenta i preusmerava pitanje tebi na odobrenje.</p>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Hoće li studenti primetiti?
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Klon govori tvojim glasom i stilom. U praksi — ne primete. A i kada znaju, cene brz odgovor više nego čekanje.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="faq-item">
-                <button class="faq-question">
-                    Koliko materijala mi je potrebno za početak?
-                    <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Što više materijala imamo (video transkripti, PDF-ovi, prošli odgovori), to je klon precizniji. Ipak, za savršen start dovoljan je tvoj glavni kurs i osnovna FAQ baza.</p>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Je l' komplikovano za setup?
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Naš tim radi sve tehničko. Ti predaješ materijale, mi sve ostalo. Setup traje 1-2 nedelje.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="faq-item">
-                <button class="faq-question">
-                    Da li studenti znaju da pričaju sa AI-jem?
-                    <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Da, preporučujemo potpunu transparentnost. Praksa pokazuje da studenti obožavaju AI klona jer dobijaju tvoje tačno znanje istog sekunda, umesto da čekaju danima na manuelni odgovor.</p>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Jesam li dovoljno velik za ovo?
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ako support troši tvoje vreme — jesi. Posebno efikasno za edukatore u fazi rasta.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Šta sa privatnošću podataka?
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Tvoji materijali se koriste samo za tvoj klon. Ništa nije deljeno. Sve je u ugovoru.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -693,21 +687,16 @@
 
     <section id="cta" class="final-cta">
         <div class="container">
-            <h2>Dobij demo svog AI klona za 7 dana.</h2>
-            <p style="margin-bottom: 40px; font-size: 1.25rem;">Zakaži 30-minutnu konsultaciju. Besplatno, bez obaveze.</p>
+            <h2>Tvoj kompletan AI klon vec za 7 dana.</h2>
+            <p style="margin-bottom: 40px; font-size: 1.25rem; max-width: 600px; margin-left: auto; margin-right: auto;">Zakaži 30-minutnu konsultaciju. Besplatno, bez obaveze, na srpskom.</p>
             <a href="#" class="btn btn-primary">Zakaži konsultaciju &rarr;</a>
-            <span class="trust-note">Besplatno &middot; Bez obaveze &middot; Na srpskom</span>
+            <span class="trust-note">Besplatno &middot; Bez obaveze &middot; Na srpskom jeziku</span>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            AI KLON — Napravljeno za Balkan edukatore
-        </div>
-    </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // FAQ Accordion Logic
             const faqItems = document.querySelectorAll('.faq-item');
 
             faqItems.forEach(item => {
@@ -717,13 +706,13 @@
                 question.addEventListener('click', () => {
                     const isActive = item.classList.contains('active');
 
-                    // Close all
+                    // Close all others
                     faqItems.forEach(faq => {
                         faq.classList.remove('active');
                         faq.querySelector('.faq-answer').style.maxHeight = null;
                     });
 
-                    // Open if it wasn't active
+                    // Open clicked if it wasn't active
                     if (!isActive) {
                         item.classList.add('active');
                         answer.style.maxHeight = answer.scrollHeight + "px";
@@ -734,10 +723,16 @@
             // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
                     e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
                 });
             });
         });
