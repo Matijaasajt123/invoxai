@@ -3,263 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INVOX.AI | Skaliraj svoj coaching program</title>
+    <title>AI Rešenja za Biznis</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
+        /* CSS RESET & VARIABLES */
         :root {
-            --bg-color: #08080A;
-            --surface-color: #121217;
-            --surface-hover: #1A1A22;
-            --text-main: #F8FAFC;
-            --text-muted: #94A3B8;
-            --primary: #3B82F6;
-            --primary-hover: #2563EB;
-            --border-color: #27272A;
-            --accent: #60A5FA;
+            --primary-bg: #2B0B4B;
+            --gradient-start: #2A0845;
+            --gradient-end: #8A2387;
+            --text-main: #FFFFFF;
+            --text-muted: rgba(255, 255, 255, 0.8);
+            --nav-bg: rgba(42, 8, 69, 0.6);
+            --transition: all 0.3s ease;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
+        body {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        section {
-            padding: 100px 0;
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
         }
 
-        h1, h2, h3 {
-            line-height: 1.2;
-            font-weight: 700;
+        nav.scrolled {
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 5%;
         }
 
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 16px 32px;
-            border-radius: 8px;
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.125rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .btn:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .card {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 40px 32px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .icon-wrapper {
-            width: 56px;
-            height: 56px;
-            background-color: rgba(59, 130, 246, 0.1);
-            border-radius: 12px;
+        /* Logo Placeholder similar to image */
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #000;
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 24px;
-            color: var(--primary);
+            font-size: 16px;
         }
 
-        .icon-wrapper svg { width: 28px; height: 28px; }
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            align-items: center;
+        }
 
-        .hero {
-            min-height: 90vh;
+        .nav-links li a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition);
+            opacity: 0.9;
+        }
+
+        .nav-links li a:hover {
+            opacity: 1;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        /* DROPDOWN MENU */
+        .dropdown {
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .dropdown-toggle {
             display: flex;
             align-items: center;
-            padding-top: 120px;
-            background: radial-gradient(circle at 50% 0%, #1a2942 0%, var(--bg-color) 60%);
+            gap: 4px;
+            cursor: pointer;
         }
 
-        .hero h1 { font-size: 4rem; margin-bottom: 24px; letter-spacing: -0.02em; }
-        .hero p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px; max-width: 800px; margin: 0 auto 40px; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: rgba(20, 5, 35, 0.9);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            padding: 10px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
 
-        .solution p.subtitle { text-align: center; font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin: -1.5rem auto 4rem auto; }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
 
-        .steps-wrapper { max-width: 800px; margin: 0 auto; }
-        .step-item { display: flex; align-items: flex-start; margin-bottom: 40px; background-color: var(--surface-color); padding: 32px; border-radius: 16px; border: 1px solid var(--border-color); }
-        .step-number { font-size: 1.5rem; font-weight: 800; color: var(--primary); background: rgba(59, 130, 246, 0.1); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 24px; flex-shrink: 0; }
+        .dropdown-menu li {
+            list-style: none;
+        }
 
-        .case-card { max-width: 800px; margin: 0 auto; background-color: var(--surface-color); border-radius: 24px; padding: 48px; border: 1px solid var(--border-color); position: relative; overflow: hidden; }
-        .case-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: var(--primary); }
-        .case-label { font-size: 0.875rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; }
-        .case-text { font-size: 1.125rem; margin-bottom: 24px; }
-        .case-result .case-text { color: #10B981; font-weight: 600; }
+        .dropdown-menu li a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
 
-        .target-list { max-width: 700px; margin: 0 auto; list-style: none; }
-        .target-list li { display: flex; align-items: flex-start; margin-bottom: 16px; background-color: var(--surface-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
-        .target-list svg { width: 24px; height: 24px; margin-right: 16px; flex-shrink: 0; color: var(--primary); }
+        .dropdown-menu li a:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.05);
+        }
 
-        .contact-form { max-width: 450px; margin: 30px auto 0; display: flex; flex-direction: column; gap: 16px; }
-        .contact-form input { width: 100%; padding: 16px; border-radius: 8px; border: 1px solid var(--border-color); background-color: var(--surface-color); color: var(--text-main); font-family: 'Inter', sans-serif; }
-        .contact-form input:focus { outline: none; border-color: var(--primary); }
+        /* MOBILE MENU TOGGLE */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.25rem; }
-            .grid-3 { grid-template-columns: 1fr; }
-            .step-item { flex-direction: column; }
-            .step-number { margin-bottom: 16px; }
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+            animation: fadeUp 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2.5vw, 24px);
+            font-weight: 400;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin-bottom: 40px;
+            line-height: 1.5;
+            animation: fadeUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-bg);
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            animation: fadeUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.25);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--nav-bg);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                padding: 20px 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .dropdown-menu {
+                position: relative;
+                top: 0;
+                transform: none;
+                left: 0;
+                box-shadow: none;
+                background: transparent;
+                border: none;
+                display: none;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: flex;
+                transform: none;
+            }
         }
     </style>
 </head>
 <body>
 
-    <section class="hero text-center">
-        <div class="container">
-            <h1>Imaš preko 300 polaznika i ne stižeš svima da odgovoriš?</h1>
-            <p>Tvoj lični AI klon komunicira sa polaznicima 24/7, koristi tvoje metode i tvoj glas.</p>
-            <a href="#kontakt" class="btn">Zakažite besplatnu konsultaciju</a>
-        </div>
-    </section>
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon">✨</div> </a>
+        
+        <button class="mobile-menu-btn" id="mobile-btn">☰</button>
 
-    <section class="problem">
-        <div class="container">
-            <h2>Prepoznaješ li se u ovome?</h2>
-            <div class="grid-3">
-                <div class="card">
-                    <div class="icon-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
-                    <h3>Polaznici čekaju tvoj odgovor danima</h3>
-                </div>
-                <div class="card">
-                    <div class="icon-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2.1l4 4-4 4M3 12.2v-2a4 4 0 0 1 4-4h13M7 21.9l-4-4 4-4M21 11.8v2a4 4 0 0 1-4 4H4"/></svg></div>
-                    <h3>Odgovaraš na ista pitanja po 50 puta</h3>
-                </div>
-                <div class="card">
-                    <div class="icon-wrapper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-                    <h3>Ti si usko grlo sopstvenog biznisa</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="solution">
-        <div class="container">
-            <h2>AI klon koji radi umesto tebe</h2>
-            <p class="subtitle">Custom web aplikacija koja poznaje svaki detalj tvog programa.</p>
-            <div class="grid-3">
-                <div class="card"><h3>Chat 24/7 u tvom stilu</h3><p>Odgovara na poruke baš kao i ti.</p></div>
-                <div class="card"><h3>Role-play trening</h3><p>Polaznici vežbaju sa AI asistentom.</p></div>
-                <div class="card"><h3>Dashboard uvidi</h3><p>Vidiš šta polaznici najviše pitaju.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="case-study">
-        <div class="container">
-            <h2>Rezultati klijenata</h2>
-            <div class="case-card">
-                <div class="case-label">Klijent</div>
-                <div class="case-text">Mišel — online fitness trener</div>
-                <div class="case-label">Problem</div>
-                <div class="case-text">Preopterećen porukama na mrežama.</div>
-                <div class="case-result">
-                    <div class="case-label">Rezultat</div>
-                    <div class="case-text">15% više prodaje uz 0% dodatnog rada.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="kontakt" class="text-center" style="background: #0f1219; padding: 120px 0;">
-        <div class="container">
-            <h2>Spreman da skaliraš program?</h2>
-            <p style="color: var(--text-muted);">Zakaži demo poziv i videćeš kako AI klon radi uživo.</p>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#">Početna</a></li>
+            <li><a href="#">O Nama</a></li>
+            <li><a href="#">Usluge</a></li>
             
-            <form id="contact-form-coaching" class="contact-form">
-                <input type="text" placeholder="Tvoje Ime i Prezime" required>
-                <input type="text" placeholder="Naziv tvog programa / Link profila" required>
-                <input type="tel" placeholder="Tvoj telefon (Viber/WhatsApp)" required>
-                <button type="submit" class="btn">Zakaži Demo Poziv</button>
-            </form>
-            <div id="form-status"></div>
-        </div>
-    </section>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">AI Rešenja ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Za Ordinacije</a></li>
+                    <li><a href="#">Za Frizere</a></li>
+                    <li><a href="#">Za Coacheve</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">AI Chatbotovi</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Benefiti</a></li>
+            <li><a href="#">Saradnja</a></li>
+            <li><a href="#">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Pomažemo vlasnicima biznisa da povećaju prodaju uz pomoć veštačke inteligencije</h1>
+        <p>Brže odgovarajte klijentima, povećajte prodaju i smanjite troškove.</p>
+        <a href="#" class="cta-button">Zakaži besplatnu konsultaciju →</a>
+    </header>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('contact-form-coaching');
-            const statusMessage = document.getElementById('form-status');
-            const WEBHOOK_URL = 'https://hook.eu2.make.com/c19fo8n8f43gxuvas2anpx2rj5ubfhe5';
+        // JS za prepoznatljivi "Glassmorphism Navbar" efekat na scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const inputs = form.querySelectorAll('input');
-                const formData = {
-                    imePrezime: inputs[0].value,
-                    nazivPrograma: inputs[1].value,
-                    brojTelefona: inputs[2].value,
-                    source: 'AI Klon za Coacheve'
-                };
+        // JS za Mobilni Meni
+        const mobileBtn = document.getElementById('mobile-btn');
+        const navLinks = document.getElementById('nav-links');
 
-                statusMessage.textContent = 'Slanje...';
-                statusMessage.style.color = '#94A3B8';
-
-                fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData),
-                })
-                .then(response => {
-                    statusMessage.textContent = 'Uspešno poslato! Javićemo se uskoro.';
-                    statusMessage.style.color = '#3B82F6';
-                    form.reset();
-                })
-                .catch(error => {
-                    statusMessage.textContent = 'Hvala! Zahtev je zabeležen.';
-                    statusMessage.style.color = '#3B82F6';
-                    form.reset();
-                });
-            });
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            if(navLinks.classList.contains('active')){
+                mobileBtn.innerHTML = '✕';
+            } else {
+                mobileBtn.innerHTML = '☰';
+            }
         });
     </script>
 </body>
