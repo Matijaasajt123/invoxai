@@ -406,17 +406,17 @@
             color: var(--text-gray);
         }
 
-        /* Final CTA */
+        /* Final CTA & Contact Form */
         .final-cta {
             background: var(--brand-blue-light);
             text-align: center;
             border-top: 1px solid var(--border-color);
-            padding: 120px 0;
+            padding: 100px 0;
         }
 
         .final-cta h2 {
             font-size: 3.5rem;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
 
         .trust-note {
@@ -425,6 +425,57 @@
             font-size: 0.9rem;
             color: var(--text-gray);
             font-weight: 500;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 40px;
+            max-width: 540px;
+            margin: 40px auto 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--brand-purple);
+            box-shadow: 0 0 0 3px var(--brand-purple-light);
+        }
+
+        .form-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 8px;
         }
 
         /* Responsive */
@@ -444,6 +495,7 @@
             .process-step { flex-direction: column; gap: 16px; }
             .chat-bubble { max-width: 100%; }
             .final-cta h2 { font-size: 2.5rem; }
+            .form-container { padding: 32px 24px; }
         }
     </style>
 </head>
@@ -461,7 +513,7 @@
                 <a href="#">Usluge</a>
                 <a href="#">AI Chatbotovi</a>
                 <a href="#">Benefiti</a>
-                <a href="#">Kontakt</a>
+                <a href="#kontakt">Kontakt</a>
             </div>
         </div>
     </nav>
@@ -472,7 +524,7 @@
             <p class="subheadline">AI klon treniran na tvojim materijalima. Odgovara u tvom stilu, 24/7 — dok ti skaliraš edukaciju.</p>
             
             <div class="hero-actions">
-                <a href="#cta" class="btn btn-primary">Zakaži besplatnu konsultaciju &rarr;</a>
+                <a href="#kontakt" class="btn btn-primary">Zakaži besplatnu konsultaciju &rarr;</a>
                 <a href="#kako-radi" class="btn btn-outline">Pogledaj kako radi &darr;</a>
             </div>
 
@@ -675,12 +727,34 @@
         </div>
     </section>
 
-    <section id="cta" class="final-cta">
+    <section id="kontakt" class="final-cta">
         <div class="container">
             <h2>Tvoj kompletan AI klon <span class="gradient-text">već za 7 dana</span>.</h2>
-            <p style="margin-bottom: 40px; font-size: 1.25rem; max-width: 600px; margin-left: auto; margin-right: auto; color: var(--text-gray);">Zakaži 30-minutnu konsultaciju. Besplatno, bez obaveze, na srpskom jeziku.</p>
-            <a href="#" class="btn btn-primary">Zakaži konsultaciju &rarr;</a>
-            <span class="trust-note">Besplatno &middot; Bez obaveze &middot; Na srpskom jeziku</span>
+            <p style="font-size: 1.25rem; max-width: 600px; margin-left: auto; margin-right: auto; color: var(--text-gray);">Zakaži 30-minutnu konsultaciju. Besplatno, bez obaveze, na srpskom jeziku.</p>
+            
+            <div class="form-container">
+                <form action="https://hook.eu2.make.com/of0vb0oykhqruy9efr2l0ifv5xzfxuuc" method="POST" id="consultation-form">
+                    <div class="form-group">
+                        <label class="form-label" for="ime">Ime i prezime</label>
+                        <input type="text" id="ime" name="ime" class="form-input" required placeholder="Npr. Petar Petrović">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="telefon">Broj telefona</label>
+                        <input type="tel" id="telefon" name="telefon" class="form-input" required placeholder="+381 6X XXX XXXX">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email adresa</label>
+                        <input type="email" id="email" name="email" class="form-input" required placeholder="petar@tvojdomen.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="sajt">Sajt (opciono)</label>
+                        <input type="url" id="sajt" name="sajt" class="form-input" placeholder="https://tvojdomen.com">
+                    </div>
+                    <button type="submit" class="btn btn-primary form-submit">Zakaži konsultaciju &rarr;</button>
+                </form>
+            </div>
+
+            <span class="trust-note">Podaci su sigurni i koriste se isključivo za potrebe kontaktiranja.</span>
         </div>
     </section>
 
