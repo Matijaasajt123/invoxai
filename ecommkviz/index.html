@@ -480,9 +480,9 @@ const QUESTIONS = [
   {
     id: "kontakt",
     type: "contact",
-    eyebrow: "10 · Kontakt 😊",
-    q: "Gde da ti pošaljemo analizu?",
-    hint: "Ostavi broj telefona ako želiš da ti pošaljemo analizu na WhatsApp, ali uopšte ne moraš – svakako ti šaljemo sve na LinkedIn-u gde smo se već čuli! 😉"
+    eyebrow: "10 · LinkedIn slanje 😊",
+    q: "Ne moraš ništa da popunjavaš ako ne želiš!",
+    hint: "Sve ti svakako šaljem na LinkedIn gde se već čujemo. Ali ako možeš, bilo bi najbolje da ostaviš broj telefona (WhatsApp) i osnovne podatke kako bismo lakše komunicirali. 😉"
   }
 ];
 
@@ -524,13 +524,11 @@ function renderQuestion(){
     const c = answers[q.id] || {};
     html += `
       <label class="field-label">Ime i prezime</label>
-      <input type="text" id="c_ime" value="${c.ime||''}" placeholder="Marko Marković">
+      <input type="text" id="c_ime" value="${c.ime||''}" placeholder="Marko Marković (opciono)">
       <label class="field-label">Naziv brenda</label>
-      <input type="text" id="c_brend" value="${c.brend||''}" placeholder="Naziv radnje">
-      <label class="field-label">Email</label>
-      <input type="email" id="c_email" value="${c.email||''}" placeholder="ime@brend.rs">
-      <label class="field-label">Broj telefona (opciono za WhatsApp)</label>
-      <input type="tel" id="c_telefon" value="${c.telefon||''}" placeholder="+381 6... (ili ostavi prazno)">
+      <input type="text" id="c_brend" value="${c.brend||''}" placeholder="Naziv radnje (opciono)">
+      <label class="field-label">Broj telefona (WhatsApp)</label>
+      <input type="tel" id="c_telefon" value="${c.telefon||''}" placeholder="+381 6... (opciono - najbolje ostavi ako možeš 😊)">
     `;
   }
 
@@ -576,12 +574,11 @@ function attachHandlers(q){
     const ta = document.getElementById('freeText');
     ta.addEventListener('input', () => { answers[q.id] = ta.value; updateNextState(q); });
   } else if(q.type === 'contact'){
-    ['c_ime','c_brend','c_email','c_telefon'].forEach(id => {
+    ['c_ime','c_brend','c_telefon'].forEach(id => {
       document.getElementById(id).addEventListener('input', () => {
         answers[q.id] = {
           ime: document.getElementById('c_ime').value,
           brend: document.getElementById('c_brend').value,
-          email: document.getElementById('c_email').value,
           telefon: document.getElementById('c_telefon').value
         };
         updateNextState(q);
@@ -596,8 +593,8 @@ function updateNextState(q){
   else if(q.type === 'multi') ok = (answers[q.id]||[]).length > 0;
   else if(q.type === 'text') ok = (answers[q.id]||'').trim().length > 3;
   else if(q.type === 'contact'){
-    const c = answers[q.id] || {};
-    ok = !!(c.ime && c.email);
+    // Sve je opciono na ovom koraku, pa je dugme odmah aktivno
+    ok = true;
   }
   nextBtn.disabled = !ok;
   nextBtn.textContent = current === QUESTIONS.length - 1 ? 'Pošalji i dobij analizu' : 'Dalje';
