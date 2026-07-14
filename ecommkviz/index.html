@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koliko vremena gubiš na ručne stvari? — Brzi audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F1220;
+    --panel:#171b2c;
+    --panel-2:#1d2236;
+    --amber:#F2A93B;
+    --amber-dim:#c98f2f;
+    --teal:#2DD4BF;
+    --text:#EDEDF2;
+    --muted:#8A90A6;
+    --border:rgba(237,237,242,0.09);
+    --border-strong:rgba(237,237,242,0.18);
+    --danger:#E2665A;
+    --radius:12px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:32px 20px 80px;
+  }
+  header.top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:28px;
+    gap:16px;
+  }
+  .brand{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:0.02em;
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .brand .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);}
+  .step-count{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:24px;
+    align-items:start;
+  }
+  @media (max-width:820px){
+    .grid{grid-template-columns:1fr;}
+  }
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:32px;
+    min-height:420px;
+    display:flex;
+    flex-direction:column;
+  }
+  .progress-track{
+    height:3px;
+    width:100%;
+    background:var(--border);
+    border-radius:2px;
+    overflow:hidden;
+    margin-bottom:28px;
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--amber);
+    width:0%;
+    transition:width .35s ease;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--teal);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-bottom:12px;
+  }
+  h2.question{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:22px;
+    line-height:1.35;
+    margin:0 0 6px;
+  }
+  .hint{
+    color:var(--muted);
+    font-size:14px;
+    margin:0 0 22px;
+  }
+  .options{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1;
+  }
+  .opt{
+    border:1px solid var(--border);
+    background:var(--panel-2);
+    border-radius:10px;
+    padding:14px 16px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:15px;
+    color:var(--text);
+    transition:border-color .15s ease, background .15s ease, transform .1s ease;
+    user-select:none;
+  }
+  .opt:hover{border-color:var(--border-strong); transform:translateX(2px);}
+  .opt .mark{
+    width:18px;height:18px;flex:none;
+    border-radius:5px;
+    border:1.5px solid var(--muted);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .opt.radio .mark{border-radius:50%;}
+  .opt.selected{border-color:var(--amber); background:rgba(242,169,59,0.08);}
+  .opt.selected .mark{background:var(--amber); border-color:var(--amber);}
+  .opt.selected .mark::after{content:'';width:6px;height:6px;border-radius:2px;background:var(--ink);}
+  .opt.radio.selected .mark::after{border-radius:50%;}
+
+  textarea, input[type=text], input[type=email], input[type=tel]{
+    width:100%;
+    background:var(--panel-2);
+    border:1px solid var(--border);
+    border-radius:10px;
+    color:var(--text);
+    padding:14px 16px;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    resize:vertical;
+  }
+  textarea:focus, input:focus{outline:none; border-color:var(--amber);}
+  .field-label{
+    font-size:13px;
+    color:var(--muted);
+    margin:14px 0 6px;
+    display:block;
+  }
+  .field-label:first-child{margin-top:0;}
+
+  .nav-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:28px;
+    gap:12px;
+  }
+  button{
+    font-family:'Inter',sans-serif;
+    font-weight:500;
+    font-size:14px;
+    border-radius:9px;
+    padding:12px 22px;
+    cursor:pointer;
+    border:1px solid var(--border-strong);
+    background:transparent;
+    color:var(--text);
+    transition:opacity .15s ease, transform .1s ease;
+  }
+  button:active{transform:scale(0.98);}
+  button.primary{
+    background:var(--amber);
+    color:#211405;
+    border-color:var(--amber);
+    font-weight:600;
+  }
+  button.primary:hover{background:var(--amber-dim);}
+  button.ghost{border-color:transparent; color:var(--muted);}
+  button:disabled{opacity:0.35; cursor:not-allowed;}
+
+  /* MONITOR PANEL */
+  .monitor{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:26px;
+    position:sticky;
+    top:24px;
+  }
+  .monitor .eyebrow{margin-bottom:16px;}
+  .monitor-readout{
+    font-family:'JetBrains Mono',monospace;
+    font-size:44px;
+    font-weight:600;
+    color:var(--teal);
+    line-height:1;
+    margin-bottom:4px;
+    letter-spacing:-0.02em;
+  }
+  .monitor-readout span{font-size:18px; color:var(--muted); font-weight:400;}
+  .monitor-sub{
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:22px;
+  }
+  .monitor-log{
+    display:flex;
+    flex-direction:column-reverse;
+    gap:8px;
+    max-height:220px;
+    overflow:hidden;
+    border-top:1px solid var(--border);
+    padding-top:16px;
+  }
+  .log-line{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+    display:flex;
+    gap:8px;
+    opacity:0;
+    animation:fadeIn .3s ease forwards;
+  }
+  @keyframes fadeIn{ to{opacity:1;} }
+  .log-line .plus{color:var(--teal); flex:none;}
+  .monitor-empty{
+    font-size:13px;
+    color:var(--muted);
+    font-style:normal;
+    padding-top:16px;
+    border-top:1px solid var(--border);
+  }
+
+  /* RESULT VIEW */
+  .result-wrap{display:none;}
+  .result-wrap.active{display:block;}
+  .quiz-wrap.hidden{display:none;}
+  .result-card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:40px;
+  }
+  .result-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:6px;
+  }
+  .result-header .dot{width:9px;height:9px;border-radius:50%;background:var(--teal);}
+  .result-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:24px;
+    font-weight:600;
+    margin:0 0 18px;
+  }
+  .analysis-body{
+    font-size:15.5px;
+    line-height:1.75;
+    color:var(--text);
+    white-space:pre-wrap;
+  }
+  .analysis-body strong{color:var(--amber);}
+  .loader{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--muted);
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+  }
+  .spinner{
+    width:16px;height:16px;
+    border-radius:50%;
+    border:2px solid var(--border-strong);
+    border-top-color:var(--amber);
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .error-box{
+    background:rgba(226,102,90,0.08);
+    border:1px solid rgba(226,102,90,0.3);
+    color:var(--danger);
+    border-radius:10px;
+    padding:14px 16px;
+    font-size:13.5px;
+    margin-top:16px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand"><span class="dot"></span>Audit automatizacije</div>
+    <div class="step-count" id="stepCount">Korak 1 / 10</div>
+  </header>
+
+  <div class="quiz-wrap" id="quizWrap">
+    <div class="grid">
+
+      <div class="card">
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div id="questionArea"></div>
+
+        <div class="nav-row">
+          <button class="ghost" id="backBtn">Nazad</button>
+          <button class="primary" id="nextBtn" disabled>Dalje</button>
+        </div>
+      </div>
+
+      <div class="monitor">
+        <div class="eyebrow">Monitor gubitka vremena</div>
+        <div class="monitor-readout" id="monitorReadout">0<span>h / nedeljno</span></div>
+        <div class="monitor-sub" id="monitorSub">Odgovaraj i prati koliko se sati skuplja.</div>
+        <div class="monitor-log" id="monitorLog">
+          <div class="monitor-empist" id="monitorEmpty" style="font-size:13px;color:var(--muted);padding-top:16px;border-top:1px solid var(--border);">Još nema podataka — klikni prvi odgovor.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="result-wrap" id="resultWrap">
+    <div class="result-card">
+      <div class="result-header"><span class="dot"></span><span class="step-count">Status</span></div>
+      <h2 class="result-title" id="resultTitle">Slanje podataka</h2>
+      <div id="resultBody">
+        <div class="loader"><div class="spinner"></div>Molimo sačekaj trenutak...</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ==========================================================
+   PODEŠAVANJA
+   ========================================================== */
+const WEBHOOK_URL = "https://hook.eu2.make.com/g5g7fuvacn6bcfvm9nd6lam7qjcwt92e";
+
+/* ==========================================================
+   PITANJA
+   type: 'single' | 'multi' | 'text' | 'contact'
+   weight: procenjeni sati nedeljno po opciji (za monitor)
+   ========================================================== */
+const QUESTIONS = [
+  {
+    id: "platforma",
+    type: "single",
+    eyebrow: "01 · Osnove",
+    q: "Preko čega najviše prodaješ?",
+    hint: "Izaberi ono što nosi najveći deo prometa.",
+    options: [
+      { v: "Shopify", w: 0 },
+      { v: "WooCommerce / WordPress", w: 0 },
+      { v: "Instagram / Facebook prodavnica", w: 0 },
+      { v: "Kombinacija više kanala", w: 1 },
+      { v: "Nešto drugo", w: 0 }
+    ]
+  },
+  {
+    id: "obim",
+    type: "single",
+    eyebrow: "02 · Obim",
+    q: "Koliko porudžbina primiš mesečno?",
+    options: [
+      { v: "Manje od 50", w: 0 },
+      { v: "50 – 200", w: 1 },
+      { v: "200 – 500", w: 2 },
+      { v: "Preko 500", w: 3 }
+    ]
+  },
+  {
+    id: "vreme_gubitak",
+    type: "multi",
+    eyebrow: "03 · Ručni rad",
+    q: "Gde najviše gubiš vreme svake nedelje?",
+    hint: "Klikni sve što se odnosi na tebe ili tim.",
+    options: [
+      { v: "Ručno unošenje i obrada porudžbina", w: 3 },
+      { v: "Odgovaranje na pitanja kupaca", w: 3 },
+      { v: "Praćenje stanja zaliha", w: 2 },
+      { v: "Praćenje statusa dostave / pošiljki", w: 2 },
+      { v: "Fakturisanje i administracija", w: 2 },
+      { v: "Reklamacije i povraćaji", w: 2 },
+      { v: "Nešto drugo", w: 1 }
+    ]
+  },
+  {
+    id: "kanali",
+    type: "multi",
+    eyebrow: "04 · Komunikacija",
+    q: "Preko kojih kanala kupci najčešće pišu?",
+    options: [
+      { v: "Instagram DM", w: 1 },
+      { v: "WhatsApp", w: 1 },
+      { v: "Viber", w: 1 },
+      { v: "Email", w: 1 },
+      { v: "Telefon", w: 1 },
+      { v: "Facebook Messenger", w: 1 }
+    ]
+  },
+  {
+    id: "dnevno_vreme",
+    type: "single",
+    eyebrow: "05 · Obim komunikacije",
+    q: "Koliko vremena dnevno odlazi na odgovaranje kupcima?",
+    options: [
+      { v: "Manje od 30 minuta", w: 0 },
+      { v: "30 – 60 minuta", w: 2 },
+      { v: "1 – 3 sata", w: 5 },
+      { v: "Više od 3 sata", w: 9 }
+    ]
+  },
+  {
+    id: "cesta_pitanja",
+    type: "multi",
+    eyebrow: "06 · Ponavljanje",
+    q: "Koja pitanja kupci postavljaju iznova i iznova?",
+    options: [
+      { v: "Gde je moja porudžbina", w: 2 },
+      { v: "Da li imate na stanju", w: 2 },
+      { v: "Koliko traje dostava", w: 1 },
+      { v: "Kako da vratim ili zamenim proizvod", w: 1 },
+      { v: "Koje su mere / veličine", w: 1 },
+      { v: "Kako mogu da platim", w: 1 }
+    ]
+  },
+  {
+    id: "evidencija",
+    type: "single",
+    eyebrow: "07 · Evidencija",
+    q: "Da li vodiš evidenciju upita i pritužbi kupaca?",
+    options: [
+      { v: "Da, u CRM sistemu", w: 0 },
+      { v: "Da, u Excelu ili beleškama", w: 1 },
+      { v: "Delimično, kad stignem", w: 2 },
+      { v: "Ne, sve pamtim u glavi", w: 3 }
+    ]
+  },
+  {
+    id: "automatizacija",
+    type: "single",
+    eyebrow: "08 · Trenutno stanje",
+    q: "Koristiš li već neku automatizaciju ili chatbot?",
+    options: [
+      { v: "Ne koristim ništa", w: 3 },
+      { v: "Imam chatbot, ali slabo radi", w: 2 },
+      { v: "Imam automatizacije, ali ih ručno pokrećem", w: 1 },
+      { v: "Da, dosta toga je već automatizovano", w: 0 }
+    ]
+  },
+  {
+    id: "otvoreno",
+    type: "text",
+    eyebrow: "09 · Konkretno",
+    q: "Da sutra nestane JEDNA stvar koja ti oduzima najviše vremena i živaca, šta bi to bilo?",
+    hint: "Piši konkretno — što više detalja, to bolja analiza.",
+    placeholder: "Npr: svaki dan odgovaram na iste poruke oko dostupnosti veličina i to mi oduzima ceo pre podne..."
+  },
+  {
+    id: "kontakt",
+    type: "contact",
+    eyebrow: "10 · Kontakt",
+    q: "Gde da ti pošaljemo analizu?",
+    hint: "Bez spama — samo rezultat."
+  }
+];
+
+let current = 0;
+const answers = {};
+let totalHours = 0;
+let logCount = 0;
+
+const questionArea = document.getElementById('questionArea');
+const nextBtn = document.getElementById('nextBtn');
+const backBtn = document.getElementById('backBtn');
+const progressFill = document.getElementById('progressFill');
+const stepCount = document.getElementById('stepCount');
+const monitorReadout = document.getElementById('monitorReadout');
+const monitorLog = document.getElementById('monitorLog');
+const monitorEmpty = document.getElementById('monitorEmpty');
+
+function renderQuestion(){
+  const q = QUESTIONS[current];
+  progressFill.style.width = ((current) / QUESTIONS.length * 100) + "%";
+  stepCount.textContent = `Korak ${current+1} / ${QUESTIONS.length}`;
+  backBtn.style.visibility = current === 0 ? 'hidden' : 'visible';
+
+  let html = `<div class="eyebrow">${q.eyebrow}</div><h2 class="question">${q.q}</h2>`;
+  if(q.hint) html += `<p class="hint">${q.hint}</p>`;
+
+  if(q.type === 'single' || q.type === 'multi'){
+    html += `<div class="options">`;
+    q.options.forEach((opt, i) => {
+      const selected = q.type === 'single'
+        ? answers[q.id] === opt.v
+        : (answers[q.id] || []).includes(opt.v);
+      html += `<div class="opt ${q.type==='single'?'radio':''} ${selected?'selected':''}" data-idx="${i}"><span class="mark"></span>${opt.v}</div>`;
+    });
+    html += `</div>`;
+  } else if(q.type === 'text'){
+    html += `<textarea id="freeText" rows="6" placeholder="${q.placeholder||''}">${answers[q.id]||''}</textarea>`;
+  } else if(q.type === 'contact'){
+    const c = answers[q.id] || {};
+    html += `
+      <label class="field-label">Ime i prezime</label>
+      <input type="text" id="c_ime" value="${c.ime||''}" placeholder="Marko Marković">
+      <label class="field-label">Naziv brenda</label>
+      <input type="text" id="c_brend" value="${c.brend||''}" placeholder="Naziv radnje">
+      <label class="field-label">Email</label>
+      <input type="email" id="c_email" value="${c.email||''}" placeholder="ime@brend.rs">
+      <label class="field-label">Telefon / WhatsApp</label>
+      <input type="tel" id="c_telefon" value="${c.telefon||''}" placeholder="+381 6...">
+    `;
+  }
+
+  questionArea.innerHTML = html;
+  attachHandlers(q);
+  updateNextState(q);
+}
+
+function attachHandlers(q){
+  if(q.type === 'single'){
+    document.querySelectorAll('.opt').forEach(el => {
+      el.addEventListener('click', () => {
+        const idx = +el.dataset.idx;
+        const opt = q.options[idx];
+        const prevVal = answers[q.id];
+        answers[q.id] = opt.v;
+        document.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+        addToMonitor(opt.v, opt.w, prevVal ? -(q.options.find(o=>o.v===prevVal)?.w || 0) : null);
+        updateNextState(q);
+      });
+    });
+  } else if(q.type === 'multi'){
+    document.querySelectorAll('.opt').forEach(el => {
+      el.addEventListener('click', () => {
+        const idx = +el.dataset.idx;
+        const opt = q.options[idx];
+        answers[q.id] = answers[q.id] || [];
+        const pos = answers[q.id].indexOf(opt.v);
+        if(pos === -1){
+          answers[q.id].push(opt.v);
+          el.classList.add('selected');
+          addToMonitor(opt.v, opt.w);
+        } else {
+          answers[q.id].splice(pos,1);
+          el.classList.remove('selected');
+          subtractFromMonitor(opt.w);
+        }
+        updateNextState(q);
+      });
+    });
+  } else if(q.type === 'text'){
+    const ta = document.getElementById('freeText');
+    ta.addEventListener('input', () => { answers[q.id] = ta.value; updateNextState(q); });
+  } else if(q.type === 'contact'){
+    ['c_ime','c_brend','c_email','c_telefon'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        answers[q.id] = {
+          ime: document.getElementById('c_ime').value,
+          brend: document.getElementById('c_brend').value,
+          email: document.getElementById('c_email').value,
+          telefon: document.getElementById('c_telefon').value
+        };
+        updateNextState(q);
+      });
+    });
+  }
+}
+
+function updateNextState(q){
+  let ok = false;
+  if(q.type === 'single') ok = !!answers[q.id];
+  else if(q.type === 'multi') ok = (answers[q.id]||[]).length > 0;
+  else if(q.type === 'text') ok = (answers[q.id]||'').trim().length > 3;
+  else if(q.type === 'contact'){
+    const c = answers[q.id] || {};
+    ok = !!(c.ime && c.email);
+  }
+  nextBtn.disabled = !ok;
+  nextBtn.textContent = current === QUESTIONS.length - 1 ? 'Pošalji i dobij analizu' : 'Dalje';
+}
+
+function addToMonitor(label, weight, offset){
+  if(offset) totalHours += offset;
+  totalHours += weight;
+  if(totalHours < 0) totalHours = 0;
+  monitorReadout.innerHTML = `${totalHours}<span>h / nedeljno</span>`;
+  if(weight > 0){
+    monitorEmpty.style.display = 'none';
+    logCount++;
+    const line = document.createElement('div');
+    line.className = 'log-line';
+    line.innerHTML = `<span class="plus">+${weight}h</span><span>${label}</span>`;
+    monitorLog.appendChild(line);
+  }
+}
+function subtractFromMonitor(weight){
+  totalHours -= weight;
+  if(totalHours < 0) totalHours = 0;
+  monitorReadout.innerHTML = `${totalHours}<span>h / nedeljno</span>`;
+}
+
+nextBtn.addEventListener('click', () => {
+  if(current < QUESTIONS.length - 1){
+    current++;
+    renderQuestion();
+  } else {
+    submitQuiz();
+  }
+});
+backBtn.addEventListener('click', () => {
+  if(current > 0){ current--; renderQuestion(); }
+});
+
+renderQuestion();
+
+/* ==========================================================
+   SLANJE NA WEBHOOK (Make.com)
+   ========================================================== */
+async function submitQuiz(){
+  document.getElementById('quizWrap').classList.add('hidden');
+  document.getElementById('resultWrap').classList.add('active');
+
+  const payload = {
+    platforma: answers.platforma || null,
+    porudzbine_mesecno: answers.obim || null,
+    gde_gubi_vreme: answers.vreme_gubitak || [],
+    kanali_komunikacije: answers.kanali || [],
+    dnevno_vreme_odgovaranja: answers.dnevno_vreme || null,
+    cesta_pitanja_kupaca: answers.cesta_pitanja || [],
+    evidencija_upita: answers.evidencija || null,
+    trenutna_automatizacija: answers.automatizacija || null,
+    najveci_problem_opis: answers.otvoreno || "",
+    procenjeni_sati_nedeljno: totalHours,
+    kontakt: answers.kontakt || {},
+    izvor: "ecommerce-ai-kviz",
+    datum: new Date().toISOString()
+  };
+
+  const resultBody = document.getElementById('resultBody');
+  const resultTitle = document.getElementById('resultTitle');
+
+  try{
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 25000);
+
+    const res = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+
+    if(!res.ok) throw new Error('Webhook je vratio grešku: ' + res.status);
+
+    resultTitle.textContent = "Hvala ti!";
+    resultBody.innerHTML = `<div class="analysis-body">Obradićemo podatke i šaljemo odgovor uskoro.</div>`;
+
+  } catch(err){
+    // Prikaz uspeha u svakom slučaju da korisnik zna da je proces završen
+    resultTitle.textContent = "Hvala ti!";
+    resultBody.innerHTML = `
+      <div class="analysis-body">Obradićemo podatke i šaljemo odgovor uskoro.</div>
+    `;
+  }
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML.replace(/\n/g, '<br>');
+}
+</script>
+</body>
+</html>
