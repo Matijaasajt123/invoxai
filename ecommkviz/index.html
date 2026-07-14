@@ -480,9 +480,9 @@ const QUESTIONS = [
   {
     id: "kontakt",
     type: "contact",
-    eyebrow: "10 · Kontakt",
+    eyebrow: "10 · Kontakt 😊",
     q: "Gde da ti pošaljemo analizu?",
-    hint: "Bez spama — samo rezultat."
+    hint: "Ostavi broj telefona ako želiš da ti pošaljemo analizu na WhatsApp, ali uopšte ne moraš – svakako ti šaljemo sve na LinkedIn-u gde smo se već čuli! 😉"
   }
 ];
 
@@ -529,8 +529,8 @@ function renderQuestion(){
       <input type="text" id="c_brend" value="${c.brend||''}" placeholder="Naziv radnje">
       <label class="field-label">Email</label>
       <input type="email" id="c_email" value="${c.email||''}" placeholder="ime@brend.rs">
-      <label class="field-label">Telefon / WhatsApp</label>
-      <input type="tel" id="c_telefon" value="${c.telefon||''}" placeholder="+381 6...">
+      <label class="field-label">Broj telefona (opciono za WhatsApp)</label>
+      <input type="tel" id="c_telefon" value="${c.telefon||''}" placeholder="+381 6... (ili ostavi prazno)">
     `;
   }
 
@@ -677,12 +677,11 @@ async function submitQuiz(){
 
     if(!res.ok) throw new Error('Webhook je vratio grešku: ' + res.status);
 
-    resultTitle.textContent = "Hvala ti!";
+    resultTitle.textContent = "Hvala ti! 😊";
     resultBody.innerHTML = `<div class="analysis-body">Obradićemo podatke i šaljemo odgovor uskoro.</div>`;
 
   } catch(err){
-    // Prikaz uspeha u svakom slučaju da korisnik zna da je proces završen
-    resultTitle.textContent = "Hvala ti!";
+    resultTitle.textContent = "Hvala ti! 😊";
     resultBody.innerHTML = `
       <div class="analysis-body">Obradićemo podatke i šaljemo odgovor uskoro.</div>
     `;
