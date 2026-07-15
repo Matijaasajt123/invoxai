@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kviz: Gde AI može da uštedi vreme vašoj agenciji?</title>
+<meta name="description" content="10 kratkih pitanja o vašem svakodnevnom radu. Besplatna, personalizovana analiza na kraju.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7FB;
+    --paper-alt:#FFFFFF;
+    --ink:#14172B;
+    --ink-soft:#5B5F76;
+    --signal:#FF5A36;
+    --signal-soft:#FFE7DF;
+    --static:#DBDEE9;
+    --confirm:#0E9F6E;
+    --radius:10px;
+    --shadow:0 1px 2px rgba(20,23,43,0.05), 0 12px 28px -14px rgba(20,23,43,0.18);
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(rgba(20,23,43,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(20,23,43,0.04) 1px, transparent 1px);
+    background-size:34px 34px;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    justify-content:center;
+    padding:28px 16px 60px;
+  }
+
+  .app{ width:100%; max-width:600px; }
+
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:6px 2px 18px;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.06em;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    min-height:20px;
+  }
+
+  .ticks{
+    display:flex;
+    gap:4px;
+    height:22px;
+    align-items:flex-end;
+    margin-bottom:18px;
+  }
+  .ticks.hidden{ display:none; }
+  .tick{
+    flex:1;
+    height:6px;
+    border-radius:2px;
+    background:var(--static);
+    transition:height .3s ease, background .3s ease;
+  }
+  .tick.active{ height:14px; background:var(--ink); }
+  .tick.filled{ height:100%; background:var(--signal); }
+
+  .card{
+    background:var(--paper-alt);
+    border:1px solid rgba(20,23,43,0.07);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:36px 30px;
+    transition:opacity .22s ease, transform .22s ease;
+  }
+  .card.leaving{ opacity:0; transform:translateY(-8px); }
+  .card.entering{ opacity:0; transform:translateY(8px); }
+
+  @media (max-width:480px){
+    .card{ padding:26px 20px; }
+  }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--signal);
+    font-weight:500;
+    margin-bottom:14px;
+  }
+
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:none;
+    border:none;
+    padding:0;
+    margin-bottom:16px;
+    font-family:var(--font-body);
+    font-size:13px;
+    font-weight:500;
+    color:var(--ink-soft);
+    cursor:pointer;
+  }
+  .back-link:hover{ color:var(--ink); }
+
+  .title{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(21px,4.4vw,26px);
+    line-height:1.28;
+    margin:0 0 8px;
+    letter-spacing:-0.01em;
+  }
+  .intro-title{ font-size:clamp(26px,5.6vw,34px); }
+
+  .subtitle{
+    font-size:14px;
+    color:var(--ink-soft);
+    margin:0 0 22px;
+    line-height:1.5;
+  }
+  .intro-copy{ font-size:15.5px; margin-bottom:26px; }
+
+  .meta-row{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.06em;
+    color:var(--ink-soft);
+    margin-bottom:28px;
+  }
+
+  .options{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:22px;
+  }
+
+  .option{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    width:100%;
+    text-align:left;
+    padding:15px 18px;
+    border:1.5px solid var(--static);
+    border-radius:8px;
+    background:var(--paper);
+    font-family:var(--font-body);
+    font-size:15px;
+    font-weight:500;
+    color:var(--ink);
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease, transform .08s ease;
+  }
+  .option:hover{ border-color:var(--ink-soft); }
+  .option:active{ transform:scale(.99); }
+  .option:focus-visible{ outline:2px solid var(--signal); outline-offset:2px; }
+  .option.selected{ border-color:var(--signal); background:var(--signal-soft); }
+
+  .option .check{
+    flex-shrink:0;
+    opacity:0;
+    transform:scale(.6);
+    color:var(--ink);
+    font-weight:700;
+    transition:opacity .15s ease, transform .15s ease;
+  }
+  .option.selected .check{ opacity:1; transform:scale(1); }
+
+  .other-input{
+    display:none;
+    width:100%;
+    margin:-4px 0 22px;
+    padding:14px 16px;
+    border:1.5px solid var(--static);
+    border-radius:8px;
+    font-family:var(--font-body);
+    font-size:14.5px;
+    color:var(--ink);
+    background:var(--paper);
+  }
+  .other-input.show{ display:block; }
+  .other-input:focus{ outline:none; border-color:var(--signal); box-shadow:0 0 0 3px var(--signal-soft); }
+
+  textarea.text-area{
+    width:100%;
+    min-height:110px;
+    padding:14px 16px;
+    border:1.5px solid var(--static);
+    border-radius:8px;
+    font-family:var(--font-body);
+    font-size:15px;
+    color:var(--ink);
+    background:var(--paper);
+    resize:vertical;
+    margin-bottom:22px;
+  }
+  textarea.text-area:focus{ outline:none; border-color:var(--signal); box-shadow:0 0 0 3px var(--signal-soft); }
+
+  input.field{
+    width:100%;
+    padding:14px 16px;
+    border:1.5px solid var(--static);
+    border-radius:8px;
+    font-family:var(--font-body);
+    font-size:15px;
+    color:var(--ink);
+    background:var(--paper);
+    margin-bottom:6px;
+  }
+  input.field:focus{ outline:none; border-color:var(--signal); box-shadow:0 0 0 3px var(--signal-soft); }
+
+  .field-label{
+    display:block;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--ink-soft);
+    margin-bottom:7px;
+  }
+  .field-group{ margin-bottom:18px; }
+  .field-helper{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin:6px 0 0;
+    line-height:1.5;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    width:100%;
+    padding:15px 22px;
+    border:none;
+    border-radius:8px;
+    font-family:var(--font-body);
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:transform .12s ease, filter .12s ease, opacity .12s ease;
+  }
+  .btn:active{ transform:scale(.98); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .btn:disabled:active{ transform:none; }
+
+  .btn-primary{ background:var(--ink); color:var(--paper); }
+  .btn-primary:hover:not(:disabled){ filter:brightness(1.15); }
+
+  .btn-accent{ background:var(--signal); color:var(--ink); font-weight:700; }
+  .btn-accent:hover:not(:disabled){ filter:brightness(1.04); }
+
+  .privacy-note{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:.03em;
+    color:var(--ink-soft);
+    text-align:center;
+    margin-top:14px;
+  }
+
+  .thankyou-icon{
+    width:44px; height:44px;
+    border-radius:50%;
+    background:var(--confirm);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px;
+    margin-bottom:18px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; animation:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar">
+    <span>AI · KVIZ</span>
+    <span id="counter"></span>
+  </div>
+  <div class="ticks hidden" id="ticks"></div>
+  <div class="card" id="card"></div>
+</div>
+
+<script>
+(function(){
+
+  /* ============================================================
+     ⚠️ VAŽNO — OVDE NALEPI SVOJ WEBHOOK URL
+     Kada dobiješ webhook link (Zapier / Make / n8n / Pipedream...),
+     zameni tekst ispod između navodnika. Ništa drugo ne mora da se menja.
+  ============================================================ */
+  const WEBHOOK_URL = "https://hook.eu2.make.com/js664w5m7ievdunmkwkq4xhe8gv06ipm";
+  /* ============================================================ */
+
+  const QUESTIONS = [
+    {
+      key:'teamSize', type:'single',
+      title:'Koliko ljudi radi u vašem timu?',
+      options:[
+        {v:'solo', l:'Samo ja — radim solo'},
+        {v:'2-5', l:'2–5 ljudi'},
+        {v:'6-15', l:'6–15 ljudi'},
+        {v:'15+', l:'Više od 15 ljudi'}
+      ]
+    },
+    {
+      key:'clientOps', type:'single',
+      title:'Da li u okviru usluga i vi direktno komunicirate u ime klijenata — npr. odgovarate na poruke na njihovom Instagramu, WhatsApp-u ili oglasima?',
+      subtitle:'Ovo nam pomaže da razlikujemo automatizaciju za vas i za vaše klijente.',
+      options:[
+        {v:'most', l:'Da, za većinu klijenata'},
+        {v:'some', l:'Za neke klijente'},
+        {v:'no', l:'Ne, mi samo savetujemo — klijent sam odgovara'}
+      ]
+    },
+    {
+      key:'channels', type:'multi',
+      title:'Odakle najčešće stižu poruke i upiti — vama i klijentima koje vodite?',
+      subtitle:'Izaberite sve kanale koje pokrivate, svejedno da li su vaši ili klijentovi.',
+      options:[
+        {v:'instagram', l:'Instagram / Facebook poruke'},
+        {v:'whatsapp', l:'WhatsApp'},
+        {v:'email', l:'Email'},
+        {v:'phone', l:'Telefonski pozivi'},
+        {v:'website', l:'Kontakt forma na sajtu'},
+        {v:'linkedin', l:'LinkedIn'}
+      ]
+    },
+    {
+      key:'leadLoss', type:'single',
+      title:'Da li se dešava da izgubite upit — svoj ili klijentov — jer niko nije stigao da odgovori na vreme?',
+      options:[
+        {v:'often', l:'Često — gotovo svake nedelje'},
+        {v:'sometimes', l:'Povremeno'},
+        {v:'rarely', l:'Retko'},
+        {v:'never', l:'Nikad — sve stignemo'}
+      ]
+    },
+    {
+      key:'manualTasks', type:'multi',
+      title:'Šta od ovoga radite ručno, svaki dan?',
+      subtitle:'Izaberite sve — bilo da je za vašu agenciju ili u ime klijenata.',
+      options:[
+        {v:'repeat_answers', l:'Odgovaranje na ista pitanja, iznova i iznova'},
+        {v:'client_inbox', l:'Moderacija i odgovaranje na profilima/kanalima klijenata'},
+        {v:'scheduling', l:'Zakazivanje poziva i sastanaka'},
+        {v:'proposals', l:'Pisanje ponuda i predračuna'},
+        {v:'reporting', l:'Izveštaji za klijente (reporting)'},
+        {v:'copywriting', l:'Pisanje sadržaja / copywriting za klijente'},
+        {v:'invoicing', l:'Fakturisanje i administracija'},
+        {v:'analytics', l:'Praćenje rezultata kampanja'}
+      ]
+    },
+    {
+      key:'aiUsage', type:'single',
+      title:'Da li već koristite AI alate ili automatizaciju u poslovanju?',
+      options:[
+        {v:'active', l:'Da, redovno i aktivno'},
+        {v:'occasional', l:'Da, ali povremeno, za sitnice'},
+        {v:'tried', l:'Probali smo, ali nije zaživelo'},
+        {v:'none', l:'Ne koristimo uopšte'}
+      ]
+    },
+    {
+      key:'frustration', type:'text', required:true,
+      title:'Šta vam oduzima najviše vremena i živaca u toku dana?',
+      subtitle:'Slobodno opišite svojim rečima — svejedno da li je za vas ili za klijente.',
+      placeholder:'Npr. non-stop odgovaram na ista pitanja na WhatsAppu za tri klijenta...'
+    },
+    {
+      key:'automationWish', type:'single', allowOther:true,
+      title:'Kada biste mogli da automatizujete samo JEDNU stvar, šta bi to bilo?',
+      subtitle:'Može biti nešto za vašu agenciju ili nešto što radite za klijente.',
+      options:[
+        {v:'answering', l:'Odgovaranje na upite (naše ili klijentovo — chat/DM/WhatsApp)'},
+        {v:'qualifying', l:'Kvalifikacija i sortiranje lead-ova'},
+        {v:'reporting', l:'Izveštaji i reporting za klijente'},
+        {v:'content', l:'Pisanje prve verzije sadržaja za klijente'},
+        {v:'scheduling', l:'Zakazivanje sastanaka'},
+        {v:'other', l:'Nešto drugo', other:true}
+      ]
+    }
+  ];
+
+  const TOTAL_STEPS = QUESTIONS.length + 1; // + kontakt korak
+
+  const state = { step:-1, answers:{} };
+
+  const cardEl = document.getElementById('card');
+  const ticksEl = document.getElementById('ticks');
+  const counterEl = document.getElementById('counter');
+
+  function buildTicks(){
+    ticksEl.innerHTML = '';
+    for(let i=0;i<TOTAL_STEPS;i++){
+      const d = document.createElement('div');
+      d.className = 'tick';
+      ticksEl.appendChild(d);
+    }
+  }
+  buildTicks();
+
+  function updateChrome(){
+    if(state.step < 0 || state.step >= TOTAL_STEPS){
+      ticksEl.classList.add('hidden');
+      counterEl.textContent = '';
+      return;
+    }
+    ticksEl.classList.remove('hidden');
+    const ticks = ticksEl.children;
+    for(let i=0;i<ticks.length;i++){
+      ticks[i].classList.remove('active','filled');
+      if(i < state.step) ticks[i].classList.add('filled');
+      else if(i === state.step) ticks[i].classList.add('active');
+    }
+    counterEl.textContent = String(state.step+1).padStart(2,'0') + ' / ' + String(TOTAL_STEPS).padStart(2,'0');
+  }
+
+  function typeLabel(q){
+    if(q.type==='single') return 'JEDAN ODGOVOR';
+    if(q.type==='multi') return 'VIŠE ODGOVORA';
+    if(q.type==='text') return q.required ? 'SVOJIM REČIMA' : 'OPCIONO';
+    return '';
+  }
+
+  function backButtonHtml(){
+    return '<button type="button" class="back-link" id="backBtn">← Nazad</button>';
+  }
+
+  function goTo(step){
+    cardEl.classList.add('leaving');
+    setTimeout(function(){
+      state.step = step;
+      renderCurrent();
+      cardEl.classList.remove('leaving');
+      cardEl.classList.add('entering');
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ cardEl.classList.remove('entering'); });
+      });
+      window.scrollTo({top:0, behavior:'smooth'});
+    }, 200);
+  }
+
+  function renderCurrent(){
+    updateChrome();
+    if(state.step === -1) renderIntro();
+    else if(state.step === QUESTIONS.length) renderContact();
+    else if(state.step === TOTAL_STEPS) renderThankYou();
+    else renderQuestion(state.step);
+  }
+
+  function renderIntro(){
+    cardEl.innerHTML =
+      '<div class="eyebrow">ZA MARKETING AGENCIJE</div>' +
+      '<h1 class="title intro-title">Gde tim najviše gubi vreme?</h1>' +
+      '<p class="subtitle intro-copy">10 kratkih pitanja o vašem svakodnevnom radu — i onom za vašu agenciju, i onom koji izvršavate za klijente. Na kraju dobijate besplatnu analizu: konkretno, gde AI može da preuzme deo posla, interno ili u uslugama koje pružate klijentima.</p>' +
+      '<div class="meta-row">10 PITANJA&nbsp;&nbsp;·&nbsp;&nbsp;~2 MIN&nbsp;&nbsp;·&nbsp;&nbsp;SAMO KLIKOVI</div>' +
+      '<button type="button" class="btn btn-accent" id="startBtn">Počni kviz</button>';
+    document.getElementById('startBtn').addEventListener('click', function(){ goTo(0); });
+  }
+
+  function renderQuestion(index){
+    const q = QUESTIONS[index];
+    const savedAnswer = state.answers[q.key];
+    const savedOther = state.answers[q.key+'Other'] || '';
+
+    let html = backButtonHtml();
+    html += '<div class="eyebrow">PITANJE ' + (index+1) + ' · ' + typeLabel(q) + '</div>';
+    html += '<h2 class="title">' + q.title + '</h2>';
+    if(q.subtitle) html += '<p class="subtitle">' + q.subtitle + '</p>';
+
+    if(q.type === 'text'){
+      html += '<textarea class="text-area" id="textInput" placeholder="' + (q.placeholder||'') + '">' + (savedAnswer||'') + '</textarea>';
+      const disabledAttr = (q.required && !(savedAnswer||'').trim()) ? ' disabled' : '';
+      html += '<button type="button" class="btn btn-primary" id="nextBtn"' + disabledAttr + '>Nastavi →</button>';
+    } else {
+      html += '<div class="options" id="optionsWrap">';
+      q.options.forEach(function(opt){
+        const isOn = q.type==='multi'
+          ? (Array.isArray(savedAnswer) && savedAnswer.indexOf(opt.v) > -1)
+          : (savedAnswer === opt.v);
+        html += '<button type="button" class="option' + (isOn?' selected':'') + '" data-value="' + opt.v + '">' +
+                  '<span>' + opt.l + '</span><span class="check">✓</span>' +
+                '</button>';
+      });
+      html += '</div>';
+
+      if(q.allowOther){
+        const otherOn = savedAnswer === 'other';
+        html += '<input type="text" class="other-input' + (otherOn?' show':'') + '" id="otherInput" placeholder="Recite nam ukratko..." value="' + savedOther + '">';
+      }
+
+      if(q.type === 'multi'){
+        html += '<button type="button" class="btn btn-primary" id="nextBtn" disabled>Dalje →</button>';
+      } else if(q.allowOther){
+        html += '<button type="button" class="btn btn-primary" id="nextBtn" style="display:' + (savedAnswer==='other' ? 'inline-flex' : 'none') + '">Dalje →</button>';
+      }
+    }
+
+    cardEl.innerHTML = html;
+
+    const backBtn = document.getElementById('backBtn');
+    if(backBtn) backBtn.addEventListener('click', function(){ goTo(index-1); });
+
+    if(q.type === 'text'){
+      const nextBtn = document.getElementById('nextBtn');
+      const textInput = document.getElementById('textInput');
+      if(q.required){
+        textInput.addEventListener('input', function(){
+          nextBtn.disabled = !textInput.value.trim();
+        });
+      }
+      nextBtn.addEventListener('click', function(){
+        state.answers[q.key] = textInput.value.trim();
+        goTo(index+1);
+      });
+      return;
+    }
+
+    const optionEls = cardEl.querySelectorAll('.option');
+    const nextBtn = document.getElementById('nextBtn');
+    const otherInput = document.getElementById('otherInput');
+
+    optionEls.forEach(function(el){
+      el.addEventListener('click', function(){
+        const val = el.getAttribute('data-value');
+
+        if(q.type === 'multi'){
+          el.classList.toggle('selected');
+          const chosen = Array.from(cardEl.querySelectorAll('.option.selected')).map(function(e){ return e.getAttribute('data-value'); });
+          state.answers[q.key] = chosen;
+          nextBtn.disabled = chosen.length === 0;
+          return;
+        }
+
+        // single-select
+        optionEls.forEach(function(e){ e.classList.remove('selected'); });
+        el.classList.add('selected');
+        state.answers[q.key] = val;
+
+        const isOther = q.allowOther && val === 'other';
+        if(isOther){
+          if(otherInput){ otherInput.classList.add('show'); otherInput.focus(); }
+          if(nextBtn){ nextBtn.style.display = 'inline-flex'; }
+          return;
+        }
+
+        if(otherInput) otherInput.classList.remove('show');
+        setTimeout(function(){ goTo(index+1); }, 180);
+      });
+    });
+
+    if(nextBtn && q.type === 'single' && q.allowOther){
+      nextBtn.addEventListener('click', function(){
+        if(otherInput) state.answers[q.key+'Other'] = otherInput.value.trim();
+        goTo(index+1);
+      });
+    }
+
+    if(nextBtn && q.type === 'multi'){
+      nextBtn.addEventListener('click', function(){ goTo(index+1); });
+    }
+  }
+
+  function renderContact(){
+    let html = backButtonHtml();
+    html += '<div class="eyebrow">PITANJE ' + TOTAL_STEPS + ' · POSLEDNJI KORAK</div>';
+    html += '<h2 class="title">Kome šaljemo analizu?</h2>';
+    html += '<p class="subtitle">Ostavite ime i, po želji, broj telefona — ako ga ostavite, javljamo se direktno na WhatsApp. U suprotnom, javljamo se na LinkedIn (tu smo se i upoznali).</p>';
+    html += '<form id="contactForm">';
+    html += '<div class="field-group"><label class="field-label" for="nameInput">Ime i prezime (opciono)</label>';
+    html += '<input type="text" class="field" id="nameInput" placeholder="Vaše ime" value="' + (state.answers.name||'') + '"></div>';
+    html += '<div class="field-group"><label class="field-label" for="phoneInput">Broj telefona (opciono)</label>';
+    html += '<input type="tel" class="field" id="phoneInput" placeholder="+381 6..." value="' + (state.answers.phone||'') + '">';
+    html += '<p class="field-helper">Ostavite broj samo ako želite analizu na WhatsApp — brže je.</p></div>';
+    html += '<button type="submit" class="btn btn-accent" id="submitBtn">Pošalji odgovore</button>';
+    html += '<p class="privacy-note">PODACI SE KORISTE ISKLJUČIVO ZA VAŠU BESPLATNU ANALIZU</p>';
+    html += '</form>';
+
+    cardEl.innerHTML = html;
+
+    document.getElementById('backBtn').addEventListener('click', function(){ goTo(QUESTIONS.length-1); });
+
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('nameInput').value.trim();
+      const phone = document.getElementById('phoneInput').value.trim();
+
+      state.answers.name = name;
+      state.answers.phone = phone;
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Slanje...';
+
+      const payload = {
+        timestamp:new Date().toISOString(),
+        teamSize: state.answers.teamSize || '',
+        clientOps: state.answers.clientOps || '',
+        channels: state.answers.channels || [],
+        leadLoss: state.answers.leadLoss || '',
+        manualTasks: state.answers.manualTasks || [],
+        adminTime: state.answers.adminTime || '',
+        aiUsage: state.answers.aiUsage || '',
+        frustration: state.answers.frustration || '',
+        automationWish: state.answers.automationWish || '',
+        automationWishOther: state.answers.automationWishOther || '',
+        notes: state.answers.notes || '',
+        name: name,
+        phone: phone,
+        source:'ai-marketing-kviz',
+        pageUrl: window.location.href
+      };
+
+      function finish(){ goTo(TOTAL_STEPS); }
+
+      if(!WEBHOOK_URL || WEBHOOK_URL.indexOf('OVDE-NALEPI') > -1){
+        console.warn('WEBHOOK_URL nije podešen — odgovori nisu poslati nigde. Podesi ga na vrhu <script> taga.');
+        finish();
+        return;
+      }
+
+      fetch(WEBHOOK_URL, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      })
+      .catch(function(err){ console.error('Greška pri slanju na webhook:', err); })
+      .finally(finish);
+    });
+  }
+
+  function renderThankYou(){
+    const firstName = (state.answers.name||'').split(' ')[0] || '';
+    const hasPhone = !!(state.answers.phone && state.answers.phone.trim());
+    const channelMsg = hasPhone
+      ? 'Analizu vam šaljemo na WhatsApp, najčešće u roku od 24h.'
+      : 'Analizu vam šaljemo putem LinkedIn poruke, najčešće u roku od 24h.';
+
+    cardEl.innerHTML =
+      '<div class="thankyou-icon">✓</div>' +
+      '<h2 class="title">Hvala' + (firstName ? ', ' + firstName : '') + '!</h2>' +
+      '<p class="subtitle" style="margin-bottom:0;">Odgovori su uspešno poslati. ' + channelMsg + ' Ako se ne javimo, slobodno nas kontaktirajte direktno.</p>';
+  }
+
+  renderCurrent();
+})();
+</script>
+</body>
+</html>
