@@ -104,6 +104,67 @@
     border-radius:100px;
   }
 
+  .platform-settings{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .platform-row{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:12px 14px;
+  }
+
+  .platform-name{
+    font-size:13px;
+    font-weight:500;
+    color:var(--text);
+  }
+
+  .segmented{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+
+  .segmented label{
+    display:inline-flex;
+    align-items:center;
+    margin:0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--text-muted);
+    border:1px solid var(--border);
+    background:var(--surface);
+    padding:6px 11px;
+    border-radius:100px;
+    cursor:pointer;
+    transition:border-color .15s ease, color .15s ease, background .15s ease;
+  }
+
+  .segmented input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+  }
+
+  .segmented label:has(input:checked){
+    border-color:var(--accent);
+    color:var(--accent);
+    background:rgba(232,179,76,0.1);
+  }
+
+  .segmented label.disabled{
+    opacity:0.4;
+    cursor:not-allowed;
+    pointer-events:none;
+  }
+
   form{
     background:var(--surface);
     border:1px solid var(--border);
@@ -313,12 +374,6 @@
   <h1>Spremi objavu.</h1>
   <p class="sub">Unesi tekst i, ako želiš, dodaj sliku ili video. Kad klikneš Objavi, sadržaj ide dalje na obradu i postavljanje.</p>
 
-  <div class="destinations">
-    <span class="dest">LINKEDIN</span>
-    <span class="dest">INSTAGRAM</span>
-    <span class="dest">FACEBOOK</span>
-  </div>
-
   <form id="publishForm">
     <div>
       <label for="text">Tekst objave</label>
@@ -339,6 +394,36 @@
           <div class="size" id="previewSize"></div>
         </div>
         <button type="button" class="remove" id="removeFile" aria-label="Ukloni fajl">×</button>
+      </div>
+    </div>
+
+    <div class="platform-settings">
+      <label>Medija po platformi <span class="hint">— šta se objavljuje na svakoj mreži</span></label>
+
+      <div class="platform-row">
+        <span class="platform-name">LinkedIn</span>
+        <div class="segmented" role="radiogroup" aria-label="Izvor medije za LinkedIn">
+          <label class="opt-same"><input type="radio" name="li_media" value="same" checked> Isti fajl</label>
+          <label><input type="radio" name="li_media" value="ai_image"> AI slika</label>
+        </div>
+      </div>
+
+      <div class="platform-row">
+        <span class="platform-name">Instagram</span>
+        <div class="segmented" role="radiogroup" aria-label="Izvor medije za Instagram">
+          <label class="opt-same"><input type="radio" name="ig_media" value="same" checked> Isti fajl</label>
+          <label><input type="radio" name="ig_media" value="ai_image"> AI slika</label>
+          <label><input type="radio" name="ig_media" value="ai_carousel"> AI carousel</label>
+        </div>
+      </div>
+
+      <div class="platform-row">
+        <span class="platform-name">Facebook</span>
+        <div class="segmented" role="radiogroup" aria-label="Izvor medije za Facebook">
+          <label class="opt-same"><input type="radio" name="fb_media" value="same" checked> Isti fajl</label>
+          <label><input type="radio" name="fb_media" value="ai_image"> AI slika</label>
+          <label><input type="radio" name="fb_media" value="ai_carousel"> AI carousel</label>
+        </div>
       </div>
     </div>
 
@@ -421,6 +506,23 @@
       previewMediaWrap.appendChild(vid);
     }
     preview.classList.add('show');
+    setSameFileAvailability(true);
+  }
+
+  // "Isti fajl" opcija ima smisla samo ako je nešto uploadovano.
+  // Kad nema fajla, ta opcija se onemogući i selekcija prebaci na "AI slika".
+  function setSameFileAvailability(available){
+    document.querySelectorAll('input[value="same"]').forEach(input => {
+      input.disabled = !available;
+      input.closest('label').classList.toggle('disabled', !available);
+      if(available){
+        input.checked = true;
+      } else if(input.checked){
+        const group = document.getElementsByName(input.name);
+        const fallback = Array.from(group).find(r => r.value === 'ai_image');
+        if(fallback) fallback.checked = true;
+      }
+    });
   }
 
   function formatSize(bytes){
@@ -433,7 +535,11 @@
     fileInput.value = '';
     previewMediaWrap.innerHTML = '';
     preview.classList.remove('show');
+    setSameFileAvailability(false);
   });
+
+  // Na učitavanju stranice još nema fajla, pa je "Isti fajl" isključena opcija.
+  setSameFileAvailability(false);
 
   function setStatus(kind, text){
     status.classList.add('show');
@@ -460,6 +566,12 @@
       formData.append('media', selectedFile, selectedFile.name);
     }
 
+    // Izvor medije po platformi: "same" (uploadovani fajl), "ai_image" (AI generisana slika)
+    // ili "ai_carousel" (AI generisan carousel — samo Instagram/Facebook)
+    formData.append('linkedin_media_source', form.querySelector('input[name="li_media"]:checked').value);
+    formData.append('instagram_media_source', form.querySelector('input[name="ig_media"]:checked').value);
+    formData.append('facebook_media_source', form.querySelector('input[name="fb_media"]:checked').value);
+
     try{
       const res = await fetch(WEBHOOK_URL, {
         method: 'POST',
@@ -473,6 +585,7 @@
         selectedFile = null;
         previewMediaWrap.innerHTML = '';
         preview.classList.remove('show');
+        setSameFileAvailability(false);
       } else {
         setStatus('err', 'Greška pri slanju (' + res.status + '). Pokušaj ponovo.');
       }
