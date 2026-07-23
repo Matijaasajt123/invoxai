@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dispatch — objavi na sve mreže</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12141c;
+    --surface:#191c26;
+    --surface-2:#1f2330;
+    --border:#2b2f3d;
+    --text:#ecebe6;
+    --text-muted:#9096a6;
+    --accent:#e8b34c;
+    --accent-dim:#7a6636;
+    --live:#4fce8a;
+    --error:#e46a5c;
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(232,179,76,0.07), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:64px 20px;
+  }
+
+  .console{
+    width:100%;
+    max-width:560px;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:18px;
+  }
+
+  .dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--live);
+    box-shadow:0 0 0 0 rgba(79,206,138,0.6);
+    animation:pulse 2.4s infinite;
+  }
+
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(79,206,138,0.45);}
+    70%{box-shadow:0 0 0 8px rgba(79,206,138,0);}
+    100%{box-shadow:0 0 0 0 rgba(79,206,138,0);}
+  }
+
+  h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:34px;
+    line-height:1.15;
+    margin:0 0 10px;
+    letter-spacing:-0.01em;
+  }
+
+  .sub{
+    color:var(--text-muted);
+    font-size:15px;
+    line-height:1.5;
+    margin:0 0 28px;
+    max-width:46ch;
+  }
+
+  .destinations{
+    display:flex;
+    gap:8px;
+    margin-bottom:32px;
+  }
+
+  .dest{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    color:var(--text-muted);
+    border:1px solid var(--border);
+    background:var(--surface);
+    padding:6px 10px;
+    border-radius:100px;
+  }
+
+  form{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+
+  label{
+    display:block;
+    font-size:13px;
+    font-weight:500;
+    margin-bottom:8px;
+    color:var(--text);
+  }
+
+  label .hint{
+    font-weight:400;
+    color:var(--text-muted);
+    font-size:12px;
+  }
+
+  textarea, input[type="text"], input[type="password"]{
+    width:100%;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:10px;
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    font-size:14px;
+    padding:12px 14px;
+    resize:vertical;
+    transition:border-color .15s ease;
+  }
+
+  textarea{
+    min-height:140px;
+    line-height:1.5;
+  }
+
+  textarea:focus, input:focus{
+    outline:none;
+    border-color:var(--accent-dim);
+  }
+
+  textarea:focus-visible, input:focus-visible, button:focus-visible, .dropzone:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  .char-count{
+    text-align:right;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--text-muted);
+    margin-top:6px;
+  }
+
+  .dropzone{
+    border:1px dashed var(--border);
+    border-radius:10px;
+    background:var(--surface-2);
+    padding:22px;
+    text-align:center;
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;
+  }
+
+  .dropzone.drag{
+    border-color:var(--accent);
+    background:rgba(232,179,76,0.06);
+  }
+
+  .dropzone p{
+    margin:0;
+    font-size:13px;
+    color:var(--text-muted);
+  }
+
+  .dropzone strong{
+    color:var(--text);
+    font-weight:500;
+  }
+
+  .dropzone input{display:none;}
+
+  .preview{
+    margin-top:14px;
+    display:none;
+  }
+
+  .preview.show{display:flex;}
+
+  .preview{
+    align-items:center;
+    gap:12px;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:10px;
+  }
+
+  .preview img, .preview video{
+    width:56px;
+    height:56px;
+    object-fit:cover;
+    border-radius:6px;
+    background:#000;
+  }
+
+  .preview .meta{
+    flex:1;
+    min-width:0;
+  }
+
+  .preview .meta .name{
+    font-size:13px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .preview .meta .size{
+    font-size:11px;
+    color:var(--text-muted);
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  .preview .remove{
+    background:none;
+    border:none;
+    color:var(--text-muted);
+    cursor:pointer;
+    font-size:18px;
+    line-height:1;
+    padding:4px 8px;
+  }
+
+  .preview .remove:hover{color:var(--error);}
+
+  button.submit{
+    background:var(--accent);
+    color:#1a1305;
+    border:none;
+    border-radius:10px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    padding:14px;
+    cursor:pointer;
+    transition:filter .15s ease, transform .1s ease;
+  }
+
+  button.submit:hover{filter:brightness(1.08);}
+  button.submit:active{transform:scale(0.99);}
+
+  button.submit:disabled{
+    opacity:0.55;
+    cursor:not-allowed;
+    filter:none;
+  }
+
+  .status{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    display:none;
+    align-items:center;
+    gap:8px;
+    padding:2px 2px 0;
+  }
+
+  .status.show{display:flex;}
+  .status.ok{color:var(--live);}
+  .status.err{color:var(--error);}
+  .status.pending{color:var(--text-muted);}
+
+  .spinner{
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    border:2px solid var(--border);
+    border-top-color:var(--text-muted);
+    animation:spin .7s linear infinite;
+  }
+
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  footer{
+    margin-top:22px;
+    text-align:center;
+    font-size:12px;
+    color:var(--text-muted);
+  }
+
+  @media (max-width:480px){
+    h1{font-size:28px;}
+    form{padding:20px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="console">
+  <div class="eyebrow"><span class="dot"></span> DISPATCH CONSOLE</div>
+  <h1>Spremi objavu.</h1>
+  <p class="sub">Unesi tekst i, ako želiš, dodaj sliku ili video. Kad klikneš Objavi, sadržaj ide dalje na obradu i postavljanje.</p>
+
+  <div class="destinations">
+    <span class="dest">LINKEDIN</span>
+    <span class="dest">INSTAGRAM</span>
+    <span class="dest">FACEBOOK</span>
+  </div>
+
+  <form id="publishForm">
+    <div>
+      <label for="text">Tekst objave</label>
+      <textarea id="text" name="text" placeholder="Napiši šta želiš da objaviš..." required></textarea>
+      <div class="char-count"><span id="charCount">0</span> karaktera</div>
+    </div>
+
+    <div>
+      <label>Medija <span class="hint">— opciono, slika ili video</span></label>
+      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Dodaj sliku ili video">
+        <p><strong>Klikni da dodaš fajl</strong> ili prevuci ovde</p>
+        <input type="file" id="fileInput" accept="image/*,video/*">
+      </div>
+      <div class="preview" id="preview">
+        <div id="previewMediaWrap"></div>
+        <div class="meta">
+          <div class="name" id="previewName"></div>
+          <div class="size" id="previewSize"></div>
+        </div>
+        <button type="button" class="remove" id="removeFile" aria-label="Ukloni fajl">×</button>
+      </div>
+    </div>
+
+    <div>
+      <label for="accessCode">Pristupni kod <span class="hint">— dogovoren sa administratorom</span></label>
+      <input type="password" id="accessCode" name="access_code" placeholder="••••••••" autocomplete="off">
+    </div>
+
+    <button type="submit" class="submit" id="submitBtn">Objavi</button>
+
+    <div class="status" id="status">
+      <span class="spinner" id="statusSpinner"></span>
+      <span id="statusText"></span>
+    </div>
+  </form>
+
+  <footer>Slanje ide direktno u automatizaciju — objava se pojavljuje na mrežama u roku od par minuta.</footer>
+</div>
+
+<script>
+  // ⚠️ ZAMENI OVO svojim Make webhook URL-om (Custom Webhook modul → Copy address)
+  const WEBHOOK_URL = "https://hook.eu2.make.com/x62ckt6paouvrsqfvhem1021wtbgy5dc";
+
+  const form = document.getElementById('publishForm');
+  const textArea = document.getElementById('text');
+  const charCount = document.getElementById('charCount');
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('fileInput');
+  const preview = document.getElementById('preview');
+  const previewMediaWrap = document.getElementById('previewMediaWrap');
+  const previewName = document.getElementById('previewName');
+  const previewSize = document.getElementById('previewSize');
+  const removeFileBtn = document.getElementById('removeFile');
+  const submitBtn = document.getElementById('submitBtn');
+  const status = document.getElementById('status');
+  const statusSpinner = document.getElementById('statusSpinner');
+  const statusText = document.getElementById('statusText');
+
+  let selectedFile = null;
+
+  textArea.addEventListener('input', () => {
+    charCount.textContent = textArea.value.length;
+  });
+
+  dropzone.addEventListener('click', () => fileInput.click());
+  dropzone.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); fileInput.click(); }
+  });
+
+  ['dragenter','dragover'].forEach(evt => {
+    dropzone.addEventListener(evt, (e) => { e.preventDefault(); dropzone.classList.add('drag'); });
+  });
+  ['dragleave','drop'].forEach(evt => {
+    dropzone.addEventListener(evt, (e) => { e.preventDefault(); dropzone.classList.remove('drag'); });
+  });
+  dropzone.addEventListener('drop', (e) => {
+    const file = e.dataTransfer.files[0];
+    if(file) handleFile(file);
+  });
+
+  fileInput.addEventListener('change', () => {
+    if(fileInput.files[0]) handleFile(fileInput.files[0]);
+  });
+
+  function handleFile(file){
+    selectedFile = file;
+    previewName.textContent = file.name;
+    previewSize.textContent = formatSize(file.size);
+
+    previewMediaWrap.innerHTML = '';
+    const url = URL.createObjectURL(file);
+    if(file.type.startsWith('image/')){
+      const img = document.createElement('img');
+      img.src = url;
+      previewMediaWrap.appendChild(img);
+    } else if(file.type.startsWith('video/')){
+      const vid = document.createElement('video');
+      vid.src = url;
+      vid.muted = true;
+      previewMediaWrap.appendChild(vid);
+    }
+    preview.classList.add('show');
+  }
+
+  function formatSize(bytes){
+    if(bytes < 1024*1024) return (bytes/1024).toFixed(0) + ' KB';
+    return (bytes/(1024*1024)).toFixed(1) + ' MB';
+  }
+
+  removeFileBtn.addEventListener('click', () => {
+    selectedFile = null;
+    fileInput.value = '';
+    previewMediaWrap.innerHTML = '';
+    preview.classList.remove('show');
+  });
+
+  function setStatus(kind, text){
+    status.classList.add('show');
+    status.className = 'status show ' + kind;
+    statusSpinner.style.display = kind === 'pending' ? 'inline-block' : 'none';
+    statusText.textContent = text;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if(WEBHOOK_URL.includes('PASTE_YOUR_WEBHOOK_ID_HERE')){
+      setStatus('err', 'Webhook URL nije podešen u kodu — vidi komentar u <script>.');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    setStatus('pending', 'Šaljem...');
+
+    const formData = new FormData();
+    formData.append('text', textArea.value);
+    formData.append('access_code', document.getElementById('accessCode').value);
+    if(selectedFile){
+      formData.append('media', selectedFile, selectedFile.name);
+    }
+
+    try{
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        body: formData
+      });
+
+      if(res.ok){
+        setStatus('ok', 'Poslato! Objava je u obradi.');
+        form.reset();
+        charCount.textContent = '0';
+        selectedFile = null;
+        previewMediaWrap.innerHTML = '';
+        preview.classList.remove('show');
+      } else {
+        setStatus('err', 'Greška pri slanju (' + res.status + '). Pokušaj ponovo.');
+      }
+    } catch(err){
+      setStatus('err', 'Ne mogu da se povežem sa serverom. Proveri konekciju.');
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
