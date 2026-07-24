@@ -444,8 +444,9 @@
 </div>
 
 <script>
-  // ⚠️ ZAMENI OVO svojim Make webhook URL-om (Custom Webhook modul → Copy address)
+  // ⚠️ ZAMENI OVO svojim Make webhook URL-ovima (Custom Webhook modul → Copy address)
   const WEBHOOK_URL = "https://hook.eu2.make.com/x62ckt6paouvrsqfvhem1021wtbgy5dc";
+  const WEBHOOK_URL_2 = "https://hook.eu2.make.com/sp6wc903ov523ereqotdrcqt4eh58qxv";
 
   const form = document.getElementById('publishForm');
   const textArea = document.getElementById('text');
@@ -551,11 +552,6 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    if(WEBHOOK_URL.includes('PASTE_YOUR_WEBHOOK_ID_HERE')){
-      setStatus('err', 'Webhook URL nije podešen u kodu — vidi komentar u <script>.');
-      return;
-    }
-
     submitBtn.disabled = true;
     setStatus('pending', 'Šaljem...');
 
@@ -572,13 +568,25 @@
     formData.append('instagram_media_source', form.querySelector('input[name="ig_media"]:checked').value);
     formData.append('facebook_media_source', form.querySelector('input[name="fb_media"]:checked').value);
 
-    try{
-      const res = await fetch(WEBHOOK_URL, {
-        method: 'POST',
-        body: formData
-      });
+    // Isti podaci idu na oba webhook-a paralelno.
+    const targets = [WEBHOOK_URL, WEBHOOK_URL_2].filter(
+      url => !url.includes('PASTE_')
+    );
 
-      if(res.ok){
+    if(targets.length === 0){
+      setStatus('err', 'Nijedan webhook URL nije podešen u kodu.');
+      submitBtn.disabled = false;
+      return;
+    }
+
+    try{
+      const results = await Promise.allSettled(
+        targets.map(url => fetch(url, { method: 'POST', body: formData }))
+      );
+
+      const failed = results.filter(r => r.status === 'rejected' || !r.value.ok);
+
+      if(failed.length === 0){
         setStatus('ok', 'Poslato! Objava je u obradi.');
         form.reset();
         charCount.textContent = '0';
@@ -586,8 +594,10 @@
         previewMediaWrap.innerHTML = '';
         preview.classList.remove('show');
         setSameFileAvailability(false);
+      } else if(failed.length < targets.length){
+        setStatus('err', 'Delimično poslato — ' + failed.length + ' od ' + targets.length + ' webhook-a nije primio podatke.');
       } else {
-        setStatus('err', 'Greška pri slanju (' + res.status + '). Pokušaj ponovo.');
+        setStatus('err', 'Slanje nije uspelo ni na jedan webhook. Pokušaj ponovo.');
       }
     } catch(err){
       setStatus('err', 'Ne mogu da se povežem sa serverom. Proveri konekciju.');
