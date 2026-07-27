@@ -269,7 +269,7 @@
     padding:10px;
   }
 
-  .preview img, .preview video{
+  .preview img{
     width:56px;
     height:56px;
     object-fit:cover;
@@ -329,6 +329,14 @@
     filter:none;
   }
 
+  .ai-desc-wrap{
+    display:none;
+  }
+
+  .ai-desc-wrap.show{
+    display:block;
+  }
+
   .status{
     font-family:'IBM Plex Mono', monospace;
     font-size:12.5px;
@@ -384,9 +392,9 @@
 
     <div>
       <label>Upload slike <span class="hint"></span></label>
-      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Dodaj sliku ili video">
-        <p><strong>Klikni da dodaš fajlove</strong> ili prevuci ovde</p>
-        <input type="file" id="fileInput" accept="image/*,video/*">
+      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Dodaj sliku">
+        <p><strong>Klikni da dodaš sliku</strong> ili prevuci ovde</p>
+        <input type="file" id="fileInput" accept="image/*">
       </div>
       <div class="preview" id="preview">
         <div id="previewMediaWrap"></div>
@@ -399,7 +407,7 @@
     </div>
 
     <div class="platform-settings">
-      <label>AI fotografija <span class="hint"/label>
+      <label>AI fotografija <span class="hint"></span></label>
 
       <div class="platform-row">
         <span class="platform-name">LinkedIn</span>
@@ -428,8 +436,13 @@
       </div>
     </div>
 
+    <div class="ai-desc-wrap" id="aiDescWrap">
+      <label for="aiImageDescription">Opis željene AI slike <span class="hint">(koristi se kad je izabrana AI opcija)</span></label>
+      <textarea id="aiImageDescription" name="ai_image_description" placeholder="Opiši kakvu sliku želiš da AI generiše (npr. stil, motiv, boje, atmosfera)..." style="min-height:90px;"></textarea>
+    </div>
+
     <div>
-      <label for="accessCode">Pristupni kod <span class="hint"/span></label>
+      <label for="accessCode">Pristupni kod <span class="hint"></span></label>
       <input type="password" id="accessCode" name="access_code" placeholder="••••••••" autocomplete="off">
     </div>
 
@@ -459,6 +472,8 @@
   const previewName = document.getElementById('previewName');
   const previewSize = document.getElementById('previewSize');
   const removeFileBtn = document.getElementById('removeFile');
+  const aiDescWrap = document.getElementById('aiDescWrap');
+  const aiImageDescription = document.getElementById('aiImageDescription');
   const submitBtn = document.getElementById('submitBtn');
   const status = document.getElementById('status');
   const statusSpinner = document.getElementById('statusSpinner');
@@ -501,11 +516,6 @@
       const img = document.createElement('img');
       img.src = url;
       previewMediaWrap.appendChild(img);
-    } else if(file.type.startsWith('video/')){
-      const vid = document.createElement('video');
-      vid.src = url;
-      vid.muted = true;
-      previewMediaWrap.appendChild(vid);
     }
     preview.classList.add('show');
     setSameFileAvailability(true);
@@ -513,6 +523,8 @@
 
   // "Isti fajl" opcija ima smisla samo ako je nešto uploadovano.
   // Kad nema fajla, ta opcija se onemogući i selekcija prebaci na "AI slika".
+  // Obrnuto: kad JE nešto uploadovano, AI opcije (ai_image / ai_carousel) se
+  // onemogućavaju, jer korisnik već ima svoju sliku — selekcija se prebaci na "Isti fajl".
   function setSameFileAvailability(available){
     document.querySelectorAll('input[value="same"]').forEach(input => {
       input.disabled = !available;
@@ -525,6 +537,13 @@
         if(fallback) fallback.checked = true;
       }
     });
+
+    document.querySelectorAll('input[value="ai_image"], input[value="ai_carousel"]').forEach(input => {
+      input.disabled = available;
+      input.closest('label').classList.toggle('disabled', available);
+    });
+
+    aiDescWrap.classList.toggle('show', !available);
   }
 
   function formatSize(bytes){
@@ -559,6 +578,7 @@
     const formData = new FormData();
     formData.append('text', textArea.value);
     formData.append('access_code', document.getElementById('accessCode').value);
+    formData.append('ai_image_description', aiImageDescription.value);
     if(selectedFile){
       formData.append('media', selectedFile, selectedFile.name);
     }
@@ -607,6 +627,9 @@
     }
   });
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
