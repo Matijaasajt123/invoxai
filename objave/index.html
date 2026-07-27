@@ -370,9 +370,10 @@
 <body>
 
 <div class="console">
-  <div class="eyebrow"><span class="dot"></span> DISPATCH CONSOLE</div>
-  <h1>Spremi objavu.</h1>
-  <p class="sub">Unesi tekst i, ako želiš, dodaj sliku ili video. Kad klikneš Objavi, sadržaj ide dalje na obradu i postavljanje.</p>
+  <div class="eyebrow"><span class="dot"></span> Automatizacija za društvene mreže</div>
+  <h1>Priprema objave.</h1>
+  <p class="sub">Unesi tekst i, ako želiš, dodaj sliku. Kad klikneš na dugme objavi, sadržaj ce biti automatski postavljen na sve društvene mreže u roku od par minuta.
+</p>
 
   <form id="publishForm">
     <div>
@@ -382,9 +383,9 @@
     </div>
 
     <div>
-      <label>Medija <span class="hint">— opciono, slika ili video</span></label>
+      <label>Upload slike <span class="hint"></span></label>
       <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Dodaj sliku ili video">
-        <p><strong>Klikni da dodaš fajl</strong> ili prevuci ovde</p>
+        <p><strong>Klikni da dodaš fajlove</strong> ili prevuci ovde</p>
         <input type="file" id="fileInput" accept="image/*,video/*">
       </div>
       <div class="preview" id="preview">
@@ -398,7 +399,7 @@
     </div>
 
     <div class="platform-settings">
-      <label>Medija po platformi <span class="hint">— šta se objavljuje na svakoj mreži</span></label>
+      <label>AI fotografija <span class="hint"/label>
 
       <div class="platform-row">
         <span class="platform-name">LinkedIn</span>
@@ -428,7 +429,7 @@
     </div>
 
     <div>
-      <label for="accessCode">Pristupni kod <span class="hint">— dogovoren sa administratorom</span></label>
+      <label for="accessCode">Pristupni kod <span class="hint"/span></label>
       <input type="password" id="accessCode" name="access_code" placeholder="••••••••" autocomplete="off">
     </div>
 
@@ -440,7 +441,7 @@
     </div>
   </form>
 
-  <footer>Slanje ide direktno u automatizaciju — objava se pojavljuje na mrežama u roku od par minuta.</footer>
+  <footer>Objave će se pojaviti na mrežama u roku od par minuta.</footer>
 </div>
 
 <script>
