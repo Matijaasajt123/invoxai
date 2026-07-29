@@ -411,17 +411,13 @@
 
       <div class="platform-row">
         <span class="platform-name">LinkedIn</span>
-        <div class="segmented" role="radiogroup" aria-label="Izvor medije za LinkedIn">
-          <label class="opt-same"><input type="radio" name="li_media" value="same" checked> Isti fajl</label>
-          <label><input type="radio" name="li_media" value="ai_image"> AI slika</label>
-        </div>
+        <input type="hidden" name="li_media" value="same">
       </div>
 
       <div class="platform-row">
         <span class="platform-name">Instagram</span>
         <div class="segmented" role="radiogroup" aria-label="Izvor medije za Instagram">
           <label class="opt-same"><input type="radio" name="ig_media" value="same" checked> Isti fajl</label>
-          <label><input type="radio" name="ig_media" value="ai_image"> AI slika</label>
           <label><input type="radio" name="ig_media" value="ai_carousel"> AI carousel</label>
         </div>
       </div>
@@ -430,15 +426,14 @@
         <span class="platform-name">Facebook</span>
         <div class="segmented" role="radiogroup" aria-label="Izvor medije za Facebook">
           <label class="opt-same"><input type="radio" name="fb_media" value="same" checked> Isti fajl</label>
-          <label><input type="radio" name="fb_media" value="ai_image"> AI slika</label>
           <label><input type="radio" name="fb_media" value="ai_carousel"> AI carousel</label>
         </div>
       </div>
     </div>
 
     <div class="ai-desc-wrap" id="aiDescWrap">
-      <label for="aiImageDescription">Napomena za AI agenta <span class="hint">(ako imat eneku napomenu za AI koji sastavlja tekst)</span></label>
-      <textarea id="aiImageDescription" name="ai_image_description" placeholder="Opiši kakvu sliku želiš da AI generiše (npr. stil, motiv, boje, atmosfera)..." style="min-height:90px;"></textarea>
+      <label for="aiImageDescription">Napomena za AI agenta <span class="hint"></span></label>
+      <textarea id="aiImageDescription" name="ai_image_description" placeholder="Opiši kakav tekst želiš na objavi" style="min-height:90px;"></textarea>
     </div>
 
     <div>
@@ -521,29 +516,31 @@
     setSameFileAvailability(true);
   }
 
-  // "Isti fajl" opcija ima smisla samo ako je nešto uploadovano.
-  // Kad nema fajla, ta opcija se onemogući i selekcija prebaci na "AI slika".
-  // Obrnuto: kad JE nešto uploadovano, AI opcije (ai_image / ai_carousel) se
-  // onemogućavaju, jer korisnik već ima svoju sliku — selekcija se prebaci na "Isti fajl".
+  // LinkedIn nema opciju izbora — uvek ide isti uploadovani fajl (nema AI opcije za LinkedIn).
+  //
+  // Instagram i Facebook imaju samo dve opcije: "Isti fajl" ili "AI carousel".
+  // "Isti fajl" ima smisla samo ako je nešto uploadovano — kad nema fajla, ta opcija
+  // se onemogući i selekcija prebaci na "AI carousel".
+  // AI carousel opcija ostaje UVEK dostupna, čak i kad korisnik uploaduje svoj fajl,
+  // jer korisnik i dalje može želeti da AI napravi carousel umesto da koristi svoj fajl.
   function setSameFileAvailability(available){
-    document.querySelectorAll('input[value="same"]').forEach(input => {
-      input.disabled = !available;
-      input.closest('label').classList.toggle('disabled', !available);
+    ['ig_media','fb_media'].forEach(name => {
+      const group = document.getElementsByName(name);
+      const sameInput = Array.from(group).find(r => r.value === 'same');
+      if(!sameInput) return;
+
+      sameInput.disabled = !available;
+      sameInput.closest('label').classList.toggle('disabled', !available);
+
       if(available){
-        input.checked = true;
-      } else if(input.checked){
-        const group = document.getElementsByName(input.name);
-        const fallback = Array.from(group).find(r => r.value === 'ai_image');
+        sameInput.checked = true;
+      } else if(sameInput.checked){
+        const fallback = Array.from(group).find(r => r.value === 'ai_carousel');
         if(fallback) fallback.checked = true;
       }
     });
 
-    document.querySelectorAll('input[value="ai_image"], input[value="ai_carousel"]').forEach(input => {
-      input.disabled = available;
-      input.closest('label').classList.toggle('disabled', available);
-    });
-
-    aiDescWrap.classList.toggle('show', !available);
+    updateAiDescVisibility();
   }
 
   function formatSize(bytes){
@@ -561,6 +558,21 @@
 
   // Na učitavanju stranice još nema fajla, pa je "Isti fajl" isključena opcija.
   setSameFileAvailability(false);
+
+  // Ako korisnik ručno izabere "AI carousel" (čak i kad je fajl uploadovan),
+  // prikaži polje za napomenu AI agentu.
+  function updateAiDescVisibility(){
+    const anyAiCarousel = ['ig_media','fb_media'].some(name => {
+      const group = document.getElementsByName(name);
+      const checked = Array.from(group).find(r => r.checked);
+      return checked && checked.value === 'ai_carousel';
+    });
+    aiDescWrap.classList.toggle('show', anyAiCarousel);
+  }
+
+  document.querySelectorAll('input[name="ig_media"], input[name="fb_media"]').forEach(input => {
+    input.addEventListener('change', updateAiDescVisibility);
+  });
 
   function setStatus(kind, text){
     status.classList.add('show');
@@ -585,7 +597,7 @@
 
     // Izvor medije po platformi: "same" (uploadovani fajl), "ai_image" (AI generisana slika)
     // ili "ai_carousel" (AI generisan carousel — samo Instagram/Facebook)
-    formData.append('linkedin_media_source', form.querySelector('input[name="li_media"]:checked').value);
+    formData.append('linkedin_media_source', form.querySelector('input[name="li_media"]').value);
     formData.append('instagram_media_source', form.querySelector('input[name="ig_media"]:checked').value);
     formData.append('facebook_media_source', form.querySelector('input[name="fb_media"]:checked').value);
 
