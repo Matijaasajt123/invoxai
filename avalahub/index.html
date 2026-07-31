@@ -253,14 +253,17 @@
 
   .dropzone input{display:none;}
 
-  .preview{
+  .preview-list{
     margin-top:14px;
     display:none;
+    flex-direction:column;
+    gap:8px;
   }
 
-  .preview.show{display:flex;}
+  .preview-list.show{display:flex;}
 
-  .preview{
+  .preview-item{
+    display:flex;
     align-items:center;
     gap:12px;
     background:var(--surface-2);
@@ -269,7 +272,7 @@
     padding:10px;
   }
 
-  .preview img{
+  .preview-item img{
     width:56px;
     height:56px;
     object-fit:cover;
@@ -277,25 +280,25 @@
     background:#000;
   }
 
-  .preview .meta{
+  .preview-item .meta{
     flex:1;
     min-width:0;
   }
 
-  .preview .meta .name{
+  .preview-item .meta .name{
     font-size:13px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
   }
 
-  .preview .meta .size{
+  .preview-item .meta .size{
     font-size:11px;
     color:var(--text-muted);
     font-family:'IBM Plex Mono', monospace;
   }
 
-  .preview .remove{
+  .preview-item .remove{
     background:none;
     border:none;
     color:var(--text-muted);
@@ -305,7 +308,7 @@
     padding:4px 8px;
   }
 
-  .preview .remove:hover{color:var(--error);}
+  .preview-item .remove:hover{color:var(--error);}
 
   button.submit{
     background:var(--accent);
@@ -327,14 +330,6 @@
     opacity:0.55;
     cursor:not-allowed;
     filter:none;
-  }
-
-  .ai-desc-wrap{
-    display:none;
-  }
-
-  .ai-desc-wrap.show{
-    display:block;
   }
 
   .status{
@@ -380,7 +375,7 @@
 <div class="console">
   <div class="eyebrow"><span class="dot"></span> Automatizacija za društvene mreže</div>
   <h1>Priprema objave.</h1>
-  <p class="sub">Unesi tekst i, ako želiš, dodaj sliku. Kad klikneš na dugme objavi, sadržaj će biti automatski postavljen na sve društvene mreže u roku od par minuta.
+  <p class="sub">Unesi tekst i, ako želiš, dodaj sliku. Kad klikneš na dugme objavi, sadržaj ce biti automatski postavljen na sve društvene mreže u roku od par minuta.
 </p>
 
   <form id="publishForm">
@@ -391,19 +386,12 @@
     </div>
 
     <div>
-      <label>Upload slike <span class="hint"></span></label>
-      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Dodaj sliku">
-        <p><strong>Klikni da dodaš sliku</strong> ili prevuci ovde</p>
-        <input type="file" id="fileInput" accept="image/*">
+      <label>Upload slika <span class="hint">(može više odjednom)</span></label>
+      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Dodaj slike">
+        <p><strong>Klikni da dodaš slike</strong> ili prevuci ovde</p>
+        <input type="file" id="fileInput" accept="image/*" multiple>
       </div>
-      <div class="preview" id="preview">
-        <div id="previewMediaWrap"></div>
-        <div class="meta">
-          <div class="name" id="previewName"></div>
-          <div class="size" id="previewSize"></div>
-        </div>
-        <button type="button" class="remove" id="removeFile" aria-label="Ukloni fajl">×</button>
-      </div>
+      <div class="preview-list" id="previewList"></div>
     </div>
 
     <div class="platform-settings">
@@ -429,11 +417,6 @@
           <label><input type="radio" name="fb_media" value="ai_carousel"> AI carousel</label>
         </div>
       </div>
-    </div>
-
-    <div class="ai-desc-wrap" id="aiDescWrap">
-      <label for="aiImageDescription">Napomena za AI agenta <span class="hint"></span></label>
-      <textarea id="aiImageDescription" name="ai_image_description" placeholder="Opiši kakav tekst želiš na objavi" style="min-height:90px;"></textarea>
     </div>
 
     <div>
@@ -462,19 +445,13 @@
   const charCount = document.getElementById('charCount');
   const dropzone = document.getElementById('dropzone');
   const fileInput = document.getElementById('fileInput');
-  const preview = document.getElementById('preview');
-  const previewMediaWrap = document.getElementById('previewMediaWrap');
-  const previewName = document.getElementById('previewName');
-  const previewSize = document.getElementById('previewSize');
-  const removeFileBtn = document.getElementById('removeFile');
-  const aiDescWrap = document.getElementById('aiDescWrap');
-  const aiImageDescription = document.getElementById('aiImageDescription');
+  const previewList = document.getElementById('previewList');
   const submitBtn = document.getElementById('submitBtn');
   const status = document.getElementById('status');
   const statusSpinner = document.getElementById('statusSpinner');
   const statusText = document.getElementById('statusText');
 
-  let selectedFile = null;
+  let selectedFiles = [];
 
   textArea.addEventListener('input', () => {
     charCount.textContent = textArea.value.length;
@@ -492,28 +469,65 @@
     dropzone.addEventListener(evt, (e) => { e.preventDefault(); dropzone.classList.remove('drag'); });
   });
   dropzone.addEventListener('drop', (e) => {
-    const file = e.dataTransfer.files[0];
-    if(file) handleFile(file);
+    handleFiles(e.dataTransfer.files);
   });
 
   fileInput.addEventListener('change', () => {
-    if(fileInput.files[0]) handleFile(fileInput.files[0]);
+    handleFiles(fileInput.files);
+    fileInput.value = '';
   });
 
-  function handleFile(file){
-    selectedFile = file;
-    previewName.textContent = file.name;
-    previewSize.textContent = formatSize(file.size);
+  function handleFiles(fileList){
+    const files = Array.from(fileList || []).filter(f => f.type.startsWith('image/'));
+    if(files.length === 0) return;
+    selectedFiles.push(...files);
+    renderPreviewList();
+    setSameFileAvailability(true);
+  }
 
-    previewMediaWrap.innerHTML = '';
-    const url = URL.createObjectURL(file);
-    if(file.type.startsWith('image/')){
+  function renderPreviewList(){
+    previewList.innerHTML = '';
+
+    selectedFiles.forEach((file, index) => {
+      const item = document.createElement('div');
+      item.className = 'preview-item';
+
+      const url = URL.createObjectURL(file);
       const img = document.createElement('img');
       img.src = url;
-      previewMediaWrap.appendChild(img);
-    }
-    preview.classList.add('show');
-    setSameFileAvailability(true);
+      item.appendChild(img);
+
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+
+      const name = document.createElement('div');
+      name.className = 'name';
+      name.textContent = file.name;
+      meta.appendChild(name);
+
+      const size = document.createElement('div');
+      size.className = 'size';
+      size.textContent = formatSize(file.size);
+      meta.appendChild(size);
+
+      item.appendChild(meta);
+
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'remove';
+      removeBtn.setAttribute('aria-label', 'Ukloni fajl');
+      removeBtn.textContent = '×';
+      removeBtn.addEventListener('click', () => {
+        selectedFiles.splice(index, 1);
+        renderPreviewList();
+        if(selectedFiles.length === 0) setSameFileAvailability(false);
+      });
+      item.appendChild(removeBtn);
+
+      previewList.appendChild(item);
+    });
+
+    previewList.classList.toggle('show', selectedFiles.length > 0);
   }
 
   // LinkedIn nema opciju izbora — uvek ide isti uploadovani fajl (nema AI opcije za LinkedIn).
@@ -539,8 +553,6 @@
         if(fallback) fallback.checked = true;
       }
     });
-
-    updateAiDescVisibility();
   }
 
   function formatSize(bytes){
@@ -548,31 +560,8 @@
     return (bytes/(1024*1024)).toFixed(1) + ' MB';
   }
 
-  removeFileBtn.addEventListener('click', () => {
-    selectedFile = null;
-    fileInput.value = '';
-    previewMediaWrap.innerHTML = '';
-    preview.classList.remove('show');
-    setSameFileAvailability(false);
-  });
-
   // Na učitavanju stranice još nema fajla, pa je "Isti fajl" isključena opcija.
   setSameFileAvailability(false);
-
-  // Ako korisnik ručno izabere "AI carousel" (čak i kad je fajl uploadovan),
-  // prikaži polje za napomenu AI agentu.
-  function updateAiDescVisibility(){
-    const anyAiCarousel = ['ig_media','fb_media'].some(name => {
-      const group = document.getElementsByName(name);
-      const checked = Array.from(group).find(r => r.checked);
-      return checked && checked.value === 'ai_carousel';
-    });
-    aiDescWrap.classList.toggle('show', anyAiCarousel);
-  }
-
-  document.querySelectorAll('input[name="ig_media"], input[name="fb_media"]').forEach(input => {
-    input.addEventListener('change', updateAiDescVisibility);
-  });
 
   function setStatus(kind, text){
     status.classList.add('show');
@@ -590,10 +579,9 @@
     const formData = new FormData();
     formData.append('text', textArea.value);
     formData.append('access_code', document.getElementById('accessCode').value);
-    formData.append('ai_image_description', aiImageDescription.value);
-    if(selectedFile){
-      formData.append('media', selectedFile, selectedFile.name);
-    }
+    selectedFiles.forEach(file => {
+      formData.append('media', file, file.name);
+    });
 
     // Izvor medije po platformi: "same" (uploadovani fajl), "ai_image" (AI generisana slika)
     // ili "ai_carousel" (AI generisan carousel — samo Instagram/Facebook)
@@ -623,9 +611,9 @@
         setStatus('ok', 'Poslato! Objava je u obradi.');
         form.reset();
         charCount.textContent = '0';
-        selectedFile = null;
-        previewMediaWrap.innerHTML = '';
-        preview.classList.remove('show');
+        selectedFiles = [];
+        previewList.innerHTML = '';
+        previewList.classList.remove('show');
         setSameFileAvailability(false);
       } else if(failed.length < targets.length){
         setStatus('err', 'Delimično poslato — ' + failed.length + ' od ' + targets.length + ' webhook-a nije primio podatke.');
@@ -639,9 +627,6 @@
     }
   });
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
