@@ -217,6 +217,10 @@
     outline-offset:2px;
   }
 
+  input.invalid{
+    border-color:var(--error);
+  }
+
   .char-count{
     text-align:right;
     font-family:'IBM Plex Mono', monospace;
@@ -421,7 +425,7 @@
 
     <div>
       <label for="accessCode">Pristupni kod <span class="hint"></span></label>
-      <input type="password" id="accessCode" name="access_code" placeholder="••••••••" autocomplete="off">
+      <input type="password" id="accessCode" name="access_code" placeholder="••••••••" autocomplete="off" required>
     </div>
 
     <button type="submit" class="submit" id="submitBtn">Objavi</button>
@@ -451,8 +455,19 @@
   const status = document.getElementById('status');
   const statusSpinner = document.getElementById('statusSpinner');
   const statusText = document.getElementById('statusText');
+  const accessInput = document.getElementById('accessCode');
 
   let selectedFiles = [];
+
+  // Dugme "Objavi" je zaključano dok se ne unese pristupni kod.
+  function updateSubmitState(){
+    submitBtn.disabled = accessInput.value.trim() === '';
+  }
+  accessInput.addEventListener('input', () => {
+    accessInput.classList.remove('invalid');
+    updateSubmitState();
+  });
+  updateSubmitState();
 
   textArea.addEventListener('input', () => {
     charCount.textContent = textArea.value.length;
@@ -574,12 +589,20 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Zaštita: bez pristupnog koda se ništa ne šalje.
+    if(accessInput.value.trim() === ''){
+      setStatus('err', 'Unesi pristupni kod.');
+      accessInput.classList.add('invalid');
+      accessInput.focus();
+      return;
+    }
+
     submitBtn.disabled = true;
     setStatus('pending', 'Šaljem...');
 
     const formData = new FormData();
     formData.append('text', textArea.value);
-    formData.append('access_code', document.getElementById('accessCode').value);
+    formData.append('access_code', accessInput.value);
     selectedFiles.forEach(file => {
       formData.append('media', file, file.name);
     });
@@ -590,14 +613,14 @@
     formData.append('instagram_media_source', form.querySelector('input[name="ig_media"]:checked').value);
     formData.append('facebook_media_source', form.querySelector('input[name="fb_media"]:checked').value);
 
-    // Isti podaci idu na oba webhook-a paralelno.
+    // Isti podaci idu na sve webhook-ove paralelno.
     const targets = [WEBHOOK_URL, WEBHOOK_URL_2, WEBHOOK_URL_3].filter(
       url => !url.includes('PASTE_')
     );
 
     if(targets.length === 0){
       setStatus('err', 'Nijedan webhook URL nije podešen u kodu.');
-      submitBtn.disabled = false;
+      updateSubmitState();
       return;
     }
 
@@ -605,6 +628,19 @@
       const results = await Promise.allSettled(
         targets.map(url => fetch(url, { method: 'POST', body: formData }))
       );
+
+      // Pogrešan kod: Make (Webhook response) vraća 401/403.
+      const wrongCode = results.some(
+        r => r.status === 'fulfilled' && (r.value.status === 401 || r.value.status === 403)
+      );
+
+      if(wrongCode){
+        setStatus('err', 'Pogrešan pristupni kod. Tekst i slike su sačuvani, pokušaj ponovo.');
+        accessInput.value = '';          // briše se SAMO kod
+        accessInput.classList.add('invalid');
+        accessInput.focus();
+        return;                          // NEMA form.reset() — tekst i slike ostaju
+      }
 
       const failed = results.filter(r => r.status === 'rejected' || !r.value.ok);
 
@@ -624,7 +660,7 @@
     } catch(err){
       setStatus('err', 'Ne mogu da se povežem sa serverom. Proveri konekciju.');
     } finally {
-      submitBtn.disabled = false;
+      updateSubmitState(); // kad je kod prazan, dugme ostaje zaključano
     }
   });
 </script>
