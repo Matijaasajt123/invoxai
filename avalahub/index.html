@@ -442,7 +442,6 @@
 <script>
   // ⚠️ ZAMENI OVO svojim Make webhook URL-ovima (Custom Webhook modul → Copy address)
   const WEBHOOK_URL = "https://hook.eu1.make.com/dukb4rxtk4tkfxnndxgm299vvus8434l";
-  const WEBHOOK_URL_2 = "https://hook.eu1.make.com/3m4vudv4687bhzq01aeldcne74do0v4z";
   const WEBHOOK_URL_3 = "https://hook.eu1.make.com/m8ykb9nfa414rqn6ux2a9ujr68aw8bsz";
 
   const form = document.getElementById('publishForm');
@@ -614,7 +613,7 @@
     formData.append('facebook_media_source', form.querySelector('input[name="fb_media"]:checked').value);
 
     // Isti podaci idu na sve webhook-ove paralelno.
-    const targets = [WEBHOOK_URL, WEBHOOK_URL_2, WEBHOOK_URL_3].filter(
+    const targets = [WEBHOOK_URL, WEBHOOK_URL_3].filter(
       url => !url.includes('PASTE_')
     );
 
