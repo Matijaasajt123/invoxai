@@ -211,6 +211,20 @@
     animation:spin .7s linear infinite;
   }
   @keyframes spin{to{transform:rotate(360deg);}}
+  .log{display:none;margin-top:4px;border-top:1px solid var(--border);padding-top:16px;flex-direction:column;gap:8px;}
+  .log.show{display:flex;}
+  .log-title{font-family:'IBM Plex Mono', monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px;}
+  .log-row{display:flex;align-items:flex-start;gap:10px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-size:13px;}
+  .log-row .ico{width:10px;height:10px;border-radius:50%;margin-top:5px;flex:none;background:var(--text-muted);}
+  .log-row.pending .ico{background:transparent;border:2px solid var(--border);border-top-color:var(--text-muted);animation:spin .7s linear infinite;}
+  .log-row.ok .ico{background:var(--live);}
+  .log-row.error .ico{background:var(--error);}
+  .log-row .body{flex:1;min-width:0;}
+  .log-row .pname{font-weight:500;}
+  .log-row .msg{font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--text-muted);margin-top:3px;word-break:break-word;}
+  .log-row.error .msg{color:var(--error);}
+  .log-row a{color:var(--accent);text-decoration:none;}
+  .log-row a:hover{text-decoration:underline;}
   footer{margin-top:22px;text-align:center;font-size:12px;color:var(--text-muted);}
   @media (max-width:480px){
     h1{font-size:28px;}
@@ -278,6 +292,13 @@
       <span class="spinner" id="statusSpinner"></span>
       <span id="statusText"></span>
     </div>
+
+    <div class="log" id="log" aria-live="polite">
+      <div class="log-title">Status objave</div>
+      <div class="log-row pending" data-p="linkedin"><span class="ico"></span><div class="body"><span class="pname">LinkedIn</span><div class="msg">Čekam...</div></div></div>
+      <div class="log-row pending" data-p="facebook"><span class="ico"></span><div class="body"><span class="pname">Facebook</span><div class="msg">Čekam...</div></div></div>
+      <div class="log-row pending" data-p="instagram"><span class="ico"></span><div class="body"><span class="pname">Instagram</span><div class="msg">Čekam...</div></div></div>
+    </div>
   </form>
 
   <footer>Objave će se pojaviti na mrežama u roku od par minuta.</footer>
@@ -290,6 +311,9 @@
   const WEBHOOK_URL_3 = "https://hook.eu1.make.com/m8ykb9nfa414rqn6ux2a9ujr68aw8bsz";
   // Google Apps Script Web App URL (Deploy → Web app → Copy URL, završava se na /exec)
   const DRIVE_UPLOAD_URL = "https://script.google.com/macros/s/AKfycby-heSskuS4PjvwcoHCmHTyi2UTG9WJ_RqrzXq-5MmcavJ-NfXJXdKrTO7VACElBvKV/exec";
+
+  // Apps Script Web App za LOG (log-script.gs) — Deploy → Web app → Copy URL (/exec)
+  const LOG_URL = "https://script.google.com/macros/s/AKfycbx9-Scoa6ZIz_3UwKq3DwvJuoOdrY2G8No-NUJoKeafPnHAdpR91M1o0tGjmQsG2gEXaA/exec";
 
   const form = document.getElementById('publishForm');
   const textArea = document.getElementById('text');
@@ -458,6 +482,67 @@
     return json;
   }
 
+  // ---- Log objava (Make -> Apps Script -> ova stranica) ----
+  const logBox = document.getElementById('log');
+  let pollTimer = null;
+
+  function resetLog(){
+    logBox.querySelectorAll('.log-row').forEach(r => {
+      r.className = 'log-row pending';
+      r.querySelector('.msg').textContent = 'Čekam...';
+    });
+    logBox.classList.add('show');
+  }
+
+  function renderLogRow(platform, ev){
+    const row = logBox.querySelector('.log-row[data-p="' + platform + '"]');
+    if(!row) return;
+    row.className = 'log-row ' + (ev.status === 'ok' ? 'ok' : 'error');
+    const msg = row.querySelector('.msg');
+    msg.textContent = '';
+    if(ev.status === 'ok'){
+      msg.appendChild(document.createTextNode('Objavljeno '));
+      if(ev.url && /^https?:\/\//.test(ev.url)){
+        const a = document.createElement('a');
+        a.href = ev.url; a.target = '_blank'; a.rel = 'noopener';
+        a.textContent = 'otvori objavu ↗';
+        msg.appendChild(a);
+      }
+    } else {
+      msg.textContent = 'Greška: ' + (ev.message || 'nepoznata greška');
+    }
+  }
+
+  function startPolling(jobId){
+    if(pollTimer) clearInterval(pollTimer);
+    if(LOG_URL.includes('PASTE_')) return;
+    resetLog();
+    const startedAt = Date.now();
+    const MAX_MS = 10 * 60 * 1000;
+
+    const tick = async () => {
+      try{
+        const res = await fetch(LOG_URL + '?job_id=' + encodeURIComponent(jobId));
+        const json = await res.json();
+        const events = (json && json.events) || {};
+        Object.keys(events).forEach(p => renderLogRow(p, events[p]));
+        if(['linkedin','facebook','instagram'].every(p => events[p])){
+          clearInterval(pollTimer); pollTimer = null;
+          return;
+        }
+      } catch(e){ /* mrežna greška — probaj opet na sledeći tick */ }
+      if(Date.now() - startedAt > MAX_MS){
+        clearInterval(pollTimer); pollTimer = null;
+        logBox.querySelectorAll('.log-row.pending').forEach(r => {
+          r.className = 'log-row error';
+          r.querySelector('.msg').textContent = 'Nema odgovora od automatizacije (timeout 10 min). Proveri Make istoriju.';
+        });
+      }
+    };
+    tick();
+    pollTimer = setInterval(tick, 4000);
+  }
+
   function wrongCodeUI(){
     setStatus('err', 'Pogrešan pristupni kod. Tekst i slike su sačuvani, pokušaj ponovo.');
     accessInput.value = '';
@@ -505,6 +590,8 @@
       setStatus('pending', 'Šaljem u automatizaciju...');
 
       const formData = new FormData();
+      const jobId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2));
+      formData.append('job_id', jobId);
       formData.append('text', textArea.value);
       formData.append('access_code', accessInput.value);
 
@@ -533,6 +620,7 @@
 
       if(failed.length === 0){
         setStatus('ok', 'Poslato! Objava je u obradi.');
+        startPolling(jobId);
         form.reset();
         charCount.textContent = '0';
         selectedFiles = [];
