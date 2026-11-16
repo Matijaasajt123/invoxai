@@ -172,6 +172,24 @@
     font-size:11px;color:var(--text-muted);
     font-family:'IBM Plex Mono', monospace;
   }
+  .preview-item{cursor:grab;transition:opacity .15s ease, border-color .15s ease;}
+  .preview-item.dragging{opacity:0.4;}
+  .preview-item.over{border-color:var(--accent);}
+  .preview-item .order{
+    font-family:'IBM Plex Mono', monospace;font-size:12px;font-weight:500;
+    color:#1a1305;background:var(--accent);
+    min-width:24px;height:24px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .preview-item .move{display:flex;flex-direction:column;gap:2px;}
+  .preview-item .move button{
+    background:var(--surface);border:1px solid var(--border);color:var(--text-muted);
+    cursor:pointer;font-size:10px;line-height:1;padding:3px 7px;border-radius:5px;
+  }
+  .preview-item .move button:hover:not(:disabled){color:var(--accent);border-color:var(--accent);}
+  .preview-item .move button:disabled{opacity:0.3;cursor:not-allowed;}
+  .order-hint{font-size:11.5px;color:var(--text-muted);margin-top:8px;display:none;}
+  .order-hint.show{display:block;}
   .preview-item .remove{
     background:none;border:none;color:var(--text-muted);
     cursor:pointer;font-size:18px;line-height:1;padding:4px 8px;
@@ -254,6 +272,7 @@
         <input type="file" id="fileInput" accept="image/*" multiple>
       </div>
       <div class="preview-list" id="previewList"></div>
+      <div class="order-hint" id="orderHint">Redosled slika = redosled objave. Prevuci slike ili koristi strelice ▲▼.</div>
     </div>
 
     <div class="platform-settings">
@@ -376,6 +395,36 @@
     selectedFiles.forEach((file, index) => {
       const item = document.createElement('div');
       item.className = 'preview-item';
+      item.draggable = true;
+
+      item.addEventListener('dragstart', (e) => {
+        dragIndex = index;
+        item.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', String(index));
+      });
+      item.addEventListener('dragend', () => {
+        dragIndex = null;
+        item.classList.remove('dragging');
+        previewList.querySelectorAll('.over').forEach(el => el.classList.remove('over'));
+      });
+      item.addEventListener('dragover', (e) => {
+        if(dragIndex === null) return;
+        e.preventDefault();
+        item.classList.add('over');
+      });
+      item.addEventListener('dragleave', () => item.classList.remove('over'));
+      item.addEventListener('drop', (e) => {
+        if(dragIndex === null) return;
+        e.preventDefault();
+        e.stopPropagation();
+        moveFile(dragIndex, index);
+      });
+
+      const order = document.createElement('div');
+      order.className = 'order';
+      order.textContent = String(index + 1);
+      item.appendChild(order);
 
       const url = URL.createObjectURL(file);
       const img = document.createElement('img');
@@ -397,6 +446,20 @@
 
       item.appendChild(meta);
 
+      const move = document.createElement('div');
+      move.className = 'move';
+      const up = document.createElement('button');
+      up.type = 'button'; up.textContent = '▲'; up.setAttribute('aria-label', 'Pomeri gore');
+      up.disabled = index === 0;
+      up.addEventListener('click', () => moveFile(index, index - 1));
+      const down = document.createElement('button');
+      down.type = 'button'; down.textContent = '▼'; down.setAttribute('aria-label', 'Pomeri dole');
+      down.disabled = index === selectedFiles.length - 1;
+      down.addEventListener('click', () => moveFile(index, index + 1));
+      move.appendChild(up);
+      move.appendChild(down);
+      item.appendChild(move);
+
       const removeBtn = document.createElement('button');
       removeBtn.type = 'button';
       removeBtn.className = 'remove';
@@ -413,6 +476,15 @@
     });
 
     previewList.classList.toggle('show', selectedFiles.length > 0);
+    document.getElementById('orderHint').classList.toggle('show', selectedFiles.length > 1);
+  }
+
+  let dragIndex = null;
+  function moveFile(from, to){
+    if(from === to || to < 0 || to >= selectedFiles.length) return;
+    const [f] = selectedFiles.splice(from, 1);
+    selectedFiles.splice(to, 0, f);
+    renderPreviewList();
   }
 
   // Instagram i Facebook: "Isti fajl" je dostupan samo kad postoji upload,
@@ -626,6 +698,7 @@
         selectedFiles = [];
         previewList.innerHTML = '';
         previewList.classList.remove('show');
+        document.getElementById('orderHint').classList.remove('show');
         setSameFileAvailability(false);
       } else if(failed.length < targets.length){
         setStatus('err', 'Delimično poslato — ' + failed.length + ' od ' + targets.length + ' webhook-a nije primio podatke.');
